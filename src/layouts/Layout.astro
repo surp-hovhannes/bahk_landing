@@ -10,11 +10,13 @@ import "../styles/global.css";  // Add this import
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Fast & Pray</title>
 	</head>
 	<body>
 		<Navbar />
-		<slot />
+		<main class="max-w-4xl mx-auto my-12 p-6 bg-white rounded-lg">
+			<slot />
+		</main>
 	</body>
 </html>
 
