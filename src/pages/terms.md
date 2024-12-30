@@ -3,7 +3,7 @@ layout: ../layouts/Layout.astro
 title: Terms of Service
 ---
 
-<dic class="prose-stone">
+<div class="prose">
 
 # Terms of Service for Fast & Pray
 
