@@ -5,11 +5,7 @@ title: Privacy Policy
 
 ## Privacy Policy
 
-Here’s a sample privacy policy tailored for your Fast & Pray app. You can adapt it as needed. It covers standard privacy concerns and is written in a straightforward manner.
-
-Privacy Policy for Fast & Pray
-
-Effective Date: [Insert Date]
+Effective Date: December 30, 2024
 
 At Fast & Pray, your privacy is a priority. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app.
 
@@ -68,7 +64,5 @@ We may update this policy periodically. Changes will be posted in the app, and t
 9. Contact Us
 
 If you have any questions about this Privacy Policy, please contact us at:
-Email: [Insert Email Address]
-Mailing Address: [Insert Address]
-
-This privacy policy template is general and may need adjustments to fully align with your app’s functionality and local regulations. Consider consulting a legal professional to ensure compliance with applicable laws, like GDPR (if targeting European users) or CCPA (for California residents).
+Email: fastandpray@gmail.com
+Mailing Address: 275 Olymlia Way, San Francisco, CA 94131
