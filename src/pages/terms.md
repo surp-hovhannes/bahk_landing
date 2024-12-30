@@ -3,6 +3,8 @@ layout: ../layouts/Layout.astro
 title: Terms of Service
 ---
 
+<dic class="prose-stone">
+
 # Terms of Service for Fast & Pray
 
 **Effective Date:** December 30, 2024
@@ -73,4 +75,4 @@ For questions or concerns about these Terms, please contact us at:
 **Email:** fastandpray@gmail.com
 
 **Address:** 275 Olympia Way, San Francisco, CA 94131
-```
+</div>
