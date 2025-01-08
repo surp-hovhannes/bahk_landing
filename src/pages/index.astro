@@ -1,15 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeroGraphic from '../components/HeroGraphic.astro';
 ---
+
 <Layout>
 	<div class="flex items-center justify-center">
-	<div class="text-center">
-		<img src="/app-icon-1024.png" alt="Fast & Pray Logo" class="w-32 h-32 mx-auto mb-4">
-		<h1 class="text-5xl font-extrabold">Welcome to Fast & Pray</h1>
-		<p class="text-lg mt-4">Fast & Pray is your companion in building a healthy and fulfilling personal spiritual practice in the tradition of the Armenian Apostolic Church. Join a global community of fasters, receive notifications about church-designed fasting periods, and track daily habits like praying, reading the Bible, and doing charity.</p>
-		<a href="https://web.fastandpray.app" target="_blank" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700">
-			Download the App
-		</a>
-	</div>
+		<div class="text-center">
+			<h1 class="text-5xl font-extrabold">Welcome to Fast & Pray</h1>
+			<HeroGraphic />
+			<p class="text-lg mt-4">Fast & Pray is your companion in building a healthy and fulfilling personal spiritual practice in the tradition of the Armenian Apostolic Church. Join a global community of fasters, receive notifications about church-designed fasting periods, and track daily habits like praying, reading the Bible, and doing charity.</p>
+			<a href="https://web.fastandpray.app" target="_blank" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700">
+				Web Version
+			</a>
+			<a href="#" target="_blank" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700">
+				Download the App
+			</a>
+		</div>
 	</div>
 </Layout>

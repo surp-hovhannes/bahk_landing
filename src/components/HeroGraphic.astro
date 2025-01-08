@@ -1,0 +1,177 @@
+---
+// Import any necessary dependencies
+---
+
+<div class="hero-container">
+  <div class="logo-container">
+    <img 
+      src="/animated_logo.gif" 
+      alt="Animated Logo" 
+      class="animated-logo"
+    />
+  </div>
+  
+  <div class="screenshots-container">
+    <button class="nav-button left" aria-label="Previous slide">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    
+    <div class="screenshots-wrapper">
+      <img src="/screenshot1.jpg" alt="App Screenshot 1" class="screenshot active" data-index="0" />
+      <img src="/screenshot2.jpg" alt="App Screenshot 2" class="screenshot" data-index="1" />
+      <img src="/screenshot3.jpg" alt="App Screenshot 3" class="screenshot" data-index="2" />
+    </div>
+
+    <button class="nav-button right" aria-label="Next slide">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.screenshot');
+    const prevButton = document.querySelector('.nav-button.left');
+    const nextButton = document.querySelector('.nav-button.right');
+    
+    function showSlide(index: number): void {
+      slides.forEach(slide => slide.classList.remove('active'));
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide(): void {
+      showSlide(currentSlide + 1);
+    }
+
+    function previousSlide(): void {
+      showSlide(currentSlide - 1);
+    }
+
+    // Add click event listeners
+    prevButton?.addEventListener('click', previousSlide);
+    nextButton?.addEventListener('click', nextSlide);
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') previousSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+  };
+</script>
+
+<style>
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    max-height: 600px;
+    overflow: hidden;
+    padding: 0 0 2rem 0;
+  }
+
+  .logo-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease-out 2s forwards;
+  }
+
+  .animated-logo {
+    max-width: 300px;
+    height: auto;
+  }
+
+  .screenshots-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 2.5s forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+  }
+
+  .screenshots-wrapper {
+    position: relative;
+    width: calc((90vh - 4rem) * (9/16));
+    max-width: 450px;
+    height: calc(100% - 4rem);
+    margin: 0 auto;
+  }
+
+  .screenshot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .screenshot.active {
+    opacity: 1;
+  }
+
+  .nav-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #4B5563;
+    z-index: 10;
+  }
+
+  .nav-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+  }
+
+  .nav-button:focus {
+    outline: 2px solid #4B5563;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      height: 80vh;
+    }
+    
+    .screenshots-wrapper {
+      width: calc((80vh - 4rem) * (9/16));
+    }
+
+    .nav-button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style> 
