@@ -1,0 +1,80 @@
+---
+// Import any necessary dependencies
+---
+
+<div class="hero-container">
+  <div class="logo-container">
+    <img 
+      src="/animated_logo.gif" 
+      alt="Animated Logo" 
+      class="animated-logo"
+    />
+  </div>
+  
+  <div class="hero-image-container">
+    <img 
+      src="/hero-header.png" 
+      alt="Hero Header" 
+      class="hero-image"
+    />
+  </div>
+</div>
+
+<style>
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    max-height: 600px;
+    overflow: hidden;
+    padding: 0 0 .5rem 0;
+  }
+
+  .logo-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease-out 1s forwards;
+  }
+
+  .animated-logo {
+    max-width: 300px;
+    height: auto;
+  }
+
+  .hero-image-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 2.5s forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      height: 40vh;
+    }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style> 
