@@ -9,3 +9,11 @@
 .border-accent {
   border-color: #390714;
 }
+
+.text-accent {
+  color: #80273e;
+}
+
+.bg-accent {
+  background-color: #80273e;
+}
