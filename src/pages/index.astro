@@ -1,12 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroGraphicStatic from '../components/HeroGraphicStatic.astro';
+import HeroGraphic from '../components/HeroGraphic.astro';
 ---
 
 <Layout>
 	<div class="flex items-center justify-center">
 		<div class="text-center">
-			<HeroGraphicStatic />
+			<div class="hidden md:block">
+				<HeroGraphicStatic />
+			</div>
+			<div class="block md:hidden">
+				<HeroGraphic />
+			</div>
 			<h1 class="text-3xl sm:text-5xl font-extrabold pt-2">Welcome to Fast & Pray</h1>
 			<p class="text-lg mt-4">Fast & Pray is your companion in building a healthy and fulfilling personal spiritual practice in the tradition of the Armenian Apostolic Church. Join a global community of fasters, receive notifications about church-designed fasting periods, and track daily habits like praying, reading the Bible, and doing charity.</p>
 			<a href="https://web.fastandpray.app" target="_blank" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700">
