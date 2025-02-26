@@ -1,6 +1,31 @@
 ---
 // Navbar logic if needed
 ---
+<script>
+  function redirectToAppStore(event) {
+    event.preventDefault();
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const iosLink = "https://apps.apple.com/us/app/fast-pray/id6739975074";
+    const androidLink = "https://play.google.com/store/apps/details?id=com.stjohn.bahk";
+    const webLink = "https://web.fastandpray.app";
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = iosLink;
+    } else if (/android/i.test(userAgent)) {
+      window.location.href = androidLink;
+    } else {
+      window.location.href = webLink; // goes to web version just in case
+    }
+  }
+
+  // Attach event listener only to the specific link with ID "app-download-link"
+  document.addEventListener("DOMContentLoaded", function () {
+    var appDownloadLink = document.getElementById("app-download-link");
+    if (appDownloadLink) {
+      appDownloadLink.addEventListener("click", redirectToAppStore);
+    }
+  });
+</script>
 <nav class="bg-color-primary text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
       <!-- Logo -->
@@ -28,7 +53,7 @@
       <a href="/about" class="block px-4 py-2 hover:bg-gray-700">About</a>
       <a href="/team" class="block px-4 py-2 hover:bg-gray-700">Our Team</a>
       <a href="/support" class="block px-4 py-2 hover:bg-gray-700">Support</a>
-      <a href="https://apps.apple.com" class="block px-4 py-2 hover:bg-gray-700">App Store</a>
+      <a href="#" id="app-download-link" onclick="redirectToAppStore()" class="block px-4 py-2 hover:bg-gray-700">Get the App</a>
     </div>
   </nav>
   <script>
