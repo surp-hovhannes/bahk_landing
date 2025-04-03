@@ -7,13 +7,26 @@ import HeroGraphic from '../components/HeroGraphic.astro';
 <Layout>
 	<div class="flex items-center justify-center">
 		<div class="text-center">
+			<div class="flex justify-center gap-4">
+				<a href="https://apps.apple.com/us/app/fast-pray/id6739975074" target="_blank" class="inline-block">
+					<img src="/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="h-12" />
+				</a>
+				<a href="https://play.google.com/store/apps/details?id=com.stjohn.bahk" target="_blank" class="inline-block">
+					<img src="/Google_Play_Store_badge_EN.svg" alt="Download on the Play Store" class="h-12" />
+				</a>
+			</div>
+			<div class="flex justify-center gap-4 mt-5 mb-12">
+				<a href="https://web.fastandpray.app" target="_blank" class="inline-block px-6 py-3 bg-accent text-white font-semibold rounded-md shadow hover:bg-color-primary">
+					Web Version
+				</a>
+			</div>
 			<div class="hidden md:block">
 				<HeroGraphicStatic />
 			</div>
 			<div class="block md:hidden">
 				<HeroGraphic />
 			</div>
-			<h1 class="text-3xl sm:text-5xl font-extrabold pt-2">Welcome to Fast & Pray</h1>
+			<h1 class="text-3xl sm:text-5xl font-extrabold pt-2 mt-4">Welcome to Fast & Pray</h1>
 			<p class="text-lg mt-4">Fast & Pray is your companion in building a healthy and fulfilling personal spiritual practice in the tradition of the Armenian Apostolic Church. Join a global community of fasters, receive notifications about church-designed fasting periods, and track daily habits like praying, reading the Bible, and doing charity.</p>
 
 			<!-- Key Features Section -->
@@ -36,20 +49,6 @@ import HeroGraphic from '../components/HeroGraphic.astro';
 				<div class="mt-2 text-center">
 					<a href="/about" class="text-accent hover:underline">Learn more about all features →</a>
 				</div>
-			</div>
-
-			<div class="flex justify-center gap-4 mt-6">
-				<a href="https://apps.apple.com/us/app/fast-pray/id6739975074" target="_blank" class="inline-block">
-					<img src="/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="h-12" />
-				</a>
-				<a href="https://play.google.com/store/apps/details?id=com.stjohn.bahk" target="_blank" class="inline-block">
-					<img src="/Google_Play_Store_badge_EN.svg" alt="Download on the Play Store" class="h-12" />
-				</a>
-			</div>
-			<div class="flex justify-center gap-4 mt-6">
-				<a href="https://web.fastandpray.app" target="_blank" class="inline-block px-6 py-3 bg-accent text-white font-semibold rounded-md shadow hover:bg-color-primary">
-					Web Version
-				</a>
 			</div>
 		</div>
 	</div>
