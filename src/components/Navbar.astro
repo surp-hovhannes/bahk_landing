@@ -1,15 +1,65 @@
 ---
 // Navbar logic if needed
 ---
+
+<nav class="bg-color-primary text-white">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16"
+  >
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-bold">
+      <img src="/app-icon-1024.png" alt="Fast & Pray Logo" class="w-12 h-12" />
+    </a>
+    <!-- Navigation Links -->
+    <div class="hidden md:flex space-x-6">
+      <a href="/" class="hover:text-gray-300">Home</a>
+      <a href="/about" class="hover:text-gray-300">About</a>
+      <a href="/team" class="hover:text-gray-300">Our Team</a>
+      <a href="/support" class="hover:text-gray-300">Support</a>
+    </div>
+    <!-- Mobile Menu Button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden text-gray-300 hover:text-white focus:outline-none"
+    >
+      <!-- Menu Icon -->
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden">
+    <a href="/" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+    <a href="/about" class="block px-4 py-2 hover:bg-gray-700">About</a>
+    <a href="/team" class="block px-4 py-2 hover:bg-gray-700">Our Team</a>
+    <a href="/support" class="block px-4 py-2 hover:bg-gray-700">Support</a>
+    <a href="#" class="app-download-link block px-4 py-2 hover:bg-gray-700"
+      >Get the App</a
+    >
+  </div>
+</nav>
 <script>
   function redirectToAppStore(event) {
     event.preventDefault();
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const userAgent = navigator.userAgent || navigator.vendor;
     const iosLink = "https://apps.apple.com/us/app/fast-pray/id6739975074";
-    const androidLink = "https://play.google.com/store/apps/details?id=com.stjohn.bahk";
+    const androidLink =
+      "https://play.google.com/store/apps/details?id=com.stjohn.bahk";
     const webLink = "https://web.fastandpray.app";
 
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    // Type-safe iOS detection
+    if (/iPad|iPhone|iPod/.test(userAgent)) {
       window.location.href = iosLink;
     } else if (/android/i.test(userAgent)) {
       window.location.href = androidLink;
@@ -18,48 +68,15 @@
     }
   }
 
-  // Attach event listener only to the specific link with ID "app-download-link"
-  document.addEventListener("DOMContentLoaded", function () {
-    var appDownloadLink = document.getElementById("app-download-link");
-    if (appDownloadLink) {
-      appDownloadLink.addEventListener("click", redirectToAppStore);
-    }
+  // Attach event listener to all links with the class 'app-download-link'
+  var appDownloadLinks = document.querySelectorAll(".app-download-link");
+  appDownloadLinks.forEach(function (link) {
+    link.addEventListener("click", redirectToAppStore);
   });
+
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
+  }
 </script>
-<nav class="bg-color-primary text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <!-- Logo -->
-      <a href="/" class="text-2xl font-bold">
-        <img src="/app-icon-1024.png" alt="Fast & Pray Logo" class="w-12 h-12">
-      </a>
-      <!-- Navigation Links -->
-      <div class="hidden md:flex space-x-6">
-        <a href="/" class="hover:text-gray-300">Home</a>
-        <a href="/about" class="hover:text-gray-300">About</a>
-        <a href="/team" class="hover:text-gray-300">Our Team</a>
-        <a href="/support" class="hover:text-gray-300">Support</a>
-      </div>
-      <!-- Mobile Menu Button -->
-      <button id="menu-toggle" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
-        <!-- Menu Icon -->
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden md:hidden">
-      <a href="/" class="block px-4 py-2 hover:bg-gray-700">Home</a>
-      <a href="/about" class="block px-4 py-2 hover:bg-gray-700">About</a>
-      <a href="/team" class="block px-4 py-2 hover:bg-gray-700">Our Team</a>
-      <a href="/support" class="block px-4 py-2 hover:bg-gray-700">Support</a>
-      <a href="#" id="app-download-link" onclick="redirectToAppStore()" class="block px-4 py-2 hover:bg-gray-700">Get the App</a>
-    </div>
-  </nav>
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
-    }
-  </script>
