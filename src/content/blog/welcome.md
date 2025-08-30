@@ -1,7 +1,7 @@
 ---
 title: "Welcome to the Fast & Pray Blog"
 description: "News, reflections, and updates from the team."
-pubDate: 2025-01-01
+pubDate: 2025-08-29
 tags: ["announcement"]
 author: "Fast & Pray Team"
 ---
