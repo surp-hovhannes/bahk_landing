@@ -1,0 +1,32 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const tagToCount = new Map<string, number>();
+for (const p of posts) {
+  for (const t of p.data.tags || []) {
+    tagToCount.set(t, (tagToCount.get(t) || 0) + 1);
+  }
+}
+const tags = Array.from(tagToCount.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<Layout pageTitle="Tags • Fast & Pray">
+  <h1 class="text-3xl font-bold mb-6 text-[#3B0714]">Tags</h1>
+  {tags.length === 0 ? (
+    <p class="text-gray-700">No tags found.</p>
+  ) : (
+    <ul class="flex flex-wrap gap-3">
+      {tags.map(([tag, count]) => (
+        <li>
+          <a href={`/blog/tags/${encodeURIComponent(tag)}/`} class="px-3 py-1 rounded-full border border-gray-300 hover:bg-gray-100">
+            {tag} ({count})
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Layout>
+
+

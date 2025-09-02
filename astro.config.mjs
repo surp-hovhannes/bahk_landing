@@ -9,4 +9,5 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'server',
   adapter: netlify(),
+  site: process.env.PUBLIC_SITE || 'http://localhost:4321',
 });

@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css"; // Add this import
+const { pageTitle } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,7 +12,8 @@ import "../styles/global.css"; // Add this import
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Fast & Pray</title>
+    <title>{pageTitle ?? 'Fast & Pray'}</title>
+    {Astro.slots.has('meta') && <slot name="meta" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

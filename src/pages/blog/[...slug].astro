@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const maybePost = Astro.props?.post;
+const rawSlug = Astro.params.slug;
+const resolvedSlug = Array.isArray(rawSlug) ? rawSlug.join("/") : rawSlug;
+const entry = maybePost ?? (
+  resolvedSlug
+    ? (await getCollection("blog", ({ data }) => !data.draft)).find((p) => p.slug === resolvedSlug)
+    : undefined
+);
+if (!entry) {
+  throw new Error("Post not found");
+}
+const { Content } = await entry.render();
+---
+
+<Layout pageTitle={`${entry.data.title} • Fast & Pray`}>
+  <Fragment slot="meta">
+    {entry.data.description && (
+      <meta name="description" content={entry.data.description} />
+    )}
+    <link rel="canonical" href={`${Astro.site?.href || ''}blog/${entry.slug}/`} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={entry.data.title} />
+    {entry.data.description && (
+      <meta property="og:description" content={entry.data.description} />
+    )}
+    <meta property="og:url" content={`${Astro.site?.href || ''}blog/${entry.slug}/`} />
+    {entry.data.heroImage && (
+      <meta property="og:image" content={entry.data.heroImage.src} />
+    )}
+    <meta name="twitter:card" content="summary_large_image" />
+  </Fragment>
+  <article class="prose prose-slate max-w-none">
+    <h1>{entry.data.title}</h1>
+    <p class="text-sm text-gray-500">{entry.data.pubDate.toLocaleDateString()}</p>
+    <Content />
+  </article>
+</Layout>
+
+
