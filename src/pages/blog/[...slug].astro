@@ -44,6 +44,13 @@ const { Content } = await entry.render();
     <meta name="twitter:card" content="summary_large_image" />
   </Fragment>
   <article class="prose prose-slate max-w-none">
+    {entry.data.heroImage && (
+      <img 
+        src={entry.data.heroImage.src || entry.data.heroImage} 
+        alt={entry.data.title}
+        class="w-full h-64 object-cover rounded-lg mb-6"
+      />
+    )}
     <h1>{entry.data.title}</h1>
     <p class="text-sm text-gray-500">{entry.data.pubDate.toLocaleDateString()}</p>
     <Content />
