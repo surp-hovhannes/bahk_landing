@@ -11,7 +11,7 @@ We are blessed to share exciting new features that will deepen your spiritual jo
 
 ## Save Favorite Devotionals, Recipes, Articles, Prayers, and Videos
 
-Look for the Bookmark icon on the top right of devotionals or devotional sets, recipes, articles, prayers, or videos. Tap the bookmark to save for later. And see all your bookmarks on the profile page under “Bookmarks.”
+Look for the Bookmark icon on the top right of devotionals or devotional sets, recipes, articles, prayers, or videos. Tap the bookmark to save for later. See all your bookmarks on the profile page under “Bookmarks.”
 
 ![How-to Bookmark](https://bahk-production.s3.amazonaws.com/promo_email_images/bookmarks.jpg "Save by Bookmarking")
 
