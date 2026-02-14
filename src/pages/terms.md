@@ -7,7 +7,7 @@ title: Terms of Service
 
 # Terms of Service for Fast & Pray
 
-**Effective Date:** December 30, 2024
+**Effective Date:** February 12, 2026
 
 Welcome to Fast & Pray! These Terms of Service (“Terms”) govern your access to and use of our mobile application and related services (collectively, the “App”). By using the App, you agree to these Terms. If you do not agree, do not use the App.
 
@@ -35,6 +35,25 @@ You agree NOT to:
 ## 3. Intellectual Property
 - All content, design, and intellectual property rights in the App are owned by Fast & Pray or its licensors.
 - You may not copy, distribute, or create derivative works based on the App without prior written consent.
+
+### 3.1. Scripture Content
+Scripture text displayed in the App is provided by [API.Bible](https://scripture.api.bible/), a ministry of the American Bible Society, and is subject to the following terms:
+
+**New King James Version (NKJV)**
+Scripture quotations marked (NKJV) are taken from the New King James Version®. Copyright © 1982 by Thomas Nelson. Used by permission. All rights reserved. The NKJV text may not be quoted in any publication made available to the public by a Creative Commons license. The NKJV may not be translated into any other language. For more information, visit [thomasnelson.com](https://www.thomasnelson.com/).
+
+**King James Version with Apocrypha, American Edition (KJVAIC)**
+Scripture quotations marked (KJVAIC) are taken from the King James Version with Apocrypha, American Edition. The Holy Bible, King James Version is in the public domain.
+
+**Usage Restrictions**
+- Scripture text displayed in the App is for personal, non-commercial use only and is provided for the purpose of spiritual reading and devotion.
+- You may not copy, reproduce, distribute, or create derivative works from the Scripture text displayed in the App.
+- Scripture content is displayed exactly as provided by API.Bible and may not be modified, adapted, or altered in any way.
+- The Scripture text may not be used in connection with any product or service that is not in conformity with the standards and teachings of historic, orthodox Christianity.
+- Fast & Pray does not claim ownership of any Scripture text. All rights to the Scripture text are retained by the respective rights holders and publishers.
+
+**Fair Use Tracking**
+The App participates in API.Bible's Fair Use Management System (FUMS), which anonymously tracks Scripture usage to ensure compliance with publisher requirements. No personally identifiable information is shared with API.Bible through FUMS.
 
 ## 4. User-Generated Content
 - You may have the ability to post or share content on the App (e.g., prayer requests, comments).
