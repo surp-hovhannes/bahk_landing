@@ -2,6 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import HeroGraphicStatic from "../components/HeroGraphicStatic.astro";
 import HeroGraphic from "../components/HeroGraphic.astro";
+
+let recentIcons: any[] = [];
+try {
+  const res = await fetch("https://api.fastandpray.app/api/icons/?page_size=5");
+  if (res.ok) {
+    const data = await res.json();
+    recentIcons = (data.results ?? []).slice(0, 5);
+  }
+} catch (_) {}
 ---
 
 <Layout>
@@ -102,6 +111,39 @@ import HeroGraphic from "../components/HeroGraphic.astro";
           >
         </div>
       </div>
+
+      <!-- Recent Icons Section -->
+      {recentIcons.length > 0 && (
+        <div class="mt-8 mb-6 max-w-3xl mx-auto text-[#3B0714]">
+          <h2 class="text-2xl font-bold mb-4">Fast & Pray Icon Library</h2>
+          <div class="grid grid-cols-5 gap-3">
+            {recentIcons.map((icon) => (
+              <a href="/icons" class="group block">
+                <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200 group-hover:shadow-md transition">
+                  {icon.thumbnail_url || icon.image ? (
+                    <img
+                      src={icon.thumbnail_url || icon.image}
+                      alt={icon.title}
+                      class="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-gray-300">
+                      {icon.title.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <p class="text-xs mt-1 truncate text-center">{icon.title}</p>
+              </a>
+            ))}
+          </div>
+          <div class="mt-4 text-center">
+            <a href="/icons" class="text-accent hover:underline text-sm">
+              Browse the icon library →
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   </div>
 </Layout>

@@ -1,0 +1,89 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const { id } = Astro.params;
+const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
+
+let icon: any = null;
+let error = false;
+
+try {
+  const res = await fetch(`${apiBase}/api/icons/${id}/`);
+  if (res.status === 404) {
+    return Astro.redirect("/icons");
+  }
+  if (!res.ok) throw new Error();
+  icon = await res.json();
+} catch (_) {
+  error = true;
+}
+
+const createdDate = icon?.created_at
+  ? new Date(icon.created_at).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
+---
+
+<Layout pageTitle={icon ? `${icon.title} • Icon Library` : "Icon • Fast & Pray"}>
+  <div class="text-[#3B0714]">
+    <a href="/icons" class="inline-flex items-center gap-1 text-sm text-accent hover:underline mb-6">
+      ← Back to Icon Library
+    </a>
+
+    {error ? (
+      <p class="text-red-400 py-16 text-center">Failed to load icon. Please try again.</p>
+    ) : icon ? (
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- Image -->
+        <div class="md:w-1/2 flex-shrink-0">
+          <div class="bg-gray-50 rounded-xl border border-gray-200 aspect-square flex items-center justify-center overflow-hidden">
+            {icon.image ? (
+              <img
+                src={icon.image}
+                alt={icon.title}
+                class="w-full h-full object-contain"
+              />
+            ) : (
+              <span class="text-6xl font-bold text-gray-200">{icon.title.charAt(0)}</span>
+            )}
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="flex-1">
+          <h1 class="text-3xl font-bold mb-2">{icon.title}</h1>
+
+          {icon.church_name && (
+            <p class="text-gray-500 text-sm mb-4">{icon.church_name}</p>
+          )}
+
+          {icon.tag_list?.length > 0 && (
+            <div class="mb-6">
+              <h2 class="text-xs uppercase tracking-widest text-gray-400 mb-2">Tags</h2>
+              <div class="flex flex-wrap gap-2">
+                {icon.tag_list.map((tag: string) => (
+                  <a
+                    href={`/icons?tags=${encodeURIComponent(tag)}`}
+                    class="bg-[#3B0714]/10 text-[#3B0714] text-sm px-3 py-1 rounded-full hover:bg-[#3B0714]/20 transition"
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div class="border-t border-gray-100 pt-4 space-y-2 text-sm text-gray-400">
+            {createdDate && (
+              <p>Added {createdDate}</p>
+            )}
+            <p>Icon #{icon.id}</p>
+          </div>
+        </div>
+      </div>
+    ) : null}
+  </div>
+</Layout>
