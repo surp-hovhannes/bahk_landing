@@ -315,7 +315,6 @@ const sections: Section[] = [
 ];
 
 const questionIds = sections.flatMap((section) => section.questions.map((question) => question.id));
-const legacyQuestionIds = Array.from({ length: 28 }, (_, index) => `q${String(index + 1).padStart(2, "0")}`);
 const multiQuestionIds = sections.flatMap((section) =>
   section.questions.filter((question) => question.kind === "multi").map((question) => question.id)
 );
@@ -339,7 +338,6 @@ const followUpMappings = sections.flatMap((section) =>
       id="survey-form"
       class="mt-8 space-y-8"
       data-question-ids={JSON.stringify(questionIds)}
-      data-legacy-question-ids={JSON.stringify(legacyQuestionIds)}
       data-multi-question-ids={JSON.stringify(multiQuestionIds)}
       data-follow-up-mappings={JSON.stringify(followUpMappings)}
     >
@@ -728,14 +726,9 @@ const followUpMappings = sections.flatMap((section) =>
 
     const formData = new FormData(form);
     const payload: Record<string, string> = {};
-    const legacyQuestionIds = parseStringArray(form.dataset.legacyQuestionIds);
     const questionIds = parseStringArray(form.dataset.questionIds);
     const multiQuestionIds = parseStringArray(form.dataset.multiQuestionIds);
     const followUpMappings = parseFollowUpMappings(form.dataset.followUpMappings);
-
-    for (const key of legacyQuestionIds) {
-      payload[key] = "";
-    }
 
     for (const key of questionIds) {
       if (multiQuestionIds.includes(key)) {
