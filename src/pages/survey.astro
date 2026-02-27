@@ -118,85 +118,18 @@ const sections: Section[] = [
         kind: "scale",
         id: "q06",
         number: 6,
-        text: "Compared to before using the app, how has your consistency changed?",
+        text: "Compared to before using the app, how has your overall spiritual consistency changed?",
         min: 1,
         max: 5,
         defaultValue: 3,
         leftLabel: "Much less consistent",
         rightLabel: "Much more consistent",
-        helpText: "Scale: 1 = Much less consistent, 5 = Much more consistent.",
-      },
-      {
-        kind: "scale",
-        id: "q07",
-        number: 7,
-        text: "Prayer consistency",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
-        helpText: "Use the same 1-5 scale for questions 7-12.",
-      },
-      {
-        kind: "scale",
-        id: "q08",
-        number: 8,
-        text: "Fasting consistency",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
-      },
-      {
-        kind: "scale",
-        id: "q09",
-        number: 9,
-        text: "Awareness of the Church's calendar (fasts/feasts/saints)",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
-      },
-      {
-        kind: "scale",
-        id: "q10",
-        number: 10,
-        text: "Repentance / self-examination",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
-      },
-      {
-        kind: "scale",
-        id: "q11",
-        number: 11,
-        text: "Spiritual focus/attention during the day",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
-      },
-      {
-        kind: "scale",
-        id: "q12",
-        number: 12,
-        text: "Participation in the life of the Church (Badarak, services, confession, etc.)",
-        min: 1,
-        max: 5,
-        defaultValue: 3,
-        leftLabel: "Lower",
-        rightLabel: "Higher",
+        helpText: "Scale: 1 = Much less consistent, 5 = Much more consistent overall.",
       },
       {
         kind: "single",
         id: "q13",
-        number: 13,
+        number: 7,
         text: "Has the app helped you understand the meaning of fasting beyond food rules?",
         options: ["Not at all", "A little", "Somewhat", "A lot", "Very much"],
         helpText: "Optional follow-up: If yes, how?",
@@ -218,7 +151,7 @@ const sections: Section[] = [
       {
         kind: "single",
         id: "q14",
-        number: 14,
+        number: 8,
         text: "When you see that others are joining the same fast or practice, how does it affect you?",
         options: [
           "It encourages me a lot",
@@ -239,7 +172,7 @@ const sections: Section[] = [
       {
         kind: "scale",
         id: "q15",
-        number: 15,
+        number: 9,
         text: "How much has Fast & Pray strengthened your sense of spiritual community?",
         min: 1,
         max: 5,
@@ -247,38 +180,6 @@ const sections: Section[] = [
         leftLabel: "Not at all",
         rightLabel: "Very much",
         helpText: "Scale: 1 = Not at all, 5 = Very much.",
-      },
-      {
-        kind: "single",
-        id: "q16",
-        number: 16,
-        text: 'Which best describes your experience of "fasting/praying together" through the app?',
-        options: [
-          "I feel like I'm not alone in this",
-          "I feel a stronger connection to the Church's shared life",
-          "It motivates me to be consistent",
-          "I don't really notice it",
-          "Other",
-        ],
-      },
-      {
-        kind: "single",
-        id: "q17",
-        number: 17,
-        text: "Do you prefer the community aspect to be...",
-        options: [
-          "More visible (more ways to see/join others)",
-          "About the same",
-          "Less visible (more private)",
-        ],
-        helpText: "Optional follow-up: Why?",
-        followUp: {
-          id: "q17_followup",
-          prompt: "Why?",
-          placeholder: "Tell us why...",
-          inputType: "textarea",
-          maxLength: 240,
-        },
       },
     ],
   },
@@ -289,7 +190,7 @@ const sections: Section[] = [
       {
         kind: "single",
         id: "q18",
-        number: 18,
+        number: 10,
         text: "Has the app helped you build a daily rhythm (a rule of life) that you can actually keep?",
         options: ["Yes", "Somewhat", "Not really", "No"],
         helpText: "Optional follow-up: What does your rhythm look like right now?",
@@ -305,7 +206,7 @@ const sections: Section[] = [
       {
         kind: "multi",
         id: "q19",
-        number: 19,
+        number: 11,
         text: "Which practices has Fast & Pray most helped you keep?",
         options: [
           "Keeping track of fast days",
@@ -321,17 +222,17 @@ const sections: Section[] = [
       {
         kind: "single",
         id: "q20",
-        number: 20,
+        number: 12,
         text: "What is the biggest obstacle to keeping a consistent spiritual rhythm?",
         options: ["Time", "Forgetfulness", "Lack of clarity", "Feeling discouraged", "Family schedule", "Work", "Other"],
-      },
-      {
-        kind: "text",
-        id: "q21",
-        number: 21,
-        text: "What in the app most helps you overcome that obstacle?",
-        multiline: true,
-        optional: true,
+        helpText: "Optional follow-up: What in the app helps you with this obstacle?",
+        followUp: {
+          id: "q20_followup",
+          prompt: "What in the app helps you with this obstacle?",
+          placeholder: "Share anything that helps...",
+          inputType: "textarea",
+          maxLength: 280,
+        },
       },
     ],
   },
@@ -342,23 +243,15 @@ const sections: Section[] = [
       {
         kind: "text",
         id: "q22",
-        number: 22,
-        text: "Which parts of Fast & Pray feel most spiritually helpful? Why?",
-        multiline: true,
-        optional: true,
-      },
-      {
-        kind: "text",
-        id: "q23",
-        number: 23,
-        text: "Which parts feel distracting, unclear, or unhelpful?",
+        number: 13,
+        text: "Which parts of Fast & Pray feel most spiritually helpful, and which feel unclear or unhelpful?",
         multiline: true,
         optional: true,
       },
       {
         kind: "single",
         id: "q24",
-        number: 24,
+        number: 14,
         text: "Have you ever felt guilt, pressure, or comparison from using the app?",
         options: ["Never", "Rarely", "Sometimes", "Often"],
         helpText: "Optional follow-up: If yes, what triggered that feeling?",
@@ -374,7 +267,7 @@ const sections: Section[] = [
       {
         kind: "text",
         id: "q25",
-        number: 25,
+        number: 15,
         text: "What is one feature or change that would most support your spiritual growth?",
         multiline: true,
         optional: true,
@@ -388,7 +281,7 @@ const sections: Section[] = [
       {
         kind: "text",
         id: "q26",
-        number: 26,
+        number: 16,
         text: "Can you share a specific moment where Fast & Pray helped you pray, fast, or return to God?",
         multiline: true,
         optional: true,
@@ -396,7 +289,7 @@ const sections: Section[] = [
       {
         kind: "single",
         id: "q27",
-        number: 27,
+        number: 17,
         text: "May we quote your response (anonymously) for improving the app or sharing its mission?",
         options: ["Yes, anonymously", "Yes, with my first name", "No"],
         helpText: "Optional follow-up: If you selected first name, share it below.",
@@ -412,7 +305,7 @@ const sections: Section[] = [
       {
         kind: "text",
         id: "q28",
-        number: 28,
+        number: 18,
         text: "If you're open to a follow-up conversation, leave your email.",
         inputType: "email",
         optional: true,
@@ -422,6 +315,7 @@ const sections: Section[] = [
 ];
 
 const questionIds = sections.flatMap((section) => section.questions.map((question) => question.id));
+const legacyQuestionIds = Array.from({ length: 28 }, (_, index) => `q${String(index + 1).padStart(2, "0")}`);
 const multiQuestionIds = sections.flatMap((section) =>
   section.questions.filter((question) => question.kind === "multi").map((question) => question.id)
 );
@@ -445,6 +339,7 @@ const followUpMappings = sections.flatMap((section) =>
       id="survey-form"
       class="mt-8 space-y-8"
       data-question-ids={JSON.stringify(questionIds)}
+      data-legacy-question-ids={JSON.stringify(legacyQuestionIds)}
       data-multi-question-ids={JSON.stringify(multiQuestionIds)}
       data-follow-up-mappings={JSON.stringify(followUpMappings)}
     >
@@ -802,7 +697,7 @@ const followUpMappings = sections.flatMap((section) =>
         | NodeListOf<HTMLInputElement>
         | undefined;
       if (q19Options && q19Options.length > 0 && !Array.from(q19Options).some((option) => option.checked)) {
-        setStatus("Please select at least one option for question 19 to continue.", "error");
+        setStatus("Please select at least one option for practices before continuing.", "error");
         q19Options[0].focus();
         return false;
       }
@@ -833,9 +728,14 @@ const followUpMappings = sections.flatMap((section) =>
 
     const formData = new FormData(form);
     const payload: Record<string, string> = {};
+    const legacyQuestionIds = parseStringArray(form.dataset.legacyQuestionIds);
     const questionIds = parseStringArray(form.dataset.questionIds);
     const multiQuestionIds = parseStringArray(form.dataset.multiQuestionIds);
     const followUpMappings = parseFollowUpMappings(form.dataset.followUpMappings);
+
+    for (const key of legacyQuestionIds) {
+      payload[key] = "";
+    }
 
     for (const key of questionIds) {
       if (multiQuestionIds.includes(key)) {
@@ -862,7 +762,7 @@ const followUpMappings = sections.flatMap((section) =>
     }
 
     if (!payload["q19"]) {
-      setStatus("Submission failed: Please select at least one option for question 19.", "error");
+      setStatus("Submission failed: Please select at least one practice before submitting.", "error");
       submitButton.removeAttribute("disabled");
       submitButton.classList.remove("opacity-70", "cursor-not-allowed");
       return;
