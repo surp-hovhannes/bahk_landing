@@ -112,6 +112,7 @@ const sections: Section[] = [
         number: 5,
         text: "In what ways (if any) has Fast & Pray affected your spiritual life?",
         multiline: true,
+        optional: true,
       },
       {
         kind: "scale",
@@ -330,6 +331,7 @@ const sections: Section[] = [
         number: 21,
         text: "What in the app most helps you overcome that obstacle?",
         multiline: true,
+        optional: true,
       },
     ],
   },
@@ -343,6 +345,7 @@ const sections: Section[] = [
         number: 22,
         text: "Which parts of Fast & Pray feel most spiritually helpful? Why?",
         multiline: true,
+        optional: true,
       },
       {
         kind: "text",
@@ -350,6 +353,7 @@ const sections: Section[] = [
         number: 23,
         text: "Which parts feel distracting, unclear, or unhelpful?",
         multiline: true,
+        optional: true,
       },
       {
         kind: "single",
@@ -373,6 +377,7 @@ const sections: Section[] = [
         number: 25,
         text: "What is one feature or change that would most support your spiritual growth?",
         multiline: true,
+        optional: true,
       },
     ],
   },
@@ -386,6 +391,7 @@ const sections: Section[] = [
         number: 26,
         text: "Can you share a specific moment where Fast & Pray helped you pray, fast, or return to God?",
         multiline: true,
+        optional: true,
       },
       {
         kind: "single",
@@ -443,14 +449,23 @@ const followUpMappings = sections.flatMap((section) =>
       data-follow-up-mappings={JSON.stringify(followUpMappings)}
     >
       {
-        sections.map((section) => (
-          <fieldset class="border border-accent rounded-lg p-4 md:p-6">
+        sections.map((section, sectionIndex) => (
+          <fieldset
+            class={`border border-accent rounded-lg p-4 md:p-6 ${sectionIndex === 0 ? "" : "hidden"}`}
+            data-survey-section
+            data-section-index={sectionIndex}
+          >
             <legend class="px-2 text-lg font-semibold">{section.title}</legend>
             <div class="mt-3 space-y-6">
               {section.questions.map((question) => (
                 <div class="space-y-3" data-question-id={question.id}>
                   <p class="font-semibold" id={`${question.id}-label`}>
                     {question.number}. {question.text}
+                    {"optional" in question && question.optional && (
+                      <span class="ml-2 rounded-full border border-accent px-2 py-0.5 text-xs font-medium text-[#5B2030]">
+                        Optional
+                      </span>
+                    )}
                   </p>
 
                   {question.helpText && <p class="text-sm text-[#5B2030]">{question.helpText}</p>}
@@ -479,6 +494,9 @@ const followUpMappings = sections.flatMap((section) =>
                         >
                           <label class="text-sm font-medium text-[#5B2030]" for={question.followUp.id}>
                             {question.followUp.prompt}
+                            <span class="ml-2 rounded-full border border-accent px-2 py-0.5 text-xs font-medium">
+                              Optional
+                            </span>
                           </label>
                           {question.followUp.inputType === "text" ? (
                             <input
@@ -596,13 +614,31 @@ const followUpMappings = sections.flatMap((section) =>
       }
 
       <div class="space-y-3">
-        <button
-          id="submit-button"
-          type="submit"
-          class="w-full md:w-auto bg-gradient-to-t from-[#B5244A] to-[#E54670] text-white text-lg py-3 px-8 rounded-full hover:bg-gradient-to-b hover:from-[#B5244A] hover:to-[#E54670]"
-        >
-          Submit Survey
-        </button>
+        <p id="section-progress" class="text-sm font-medium text-[#5B2030]" aria-live="polite"></p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button
+            id="back-button"
+            type="button"
+            class="w-full sm:w-auto rounded-full border border-accent px-6 py-3 text-base font-medium text-[#3B0714] disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Back
+          </button>
+          <button
+            id="next-button"
+            type="button"
+            class="w-full sm:w-auto bg-gradient-to-t from-[#B5244A] to-[#E54670] text-white text-lg py-3 px-8 rounded-full hover:bg-gradient-to-b hover:from-[#B5244A] hover:to-[#E54670]"
+          >
+            Next Section
+          </button>
+          <button
+            id="submit-button"
+            type="submit"
+            class="hidden w-full sm:w-auto bg-gradient-to-t from-[#B5244A] to-[#E54670] text-white text-lg py-3 px-8 rounded-full hover:bg-gradient-to-b hover:from-[#B5244A] hover:to-[#E54670]"
+          >
+            Submit Survey
+          </button>
+        </div>
         <p id="survey-status" class="min-h-6 text-sm" aria-live="polite"></p>
       </div>
     </form>
@@ -616,8 +652,15 @@ const followUpMappings = sections.flatMap((section) =>
 
   const form = document.getElementById("survey-form") as HTMLFormElement | null;
   const status = document.getElementById("survey-status") as HTMLParagraphElement | null;
+  const sectionProgress = document.getElementById("section-progress") as HTMLParagraphElement | null;
+  const backButton = document.getElementById("back-button") as HTMLButtonElement | null;
+  const nextButton = document.getElementById("next-button") as HTMLButtonElement | null;
   const submitButton = document.getElementById("submit-button") as HTMLButtonElement | null;
   const scaleInputs = document.querySelectorAll("input[data-scale-input]") as NodeListOf<HTMLInputElement>;
+  const sectionFieldsets = Array.from(
+    document.querySelectorAll("fieldset[data-survey-section]")
+  ) as HTMLFieldSetElement[];
+  let currentSectionIndex = 0;
 
   function syncScaleOutputs() {
     scaleInputs.forEach((input) => {
@@ -726,9 +769,63 @@ const followUpMappings = sections.flatMap((section) =>
     status.classList.add("text-[#3B0714]");
   }
 
+  function updateWizardUI() {
+    if (!sectionFieldsets.length) return;
+
+    sectionFieldsets.forEach((fieldset, index) => {
+      fieldset.classList.toggle("hidden", index !== currentSectionIndex);
+    });
+
+    const totalSections = sectionFieldsets.length;
+    if (sectionProgress) {
+      sectionProgress.textContent = `Section ${currentSectionIndex + 1} of ${totalSections}`;
+    }
+
+    if (backButton) {
+      backButton.disabled = currentSectionIndex === 0;
+    }
+
+    if (nextButton) {
+      nextButton.classList.toggle("hidden", currentSectionIndex === totalSections - 1);
+    }
+
+    if (submitButton) {
+      submitButton.classList.toggle("hidden", currentSectionIndex !== totalSections - 1);
+    }
+  }
+
+  function validateCurrentSection(): boolean {
+    if (!sectionFieldsets.length) return true;
+    const currentSection = sectionFieldsets[currentSectionIndex];
+    if (!currentSection || currentSection.reportValidity()) {
+      const q19Options = currentSection?.querySelectorAll(`input[name="q19"]`) as
+        | NodeListOf<HTMLInputElement>
+        | undefined;
+      if (q19Options && q19Options.length > 0 && !Array.from(q19Options).some((option) => option.checked)) {
+        setStatus("Please select at least one option for question 19 to continue.", "error");
+        q19Options[0].focus();
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function goToSection(nextIndex: number) {
+    if (!sectionFieldsets.length) return;
+    currentSectionIndex = Math.max(0, Math.min(nextIndex, sectionFieldsets.length - 1));
+    updateWizardUI();
+    setStatus("", "info");
+  }
+
   async function submitSurvey(event: SubmitEvent) {
     event.preventDefault();
     if (!form || !submitButton) return;
+    if (currentSectionIndex < sectionFieldsets.length - 1) {
+      if (!validateCurrentSection()) return;
+      goToSection(currentSectionIndex + 1);
+      return;
+    }
 
     setStatus("Submitting...", "info");
     submitButton.setAttribute("disabled", "true");
@@ -828,8 +925,18 @@ const followUpMappings = sections.flatMap((section) =>
     });
   }
 
+  backButton?.addEventListener("click", () => {
+    goToSection(currentSectionIndex - 1);
+  });
+
+  nextButton?.addEventListener("click", () => {
+    if (!validateCurrentSection()) return;
+    goToSection(currentSectionIndex + 1);
+  });
+
   scaleInputs.forEach((input) => {
     input.addEventListener("input", syncScaleOutputs);
   });
   syncScaleOutputs();
+  updateWizardUI();
 </script>
