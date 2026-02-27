@@ -14,6 +14,7 @@ type SingleChoiceQuestion = {
     prompt: string;
     placeholder?: string;
     inputType?: "text" | "textarea";
+    maxLength?: number;
     showForOptions?: string[];
   };
 };
@@ -203,6 +204,7 @@ const sections: Section[] = [
           prompt: "If yes, how?",
           placeholder: "Share any details...",
           inputType: "textarea",
+          maxLength: 280,
           showForOptions: ["A little", "Somewhat", "A lot", "Very much"],
         },
       },
@@ -229,6 +231,7 @@ const sections: Section[] = [
           prompt: "What would make this healthier for you?",
           placeholder: "Your thoughts...",
           inputType: "textarea",
+          maxLength: 280,
           showForOptions: ["It makes me feel pressure or comparison sometimes"],
         },
       },
@@ -273,6 +276,7 @@ const sections: Section[] = [
           prompt: "Why?",
           placeholder: "Tell us why...",
           inputType: "textarea",
+          maxLength: 240,
         },
       },
     ],
@@ -293,6 +297,7 @@ const sections: Section[] = [
           prompt: "What does your rhythm look like right now?",
           placeholder: "For example: morning prayer, evening prayer, etc.",
           inputType: "textarea",
+          maxLength: 320,
           showForOptions: ["Yes", "Somewhat", "Not really"],
         },
       },
@@ -358,6 +363,7 @@ const sections: Section[] = [
           prompt: "If yes, what triggered that feeling?",
           placeholder: "Share what happened...",
           inputType: "textarea",
+          maxLength: 280,
           showForOptions: ["Rarely", "Sometimes", "Often"],
         },
       },
@@ -393,6 +399,7 @@ const sections: Section[] = [
           prompt: "First name (optional)",
           placeholder: "Your first name",
           inputType: "text",
+          maxLength: 40,
           showForOptions: ["Yes, with my first name"],
         },
       },
@@ -465,7 +472,7 @@ const followUpMappings = sections.flatMap((section) =>
                       ))}
                       {question.followUp && (
                         <div
-                          class="hidden space-y-2 pl-6"
+                          class="hidden space-y-2 rounded-md border border-accent/70 bg-white/50 p-3 md:p-4"
                           data-followup-wrapper={question.id}
                           data-followup-input-id={question.followUp.id}
                           data-followup-show-for={JSON.stringify(question.followUp.showForOptions ?? [])}
@@ -480,6 +487,8 @@ const followUpMappings = sections.flatMap((section) =>
                               name={question.followUp.id}
                               type="text"
                               placeholder={question.followUp.placeholder}
+                              maxlength={question.followUp.maxLength}
+                              data-followup-counter-for={question.followUp.id}
                             />
                           ) : (
                             <textarea
@@ -488,7 +497,15 @@ const followUpMappings = sections.flatMap((section) =>
                               name={question.followUp.id}
                               rows={4}
                               placeholder={question.followUp.placeholder}
+                              maxlength={question.followUp.maxLength}
+                              data-followup-counter-for={question.followUp.id}
                             ></textarea>
+                          )}
+                          {question.followUp.maxLength && (
+                            <p
+                              class="text-right text-xs text-[#5B2030]"
+                              data-followup-counter={question.followUp.id}
+                            >{`0/${question.followUp.maxLength}`}</p>
                           )}
                         </div>
                       )}
@@ -672,7 +689,23 @@ const followUpMappings = sections.flatMap((section) =>
       | null;
     if (followUpInput) {
       followUpInput.value = "";
+      updateFollowUpCounter(followUpInput);
     }
+  }
+
+  function updateFollowUpCounter(input: HTMLInputElement | HTMLTextAreaElement) {
+    if (!form) return;
+    const counter = form.querySelector(`[data-followup-counter="${input.name}"]`) as HTMLParagraphElement | null;
+    if (!counter) return;
+    counter.textContent = `${input.value.length}/${input.maxLength}`;
+  }
+
+  function bindFollowUpCounter(inputId: string) {
+    if (!form) return;
+    const input = form.querySelector(`[name="${inputId}"]`) as HTMLInputElement | HTMLTextAreaElement | null;
+    if (!input) return;
+    input.addEventListener("input", () => updateFollowUpCounter(input));
+    updateFollowUpCounter(input);
   }
 
   function setStatus(message: string, tone: "success" | "error" | "info") {
@@ -788,6 +821,10 @@ const followUpMappings = sections.flatMap((section) =>
         radio.addEventListener("change", () => updateFollowUpVisibility(parentId));
       });
       updateFollowUpVisibility(parentId);
+    });
+
+    followUpMappings.forEach((mapping) => {
+      bindFollowUpCounter(mapping.followUpId);
     });
   }
 
