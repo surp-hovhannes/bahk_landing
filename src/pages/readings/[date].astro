@@ -1,0 +1,184 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export const prerender = false;
+
+type Reading = {
+  id?: number;
+  book?: string;
+  startChapter?: number;
+  startVerse?: number;
+  endChapter?: number;
+  endVerse?: number;
+  url?: string;
+  text?: string;
+  textVersion?: string;
+  textCopyright?: string;
+  context?: string;
+};
+
+type ReadingsResponse = {
+  date: string;
+  readings: Reading[];
+};
+
+const rawDate = Astro.params.date;
+
+function isValidDateSlug(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
+function formatReference(reading: Reading): string {
+  const book = reading.book ?? "Reading";
+  const startChapter = reading.startChapter;
+  const startVerse = reading.startVerse;
+  const endChapter = reading.endChapter;
+  const endVerse = reading.endVerse;
+
+  if (
+    typeof startChapter !== "number" ||
+    typeof startVerse !== "number" ||
+    typeof endChapter !== "number" ||
+    typeof endVerse !== "number"
+  ) {
+    return book;
+  }
+
+  if (startChapter === endChapter && startVerse === endVerse) {
+    return `${book} ${startChapter}:${startVerse}`;
+  }
+
+  if (startChapter === endChapter) {
+    return `${book} ${startChapter}:${startVerse}-${endVerse}`;
+  }
+
+  return `${book} ${startChapter}:${startVerse}-${endChapter}:${endVerse}`;
+}
+
+function shiftDate(value: string, days: number): string {
+  const parsed = new Date(`${value}T00:00:00Z`);
+  parsed.setUTCDate(parsed.getUTCDate() + days);
+  return parsed.toISOString().slice(0, 10);
+}
+
+const requestedDate = typeof rawDate === "string" ? rawDate : "";
+const hasValidDate = isValidDateSlug(requestedDate);
+
+let payload: ReadingsResponse | null = null;
+let errorMessage: string | null = null;
+
+if (!hasValidDate) {
+  Astro.response.status = 400;
+  errorMessage = "Invalid date. Use /readings/YYYY-MM-DD.";
+} else {
+  const endpoint = new URL("https://api.fastandpray.app/api/readings/");
+  endpoint.searchParams.set("date", requestedDate);
+
+  try {
+    const response = await fetch(endpoint.toString(), {
+      headers: { accept: "application/json" },
+    });
+
+    if (!response.ok) {
+      Astro.response.status = response.status;
+      errorMessage = `Could not load readings for ${requestedDate} (HTTP ${response.status}).`;
+    } else {
+      const data: unknown = await response.json();
+      if (
+        !data ||
+        typeof data !== "object" ||
+        !("date" in data) ||
+        !("readings" in data) ||
+        !Array.isArray((data as { readings: unknown }).readings)
+      ) {
+        Astro.response.status = 502;
+        errorMessage = "Readings service returned an unexpected format.";
+      } else {
+        payload = data as ReadingsResponse;
+      }
+    }
+  } catch {
+    Astro.response.status = 502;
+    errorMessage = "Could not reach the readings service.";
+  }
+}
+
+const pageTitle = hasValidDate
+  ? `Readings for ${requestedDate} • Fast & Pray`
+  : "Readings • Fast & Pray";
+const previousDate = hasValidDate ? shiftDate(requestedDate, -1) : "";
+const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
+---
+
+<Layout pageTitle={pageTitle}>
+  <section class="space-y-6">
+    <header class="space-y-3">
+      <h1 class="text-3xl font-bold">Daily Readings</h1>
+      <p class="text-gray-700">
+        Date:
+        <code class="bg-gray-100 px-2 py-1 rounded">{requestedDate || "unknown"}</code>
+      </p>
+      {hasValidDate && (
+        <div class="flex gap-4 text-sm">
+          <a href={`/readings/${previousDate}`} class="text-accent hover:underline">
+            Previous day
+          </a>
+          <a href={`/readings/${nextDate}`} class="text-accent hover:underline">
+            Next day
+          </a>
+        </div>
+      )}
+    </header>
+
+    {errorMessage ? (
+      <p class="rounded-md border border-red-300 bg-red-50 p-4 text-red-800">{errorMessage}</p>
+    ) : payload && payload.readings.length > 0 ? (
+      <div class="space-y-6">
+        {payload.readings.map((reading) => (
+          <article class="border border-gray-200 rounded-lg p-4 md:p-6 space-y-4">
+            <header class="space-y-2">
+              <h2 class="text-xl font-semibold">{formatReference(reading)}</h2>
+              {reading.url && (
+                <a
+                  href={reading.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-accent hover:underline text-sm"
+                >
+                  Open source text
+                </a>
+              )}
+            </header>
+
+            {reading.context && (
+              <div class="rounded-md bg-gray-50 border border-gray-200 p-3">
+                <h3 class="font-semibold text-sm mb-1">Context</h3>
+                <p class="text-sm text-gray-700">{reading.context}</p>
+              </div>
+            )}
+
+            <p class="whitespace-pre-wrap leading-relaxed text-gray-900">
+              {reading.text?.trim() || "No reading text available."}
+            </p>
+
+            {(reading.textVersion || reading.textCopyright) && (
+              <footer class="pt-2 border-t border-gray-200 text-xs text-gray-500 space-y-1">
+                {reading.textVersion && <p>Version: {reading.textVersion}</p>}
+                {reading.textCopyright && <p>{reading.textCopyright}</p>}
+              </footer>
+            )}
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="rounded-md border border-gray-200 bg-gray-50 p-4 text-gray-700">
+        No readings were returned for this date.
+      </p>
+    )}
+  </section>
+</Layout>
