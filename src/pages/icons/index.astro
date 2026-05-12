@@ -90,20 +90,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
 </Layout>
 
 <style>
-  .confidence-high {
-    background-color: #dcfce7;
-    color: #166534;
-  }
-  .confidence-medium {
-    background-color: #fef9c3;
-    color: #854d0e;
-  }
-  .confidence-low {
-    background-color: #f3f4f6;
-    color: #6b7280;
-  }
   #results-grid img {
-    object-fit: cover;
     width: 100%;
     height: 100%;
   }
@@ -161,7 +148,8 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
   function confidenceBadgeHtml(confidence) {
     if (!confidence) return "";
     const dot = confidence === "high" ? "●" : confidence === "medium" ? "◐" : "○";
-    return `<span class="confidence-${escape(confidence)} text-xs px-2 py-0.5 rounded-full">${dot} ${escape(confidence)}</span>`;
+    const bgClass = confidence === "high" ? "bg-green-100 text-green-700" : confidence === "medium" ? "bg-yellow-100 text-yellow-800" : "bg-gray-100 text-gray-600";
+    return `<span class="${bgClass} text-xs px-2 py-0.5 rounded-full">${dot} ${escape(confidence)}</span>`;
   }
 
   function iconCardHtml(icon, confidence = null) {
@@ -175,7 +163,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
 
     const imgSrc = icon.thumbnail_url || icon.image;
     const imgHtml = imgSrc
-      ? `<img src="${escape(imgSrc)}" alt="${escape(icon.title)}" loading="lazy" />`
+      ? `<img src="${escape(imgSrc)}" alt="${escape(icon.title)}" loading="lazy" style="object-fit:cover;width:100%;height:100%" />`
       : `<div class="flex items-center justify-center w-full h-full text-2xl text-gray-300 font-bold select-none">${escape(icon.title.charAt(0).toUpperCase())}</div>`;
 
     return `
