@@ -89,12 +89,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
   </div>
 </Layout>
 
-<style>
-  #results-grid img {
-    width: 100%;
-    height: 100%;
-  }
-</style>
+
 
 <script define:vars={{ apiBase }}>
   const PAGE_SIZE = 15;
@@ -163,7 +158,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
 
     const imgSrc = icon.thumbnail_url || icon.image;
     const imgHtml = imgSrc
-      ? `<img src="${escape(imgSrc)}" alt="${escape(icon.title)}" loading="lazy" style="object-fit:cover;width:100%;height:100%" />`
+      ? `<img src="${escape(imgSrc)}" alt="${escape(icon.title)}" loading="lazy" class="object-cover w-full h-full" />`
       : `<div class="flex items-center justify-center w-full h-full text-2xl text-gray-300 font-bold select-none">${escape(icon.title.charAt(0).toUpperCase())}</div>`;
 
     return `
