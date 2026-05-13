@@ -2,25 +2,6 @@
 import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-export async function getStaticPaths() {
-  const allEntries = await getCollection("bibleStudies");
-  const slugs = [...new Set(allEntries.map((e) => e.data.studySlug))];
-  const paths = [];
-
-  for (const slug of slugs) {
-    const slugEntries = allEntries.filter((e) => e.data.studySlug === slug);
-    const sessions = slugEntries.filter((e) => e.data.session);
-    for (const session of sessions) {
-      paths.push({
-        params: { slug, day: String(session.data.session?.day) },
-        props: { slug, day: session.data.session?.day },
-      });
-    }
-  }
-
-  return paths;
-}
-
 const { slug, day } = Astro.params;
 const dayNum = Number(day);
 
