@@ -16,7 +16,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
         id="search-input"
         type="text"
         placeholder="Search icons… (e.g. Nativity, St. Gregory, Baptism)"
-        class="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#B5244A] text-gray-800"
+        class="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#80273e] text-gray-800"
       />
       <button
         id="search-btn"
@@ -26,7 +26,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
       </button>
       <button
         id="ai-btn"
-        class="bg-gradient-to-r from-[#B5244A] to-[#E54670] text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition whitespace-nowrap hidden"
+        class="bg-gradient-to-r from-[#B5244A] to-[#E54670] text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition whitespace-nowrap"
         title="AI-powered semantic search — describe what you're looking for in natural language"
       >
         ✦ AI Match
@@ -42,7 +42,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
     <!-- Loading -->
     <div id="loading" class="hidden text-center py-16">
       <div
-        class="inline-block w-8 h-8 border-4 border-[#B5244A] border-t-transparent rounded-full animate-spin mb-3"
+        class="inline-block w-8 h-8 border-4 border-[#80273e] border-t-transparent rounded-full animate-spin mb-3"
       ></div>
       <p class="text-sm text-gray-400" id="loading-msg">Loading icons…</p>
     </div>
@@ -152,7 +152,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
     const tagChips = tags
       .map(
         (t) =>
-          `<span class="bg-[#3B0714]/10 text-[#3B0714] text-xs px-2 py-0.5 rounded-full">${escape(t)}</span>`
+          `<span class="bg-[#B5244A]/10 text-[#B5244A] text-xs px-2 py-0.5 rounded-full">${escape(t)}</span>`
       )
       .join("");
 
