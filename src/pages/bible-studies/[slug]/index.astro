@@ -1,0 +1,97 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allEntries = await getCollection("bibleStudies");
+  const slugs = [...new Set(allEntries.map((e) => e.data.slug))];
+  return slugs.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.params;
+const allEntries = await getCollection("bibleStudies");
+const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+
+if (slugEntries.length === 0) {
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+// Index entry (no session data)
+const study = slugEntries.find((e) => !e.data.session);
+if (!study) {
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+// Session entries sorted by day
+const sessions = slugEntries
+  .filter((e) => e.data.session)
+  .sort((a, b) => (a.data.session?.day ?? 0) - (b.data.session?.day ?? 0));
+
+const { Content } = await study.render();
+---
+
+<Layout pageTitle={`${study.data.title} • Fast & Pray`}>
+  <Fragment slot="meta">
+    <meta name="description" content={study.data.description} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto">
+    <!-- Back link -->
+    <a href="/bible-studies" class="text-[#B5244A] hover:underline text-sm mb-4 inline-block">
+      &larr; All Bible Studies
+    </a>
+
+    <!-- Cover image -->
+    {study.data.coverImage && (
+      <div class="aspect-[2/1] overflow-hidden rounded-lg mb-6">
+        <img
+          src={study.data.coverImage.src}
+          alt={study.data.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+
+    <h1 class="text-3xl font-bold text-[#3B0714] mb-2">{study.data.title}</h1>
+
+    <!-- Description -->
+    <p class="text-gray-600 mb-6">{study.data.description}</p>
+
+    <!-- Intro body -->
+    <div class="prose prose-slate max-w-none mb-8">
+      <Content />
+    </div>
+
+    <!-- Devotional link -->
+    {study.data.devotionalSetId && (
+      <div class="bg-[#B5244A]/5 border border-[#B5244A]/20 rounded-lg p-4 mb-8">
+        <p class="text-sm text-gray-700">
+          <span class="font-semibold">Based on a devotional series.</span>
+          <br />
+          This study corresponds to the Fast of the Exaltation of the Holy Cross devotional set.
+        </p>
+      </div>
+    )}
+
+    <!-- Session list -->
+    <h2 class="text-2xl font-semibold text-[#3B0714] mb-4">Sessions</h2>
+    <div class="space-y-3">
+      {sessions.map((session) => (
+        <a
+          href={`/bible-studies/${slug}/${session.data.session?.day}/`}
+          class="block border border-gray-200 rounded-lg p-4 hover:border-[#B5244A] hover:shadow-sm transition-all"
+        >
+          <div class="flex items-center gap-3">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#B5244A] text-white flex items-center justify-center text-sm font-bold">
+              {session.data.session?.day}
+            </span>
+            <div>
+              <h3 class="font-semibold text-[#3B0714]">{session.data.session?.title}</h3>
+              <p class="text-sm text-gray-500">Day {session.data.session?.day}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,126 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allEntries = await getCollection("bibleStudies");
+  const slugs = [...new Set(allEntries.map((e) => e.data.slug))];
+  const paths = [];
+
+  for (const slug of slugs) {
+    const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+    const sessions = slugEntries.filter((e) => e.data.session);
+    for (const session of sessions) {
+      paths.push({
+        params: { slug, day: String(session.data.session?.day) },
+        props: { slug, day: session.data.session?.day },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { slug, day } = Astro.params;
+const dayNum = Number(day);
+
+const allEntries = await getCollection("bibleStudies");
+const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+
+if (slugEntries.length === 0) {
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+const study = slugEntries.find((e) => !e.data.session);
+const session = slugEntries.find(
+  (e) => e.data.session && e.data.session.day === dayNum
+);
+
+if (!study || !session) {
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+// Get all sessions for navigation
+const sessions = slugEntries
+  .filter((e) => e.data.session)
+  .sort((a, b) => (a.data.session?.day ?? 0) - (b.data.session?.day ?? 0));
+
+const currentIndex = sessions.findIndex(
+  (s) => s.data.session?.day === dayNum
+);
+const prevSession = currentIndex > 0 ? sessions[currentIndex - 1] : null;
+const nextSession =
+  currentIndex < sessions.length - 1 ? sessions[currentIndex + 1] : null;
+
+const { Content } = await session.render();
+---
+
+<Layout pageTitle={`${study.data.title} • Day ${dayNum} • Fast & Pray`}>
+  <Fragment slot="meta">
+    <meta name="description" content={session.data.description} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto">
+    <!-- Breadcrumb navigation -->
+    <div class="text-sm text-gray-500 mb-4">
+      <a href="/bible-studies" class="text-[#B5244A] hover:underline">Bible Studies</a>
+      <span class="mx-1">/</span>
+      <a href={`/bible-studies/${slug}/`} class="text-[#B5244A] hover:underline">
+        {study.data.title}
+      </a>
+      <span class="mx-1">/</span>
+      <span>Day {dayNum}</span>
+    </div>
+
+    <!-- Session header -->
+    <div class="mb-8">
+      <p class="text-sm font-medium text-[#B5244A] uppercase tracking-wider">
+        {study.data.title} &middot; Day {dayNum} of {sessions.length}
+      </p>
+      <h1 class="text-3xl font-bold text-[#3B0714] mt-1">
+        {session.data.session?.title}
+      </h1>
+    </div>
+
+    <!-- Session content -->
+    <div class="prose prose-slate max-w-none">
+      <Content />
+    </div>
+
+    <!-- Navigation between sessions -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-200">
+      <div>
+        {prevSession && (
+          <a
+            href={`/bible-studies/${slug}/${prevSession.data.session?.day}/`}
+            class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+          >
+            <span>&larr;</span>
+            <span>Day {prevSession.data.session?.day}: {prevSession.data.session?.title}</span>
+          </a>
+        )}
+      </div>
+      <div>
+        {nextSession && (
+          <a
+            href={`/bible-studies/${slug}/${nextSession.data.session?.day}/`}
+            class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+          >
+            <span>Day {nextSession.data.session?.day}: {nextSession.data.session?.title}</span>
+            <span>&rarr;</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Back to study overview -->
+    <div class="mt-6 text-center">
+      <a
+        href={`/bible-studies/${slug}/`}
+        class="text-sm text-[#B5244A] hover:underline"
+      >
+        &larr; Back to "{study.data.title}" overview
+      </a>
+    </div>
+  </article>
+</Layout>
