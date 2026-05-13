@@ -6,6 +6,8 @@ session:
   day: 5
   title: "Glorify"
   devotionalId: 199
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250912_045908_40a95fe9_day-5-glorify.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/20250912_045924_f49ced14_screenshot-2025-09-11-at-95903pm.png"
 ---
 
 

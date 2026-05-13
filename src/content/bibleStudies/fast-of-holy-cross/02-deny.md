@@ -6,6 +6,8 @@ session:
   day: 2
   title: "Deny"
   devotionalId: 167
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250906_002315_a0a24eeb_day-2-deny.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/20250906_002320_84100db1_screenshot-2025-09-05-at-52037pm.png"
 ---
 
 

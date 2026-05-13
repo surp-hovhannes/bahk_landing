@@ -6,6 +6,8 @@ session:
   day: 4
   title: "Follow"
   devotionalId: 169
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250906_002402_de44b9fc_day-4-follow.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/20250906_002409_35c71d3c_screenshot-2025-09-05-at-52112pm.png"
 ---
 
 

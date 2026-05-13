@@ -30,6 +30,8 @@ const bibleStudies = defineCollection({
           day: z.number().int(),
           title: z.string(),
           devotionalId: z.number().int().optional(),
+          videoUrl: z.string().url().optional(),
+          posterUrl: z.string().url().optional(),
         })
         .optional(),
     }),

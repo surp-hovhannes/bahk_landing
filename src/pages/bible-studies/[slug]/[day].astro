@@ -2,8 +2,6 @@
 import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-const API_BASE = "https://api.fastandpray.app";
-
 const { slug, day } = Astro.params;
 const dayNum = Number(day);
 
@@ -35,24 +33,8 @@ const prevSession = currentIndex > 0 ? sessions[currentIndex - 1] : null;
 const nextSession =
   currentIndex < sessions.length - 1 ? sessions[currentIndex + 1] : null;
 
-// Fetch devotional video data from API
-let devotionalVideo = null;
-let devotionalThumbnail = null;
-
-if (session.data.session?.devotionalId) {
-  try {
-    const res = await fetch(
-      `${API_BASE}/api/devotionals/${session.data.session.devotionalId}/`
-    );
-    if (res.ok) {
-      const data = await res.json();
-      devotionalVideo = data.video || null;
-      devotionalThumbnail = data.thumbnail || null;
-    }
-  } catch (e) {
-    // API unavailable, skip video
-  }
-}
+const devotionalVideo = session.data.session?.videoUrl ?? null;
+const devotionalThumbnail = session.data.session?.posterUrl ?? null;
 
 const { Content } = await session.render();
 ---

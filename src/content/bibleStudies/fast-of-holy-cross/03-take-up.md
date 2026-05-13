@@ -6,6 +6,8 @@ session:
   day: 3
   title: "Take Up"
   devotionalId: 168
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250906_002339_0772eff5_day-3-take-up.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/20250906_002345_03a2d5c4_screenshot-2025-09-05-at-52057pm.png"
 ---
 
 

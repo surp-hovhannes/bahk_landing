@@ -6,6 +6,8 @@ session:
   day: 1
   title: "Desire"
   devotionalId: 166
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250906_002229_807b0830_day-1-desire.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/20250906_002239_6e9340a5_screenshot-2025-09-05-at-52024pm.png"
 ---
 
 
