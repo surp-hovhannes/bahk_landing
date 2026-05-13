@@ -1,16 +1,31 @@
 ---
-// Footer logic if needed
 ---
-
-<footer>
-  <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 border-t border-accent"
-  >
-    <p>© 2026 Fast & Pray</p>
-    <div class="flex space-x-4">
-      <a href="/icons" class="hover:text-gray-300">Icon Library</a>
-      <a href="/privacy" class="hover:text-gray-300">Privacy Policy</a>
-      <a href="/terms" class="hover:text-gray-300">Terms of Service</a>
+<footer class="bg-[#390714] text-white py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <p class="text-gray-400 text-sm">© 2026 Fast & Pray</p>
+      </div>
+      
+      <!-- Tools -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Tools</h3>
+        <div class="flex flex-col space-y-2">
+          <a href="/icons" class="hover:text-gray-300 text-sm">Icon Library</a>
+          <a href="/readings" class="hover:text-gray-300 text-sm">Daily Readings</a>
+          <a href="/bible-studies" class="hover:text-gray-300 text-sm">Guided Bible Studies</a>
+        </div>
+      </div>
+      
+      <!-- Policies -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Policies</h3>
+        <div class="flex flex-col space-y-2">
+          <a href="/privacy" class="hover:text-gray-300 text-sm">Privacy Policy</a>
+          <a href="/terms" class="hover:text-gray-300 text-sm">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

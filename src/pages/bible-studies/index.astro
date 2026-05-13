@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allEntries = await getCollection("bibleStudies");
+// Index entries are those without `session` data — these are the study overviews
+const studies = allEntries.filter((entry) => !entry.data.session);
+// For each study, find its sessions and count them
+const studyMap = studies.map((study) => {
+  const sessions = allEntries.filter(
+    (e) => e.data.studySlug === study.data.studySlug && e.data.session
+  );
+  const sessionCount = sessions.length;
+  return { study, sessionCount };
+});
+---
+
+<Layout pageTitle="Guided Bible Studies • Fast & Pray">
+  <div>
+    <h1 class="text-3xl font-bold mb-2 text-[#3B0714]">Guided Bible Studies</h1>
+    <p class="text-gray-600 mb-8">
+      Journey through Scripture with guided reflections, prayer, and group discussion questions.
+    </p>
+
+    {studyMap.length === 0 ? (
+      <p class="text-gray-700">No Bible studies available yet. Please check back soon.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {studyMap.map(({ study, sessionCount }) => (
+          <a
+            href={`/bible-studies/${study.data.studySlug}/`}
+            class="block group rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+          >
+            {study.data.coverImage ? (
+              <div class="aspect-square overflow-hidden">
+                <img
+                  src={study.data.coverImage.src}
+                  alt={study.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+              </div>
+            ) : (
+              <div class="aspect-square bg-gradient-to-br from-[#B5244A]/10 to-[#3B0714]/10 flex items-center justify-center">
+                <span class="text-4xl">📖</span>
+              </div>
+            )}
+            <div class="p-4">
+              <h2 class="text-lg font-semibold text-[#3B0714] group-hover:text-[#B5244A] transition-colors">
+                {study.data.title}
+              </h2>
+              <p class="text-sm text-gray-600 mt-1 line-clamp-2">
+                {study.data.description}
+              </p>
+              <p class="text-xs text-[#B5244A] mt-2 font-medium">
+                {sessionCount} {sessionCount === 1 ? "session" : "sessions"}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>

@@ -17,3 +17,16 @@
 .bg-accent {
   background-color: #80273e;
 }
+
+/* Alternative accent — brighter red-pink, use sparingly */
+.text-accent-alt {
+  color: #B5244A;
+}
+
+.bg-accent-alt {
+  background-color: #B5244A;
+}
+
+.border-accent-alt {
+  border-color: #B5244A;
+}

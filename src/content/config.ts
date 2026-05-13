@@ -15,6 +15,28 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+const bibleStudies = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      studySlug: z.string(),
+      coverImage: image().optional(),
+      devotionalSetId: z.number().int().optional(),
+      fastId: z.number().int().optional(),
+      session: z
+        .object({
+          day: z.number().int(),
+          title: z.string(),
+          devotionalId: z.number().int().optional(),
+          videoUrl: z.string().url().optional(),
+          posterUrl: z.string().url().optional(),
+        })
+        .optional(),
+    }),
+});
+
+export const collections = { blog, bibleStudies };
 
 
