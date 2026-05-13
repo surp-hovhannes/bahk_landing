@@ -21,7 +21,7 @@ const bibleStudies = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      slug: z.string(),
+      studySlug: z.string(),
       coverImage: image().optional(),
       devotionalSetId: z.number().int().optional(),
       fastId: z.number().int().optional(),

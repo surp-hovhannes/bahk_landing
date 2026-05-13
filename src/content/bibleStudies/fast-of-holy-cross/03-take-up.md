@@ -1,12 +1,13 @@
 ---
 title: "Exaltation of the Holy Cross"
 description: "A 5-day guided Bible study on the Way of the Cross"
-slug: "fast-of-holy-cross"
+studySlug: "fast-of-holy-cross"
 session:
   day: 3
   title: "Take Up"
   devotionalId: 168
 ---
+
 
 ## Opening Prayer
 

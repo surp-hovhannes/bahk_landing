@@ -1,7 +1,7 @@
 ---
 title: "Exaltation of the Holy Cross"
 description: "A 5-day guided Bible study on the Way of the Cross: learn to desire, deny, take up, follow, and glorify so that you can proclaim with the Church, 'Glory to Your Cross, O Christ.'"
-slug: "fast-of-holy-cross"
+studySlug: "fast-of-holy-cross"
 devotionalSetId: 100
 fastId: 47
 ---

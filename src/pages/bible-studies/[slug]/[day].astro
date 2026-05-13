@@ -4,11 +4,11 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const allEntries = await getCollection("bibleStudies");
-  const slugs = [...new Set(allEntries.map((e) => e.data.slug))];
+  const slugs = [...new Set(allEntries.map((e) => e.data.studySlug))];
   const paths = [];
 
   for (const slug of slugs) {
-    const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+    const slugEntries = allEntries.filter((e) => e.data.studySlug === slug);
     const sessions = slugEntries.filter((e) => e.data.session);
     for (const session of sessions) {
       paths.push({
@@ -25,7 +25,7 @@ const { slug, day } = Astro.params;
 const dayNum = Number(day);
 
 const allEntries = await getCollection("bibleStudies");
-const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+const slugEntries = allEntries.filter((e) => e.data.studySlug === slug);
 
 if (slugEntries.length === 0) {
   return new Response(null, { status: 404, statusText: "Not found" });

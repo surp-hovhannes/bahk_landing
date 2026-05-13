@@ -4,13 +4,13 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const allEntries = await getCollection("bibleStudies");
-  const slugs = [...new Set(allEntries.map((e) => e.data.slug))];
+  const slugs = [...new Set(allEntries.map((e) => e.data.studySlug))];
   return slugs.map((slug) => ({ params: { slug }, props: { slug } }));
 }
 
 const { slug } = Astro.params;
 const allEntries = await getCollection("bibleStudies");
-const slugEntries = allEntries.filter((e) => e.data.slug === slug);
+const slugEntries = allEntries.filter((e) => e.data.studySlug === slug);
 
 if (slugEntries.length === 0) {
   return new Response(null, { status: 404, statusText: "Not found" });
