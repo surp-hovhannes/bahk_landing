@@ -56,16 +56,20 @@ const { Content } = await study.render();
       <Content />
     </div>
 
-    <!-- Devotional link -->
-    {study.data.devotionalSetId && (
-      <div class="bg-[#B5244A]/5 border border-[#B5244A]/20 rounded-lg p-4 mb-8">
-        <p class="text-sm text-gray-700">
-          <span class="font-semibold">Based on a devotional series.</span>
-          <br />
-          This study corresponds to the Fast of the Exaltation of the Holy Cross devotional set.
-        </p>
-      </div>
-    )}
+    <!-- Download prompt -->
+    <div class="bg-[#B5244A]/5 border border-[#B5244A]/20 rounded-lg p-4 mb-8">
+      <p class="text-sm text-gray-700">
+        <a
+          href="https://fastandpray.app"
+          class="text-[#B5244A] font-semibold hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download Fast &amp; Pray
+        </a>
+        to access our wide library of devotional series and more.
+      </p>
+    </div>
 
     <!-- Session list -->
     <h2 class="text-2xl font-semibold text-[#3B0714] mb-4">Sessions</h2>
