@@ -2,6 +2,8 @@
 import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
+const API_BASE = "https://api.fastandpray.app";
+
 const { slug, day } = Astro.params;
 const dayNum = Number(day);
 
@@ -33,75 +35,129 @@ const prevSession = currentIndex > 0 ? sessions[currentIndex - 1] : null;
 const nextSession =
   currentIndex < sessions.length - 1 ? sessions[currentIndex + 1] : null;
 
+// Fetch devotional video data from API
+let devotionalVideo = null;
+let devotionalThumbnail = null;
+
+if (session.data.session?.devotionalId) {
+  try {
+    const res = await fetch(
+      `${API_BASE}/api/devotionals/${session.data.session.devotionalId}/`
+    );
+    if (res.ok) {
+      const data = await res.json();
+      devotionalVideo = data.video || null;
+      devotionalThumbnail = data.thumbnail || null;
+    }
+  } catch (e) {
+    // API unavailable, skip video
+  }
+}
+
 const { Content } = await session.render();
 ---
 
-<Layout pageTitle={`${study.data.title} • Day ${dayNum} • Fast & Pray`}>
+<Layout
+  pageTitle={`${study.data.title} • Day ${dayNum} • Fast & Pray`}
+>
   <Fragment slot="meta">
     <meta name="description" content={session.data.description} />
   </Fragment>
 
-  <article class="max-w-3xl mx-auto">
-    <!-- Breadcrumb navigation -->
-    <div class="text-sm text-gray-500 mb-4">
-      <a href="/bible-studies" class="text-[#B5244A] hover:underline">Bible Studies</a>
-      <span class="mx-1">/</span>
-      <a href={`/bible-studies/${slug}/`} class="text-[#B5244A] hover:underline">
-        {study.data.title}
-      </a>
-      <span class="mx-1">/</span>
-      <span>Day {dayNum}</span>
-    </div>
+  <!-- Breadcrumb -->
+  <div class="text-sm text-gray-500 mb-4">
+    <a href="/bible-studies" class="text-[#B5244A] hover:underline"
+      >Bible Studies</a
+    >
+    <span class="mx-1">/</span>
+    <a
+      href={`/bible-studies/${slug}/`}
+      class="text-[#B5244A] hover:underline"
+      >{study.data.title}</a
+    >
+    <span class="mx-1">/</span>
+    <span>Day {dayNum}</span>
+  </div>
 
-    <!-- Session header -->
-    <div class="mb-8">
-      <p class="text-sm font-medium text-[#B5244A] uppercase tracking-wider">
-        {study.data.title} &middot; Day {dayNum} of {sessions.length}
-      </p>
-      <h1 class="text-3xl font-bold text-[#3B0714] mt-1">
-        {session.data.session?.title}
-      </h1>
-    </div>
+  <!-- Session header -->
+  <div class="mb-6">
+    <p class="text-sm font-medium text-[#B5244A] uppercase tracking-wider">
+      {study.data.title} &middot; Day {dayNum} of {sessions.length}
+    </p>
+    <h1 class="text-3xl font-bold text-[#3B0714] mt-1">
+      {session.data.session?.title}
+    </h1>
+  </div>
 
-    <!-- Session content -->
+  <!-- Video + Content side-by-side on desktop -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+    <!-- Left: Video (portrait) -->
+    {devotionalVideo && (
+      <div class="md:sticky md:top-24 self-start">
+        <div
+          class="aspect-[9/16] max-w-xs mx-auto md:mx-0 rounded-lg overflow-hidden bg-gray-900 shadow-lg"
+        >
+          <video
+            src={devotionalVideo}
+            poster={devotionalThumbnail}
+            controls
+            playsinline
+            preload="metadata"
+            class="w-full h-full object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    )}
+
+    <!-- Right: Session content -->
     <div class="prose prose-slate max-w-none">
       <Content />
     </div>
+  </div>
 
-    <!-- Navigation between sessions -->
-    <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-200">
-      <div>
-        {prevSession && (
-          <a
-            href={`/bible-studies/${slug}/${prevSession.data.session?.day}/`}
-            class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+  <!-- Navigation between sessions -->
+  <div
+    class="flex justify-between items-center mt-12 pt-6 border-t border-gray-200"
+  >
+    <div>
+      {prevSession && (
+        <a
+          href={`/bible-studies/${slug}/${prevSession.data.session?.day}/`}
+          class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+        >
+          <span>&larr;</span>
+          <span
+            >Day {prevSession.data.session?.day}:
+            {prevSession.data.session?.title}</span
           >
-            <span>&larr;</span>
-            <span>Day {prevSession.data.session?.day}: {prevSession.data.session?.title}</span>
-          </a>
-        )}
-      </div>
-      <div>
-        {nextSession && (
-          <a
-            href={`/bible-studies/${slug}/${nextSession.data.session?.day}/`}
-            class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
-          >
-            <span>Day {nextSession.data.session?.day}: {nextSession.data.session?.title}</span>
-            <span>&rarr;</span>
-          </a>
-        )}
-      </div>
+        </a>
+      )}
     </div>
+    <div>
+      {nextSession && (
+        <a
+          href={`/bible-studies/${slug}/${nextSession.data.session?.day}/`}
+          class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+        >
+          <span
+            >Day {nextSession.data.session?.day}:
+            {nextSession.data.session?.title}</span
+          >
+          <span>&rarr;</span>
+        </a>
+      )}
+    </div>
+  </div>
 
-    <!-- Back to study overview -->
-    <div class="mt-6 text-center">
-      <a
-        href={`/bible-studies/${slug}/`}
-        class="text-sm text-[#B5244A] hover:underline"
-      >
-        &larr; Back to "{study.data.title}" overview
-      </a>
-    </div>
-  </article>
+  <!-- Back to study overview -->
+  <div class="mt-6 text-center">
+    <a
+      href={`/bible-studies/${slug}/`}
+      class="text-sm text-[#B5244A] hover:underline"
+    >
+      &larr; Back to "{study.data.title}" overview
+    </a>
+  </div>
 </Layout>
