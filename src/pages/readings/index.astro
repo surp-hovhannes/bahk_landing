@@ -1,0 +1,186 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+function getTodayInPacific(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+const today = getTodayInPacific();
+
+function shiftDate(dateStr: string, days: number): string {
+  const d = new Date(dateStr + "T12:00:00-07:00");
+  d.setDate(d.getDate() + days);
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
+
+const prevDay = shiftDate(today, -1);
+const nextDay = shiftDate(today, +1);
+---
+
+<Layout pageTitle="Daily Readings • Fast & Pray">
+  <div class="max-w-2xl mx-auto text-center">
+    <!-- Hero -->
+    <h1 class="text-3xl md:text-4xl font-bold text-[#3B0714] mb-4">
+      Daily Bible Readings
+    </h1>
+    <p class="text-gray-600 text-lg mb-8">
+      Scripture readings follow the Armenian Apostolic Church liturgical
+      calendar, curated by the Fast &amp; Pray app.
+    </p>
+
+    <!-- Intro copy -->
+    <div class="prose prose-slate max-w-none text-left mb-10">
+      <p>
+        Each day's readings are drawn from the Armenian Church's
+        centuries-old lectionary tradition, connecting you to the same
+        scriptures proclaimed in Armenian churches around the world. The
+        readings follow the rhythm of the liturgical year — feasts, fasts,
+        and seasons — so you journey through Scripture in step with the
+        Church.
+      </p>
+      <p>
+        Whether you're following along with a devotional series or simply
+        want to ground your day in God's Word, the daily readings are a
+        simple way to stay connected to the life of the Church.
+      </p>
+    </div>
+
+    <!-- Today's Readings CTA -->
+    <a
+      href={`/readings/${today}`}
+      class="inline-block bg-gradient-to-r from-[#B5244A] to-[#E54670] text-white font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-opacity mb-10"
+    >
+      Today's Readings &rarr;
+    </a>
+
+    <!-- Date picker -->
+    <div class="border border-gray-200 rounded-lg p-6 mb-6">
+      <label
+        for="reading-date"
+        class="block text-sm font-medium text-[#3B0714] mb-2"
+      >
+        Or pick a date
+      </label>
+      <div class="flex gap-2 justify-center">
+        <input
+          type="date"
+          id="reading-date"
+          min="2024-01-01"
+          max={today}
+          value={today}
+          class="block w-full max-w-xs rounded-md border-gray-300 shadow-sm focus:border-[#B5244A] focus:ring-2 focus:ring-[#B5244A] text-sm"
+        />
+        <button
+          id="go-date"
+          class="bg-[#B5244A] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#9a1e3d] transition-colors focus:ring-2 focus:ring-[#B5244A] focus:outline-none"
+        >
+          Go
+        </button>
+      </div>
+      <p
+        id="date-error"
+        class="text-red-600 text-sm mt-2 hidden"
+        role="alert"
+      ></p>
+    </div>
+
+    <!-- Previous / Next links -->
+    <div class="flex justify-center gap-8 text-sm">
+      <a
+        href={`/readings/${prevDay}`}
+        class="text-[#B5244A] hover:underline"
+        aria-label="Previous day: {prevDay}"
+      >
+        &larr; Previous Day
+      </a>
+      <a
+        href={`/readings/${nextDay}`}
+        class="text-[#B5244A] hover:underline"
+        aria-label="Next day: {nextDay}"
+      >
+        Next Day &rarr;
+      </a>
+    </div>
+
+    <!-- Ecosystem context -->
+    <p class="text-xs text-gray-400 mt-12">
+      Part of the{" "}
+      <a
+        href="https://fastandpray.app"
+        class="text-[#B5244A] hover:underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Fast &amp; Pray
+      </a>{" "}
+      app ecosystem.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const today = document.getElementById("reading-date")?.getAttribute("max");
+  const input = document.getElementById("reading-date") as HTMLInputElement;
+  const goBtn = document.getElementById("go-date");
+  const errorEl = document.getElementById("date-error");
+
+  function validateAndNavigate() {
+    if (!input || !errorEl || !today) return;
+
+    const val = input.value;
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+    // Reset error
+    errorEl.classList.add("hidden");
+    errorEl.textContent = "";
+
+    if (!datePattern.test(val)) {
+      errorEl.textContent = "Please enter a valid date (YYYY-MM-DD).";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    const parsed = new Date(val + "T12:00:00-07:00");
+
+    if (isNaN(parsed.getTime())) {
+      errorEl.textContent = "That date doesn't seem valid. Try again.";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    const min = new Date("2024-01-01T12:00:00-07:00");
+    const max = new Date(today + "T12:00:00-07:00");
+
+    if (parsed < min) {
+      errorEl.textContent = "Readings are available from January 1, 2024 onward.";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    if (parsed > max) {
+      errorEl.textContent = "You can't select a future date. Try today or earlier.";
+      errorEl.classList.remove("hidden");
+      return;
+    }
+
+    window.location.href = `/readings/${val}`;
+  }
+
+  goBtn?.addEventListener("click", validateAndNavigate);
+  input?.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      validateAndNavigate();
+    }
+  });
+</script>
