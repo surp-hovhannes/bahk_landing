@@ -4,6 +4,7 @@ description: "A 5-day guided Bible study on the Way of the Cross: learn to desir
 studySlug: "fast-of-holy-cross"
 devotionalSetId: 100
 fastId: 47
+coverImage: "./cover.jpg"
 ---
 
 This guided Bible study is based on the 5-day devotional series by Fr. Mesrop Ash of St. John Armenian Apostolic Church, San Francisco, originally created for the Fast of the Exaltation of the Holy Cross.
