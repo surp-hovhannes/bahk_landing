@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
+const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
+
 export const prerender = false;
 
 type Reading = {
@@ -76,7 +78,7 @@ if (!hasValidDate) {
   Astro.response.status = 400;
   errorMessage = "Invalid date. Use /readings/YYYY-MM-DD.";
 } else {
-  const endpoint = new URL("https://api.fastandpray.app/api/readings/");
+  const endpoint = new URL(apiBase + "/api/readings/");
   endpoint.searchParams.set("date", requestedDate);
 
   try {

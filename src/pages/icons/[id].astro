@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import IconFeedbackModal from "../../components/IconFeedbackModal.astro";
 
 const { id } = Astro.params;
 const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
@@ -82,8 +83,24 @@ const createdDate = icon?.created_at
             )}
             <p>Icon #{icon.id}</p>
           </div>
+
+          <IconFeedbackModal apiBase={apiBase} iconId={icon.id} />
         </div>
       </div>
     ) : null}
   </div>
 </Layout>
+
+<script>
+  // Tag link fix — ensure /icons?tags= links resolve properly
+  (() => {
+    const links = document.querySelectorAll('a[href^="/icons?tags="]');
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      const url = new URL(href, location.origin);
+      if (url.searchParams.has("tags")) {
+        link.setAttribute("href", url.pathname + url.search);
+      }
+    }
+  })();
+</script>
