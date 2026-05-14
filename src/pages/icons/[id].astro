@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import IconFeedbackModal from "../../components/IconFeedbackModal.astro";
 
 const { id } = Astro.params;
 const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
@@ -83,268 +84,23 @@ const createdDate = icon?.created_at
             <p>Icon #{icon.id}</p>
           </div>
 
-          <!-- Suggest Edit Button -->
-          <button
-            id="feedback-btn"
-            class="mt-6 inline-flex items-center gap-2 text-sm bg-white border border-[#B5244A]/30 text-[#B5244A] px-4 py-2 rounded-lg hover:bg-[#B5244A]/5 hover:border-[#B5244A]/60 transition"
-            title="Suggest a correction or provide feedback about this icon"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-            </svg>
-            Suggest Edit
-          </button>
+          <IconFeedbackModal apiBase={apiBase} iconId={icon.id} />
         </div>
       </div>
     ) : null}
   </div>
-
-  <!-- Feedback Modal -->
-  <div id="feedback-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
-      <!-- Header -->
-      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-        <h2 class="text-lg font-semibold text-[#3B0714]">Suggest an Edit</h2>
-        <button id="modal-close" class="text-gray-400 hover:text-gray-600 transition p-1" aria-label="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Fields (hidden on success) -->
-      <div id="feedback-fields">
-        <!-- Honeypot field for spam bots -->
-        <div aria-hidden="true" style="position: absolute; left: -9999px;">
-          <input type="text" name="website" id="hp-field" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <form id="feedback-form" class="px-6 pb-6 space-y-4 pt-4">
-          <!-- Feedback Type -->
-          <div>
-            <label for="feedback-type" class="block text-sm font-medium text-gray-700 mb-1">What's wrong?</label>
-            <select id="feedback-type" required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#80273e] focus:border-transparent">
-              <option value="">Select a type…</option>
-              <option value="mislabel">Incorrect title or description</option>
-              <option value="suggested_tags">Suggest additional tags</option>
-              <option value="general">Other feedback</option>
-            </select>
-          </div>
-
-          <!-- Description -->
-          <div>
-            <label for="feedback-desc" class="block text-sm font-medium text-gray-700 mb-1">
-              Description <span class="text-red-500">*</span>
-            </label>
-            <textarea id="feedback-desc" minlength="10" maxlength="2000" required rows="4"
-              placeholder="Describe the issue or suggestion in detail (10–2000 characters)"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#80273e] focus:border-transparent resize-y"></textarea>
-            <p class="text-xs text-gray-400 text-right mt-1">
-              <span id="desc-count">0</span> / 2000
-            </p>
-          </div>
-
-          <!-- Suggested Tags (conditional) -->
-          <div id="suggested-tags-group" class="hidden">
-            <label for="feedback-tags" class="block text-sm font-medium text-gray-700 mb-1">
-              Suggested Tags <span class="text-red-500">*</span>
-            </label>
-            <input id="feedback-tags" type="text" placeholder="e.g. Theotokos, Virgin Mary, Hodegetria"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#80273e] focus:border-transparent" />
-            <p class="text-xs text-gray-400 mt-1">Comma-separated tag names.</p>
-          </div>
-
-          <!-- Submitter Email (optional) -->
-          <div>
-            <label for="feedback-email" class="block text-sm font-medium text-gray-700 mb-1">
-              Your Email <span class="text-gray-400 font-normal">(optional)</span>
-            </label>
-            <input id="feedback-email" type="email" placeholder="you@example.com"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#80273e] focus:border-transparent" />
-            <p class="text-xs text-gray-400 mt-1">Only used if we need to follow up.</p>
-          </div>
-
-          <!-- Error message -->
-          <div id="feedback-error" class="hidden bg-red-50 text-red-600 text-sm px-4 py-3 rounded-lg border border-red-200"></div>
-
-          <!-- Submit -->
-          <button type="submit" id="feedback-submit"
-            class="w-full bg-[#B5244A] text-white font-medium py-2.5 rounded-lg text-sm hover:bg-[#80273e] transition disabled:opacity-50 disabled:cursor-not-allowed">
-            Submit Feedback
-          </button>
-        </form>
-      </div>
-
-      <!-- Success message (hidden initially) -->
-      <div id="feedback-success" class="hidden px-6 pb-8 pt-4 text-center">
-        <svg class="w-12 h-12 mx-auto text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        <p class="text-lg font-medium text-gray-800 mb-1">Thank you!</p>
-        <p class="text-sm text-gray-500">Your feedback has been submitted. We'll review it shortly.</p>
-      </div>
-    </div>
-  </div>
 </Layout>
 
-<script define:vars={{ apiBase, id }}>
-  // ========== Feedback Modal ==========
-  const feedbackBtn = document.getElementById("feedback-btn");
-  const modal = document.getElementById("feedback-modal");
-  const modalClose = document.getElementById("modal-close");
-  const form = document.getElementById("feedback-form");
-  const submitBtn = document.getElementById("feedback-submit");
-  const success = document.getElementById("feedback-success");
-  const errorEl = document.getElementById("feedback-error");
-  const fields = document.getElementById("feedback-fields");
-  const hpField = document.getElementById("hp-field");
-
-  // Conditional tags field
-  const typeSelect = document.getElementById("feedback-type");
-  const tagsGroup = document.getElementById("suggested-tags-group");
-
-  // Character count
-  const descField = document.getElementById("feedback-desc");
-  const descCount = document.getElementById("desc-count");
-
-  if (typeSelect) {
-    typeSelect.addEventListener("change", () => {
-      tagsGroup.classList.toggle("hidden", typeSelect.value !== "suggested_tags");
-    });
-  }
-
-  if (descField && descCount) {
-    descField.addEventListener("input", () => {
-      descCount.textContent = descField.value.length;
-    });
-  }
-
-  function openModal() {
-    modal.classList.remove("hidden");
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    modal.classList.add("hidden");
-    modal.style.display = "";
-    document.body.style.overflow = "";
-  }
-
-  if (feedbackBtn) feedbackBtn.addEventListener("click", openModal);
-  if (modalClose) modalClose.addEventListener("click", closeModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-
-  function resetForm() {
-    form.reset();
-    success.classList.add("hidden");
-    errorEl.classList.add("hidden");
-    fields.classList.remove("hidden");
-    tagsGroup.classList.add("hidden");
-    submitBtn.disabled = false;
-    submitBtn.classList.remove("hidden");
-    submitBtn.textContent = "Submit Feedback";
-    if (descCount) descCount.textContent = "0";
-  }
-
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Honeypot check — if filled, silently discard (no visible feedback)
-      if (hpField.value) {
-        closeModal();
-        return;
+<script>
+  // Tag link fix — ensure /icons?tags= links resolve properly
+  (() => {
+    const links = document.querySelectorAll('a[href^="/icons?tags="]');
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      const url = new URL(href, location.origin);
+      if (url.searchParams.has("tags")) {
+        link.setAttribute("href", url.pathname + url.search);
       }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting…";
-      errorEl.classList.add("hidden");
-
-      const feedback_type = typeSelect.value;
-      const description = descField.value.trim();
-      const suggestedTags = document.getElementById("feedback-tags")?.value.trim() || "";
-      const submitterEmail = document.getElementById("feedback-email")?.value.trim() || "";
-
-      // Client-side validation (mirrors backend rules)
-      if (!feedback_type) {
-        errorEl.textContent = "Please select a feedback type.";
-        errorEl.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Feedback";
-        return;
-      }
-
-      if (description.length < 10) {
-        errorEl.textContent = "Description must be at least 10 characters.";
-        errorEl.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Feedback";
-        return;
-      }
-
-      if (feedback_type === "suggested_tags" && !suggestedTags) {
-        errorEl.textContent = "Please enter suggested tags.";
-        errorEl.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Feedback";
-        return;
-      }
-
-      const payload = { feedback_type, description };
-      if (suggestedTags) payload.suggested_tags = suggestedTags;
-      if (submitterEmail) payload.submitter_email = submitterEmail;
-
-      try {
-        const res = await fetch(`${apiBase}/api/icons/${id}/feedback/`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        if (res.status === 429) {
-          const data = await res.json().catch(() => ({}));
-          errorEl.textContent = data.detail || "You've submitted too many requests. Please try again later.";
-          errorEl.classList.remove("hidden");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit Feedback";
-          return;
-        }
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          // Extract first validation error
-          const firstErr =
-            Object.values(data).flat().find(Boolean) || "Something went wrong.";
-          errorEl.textContent = firstErr;
-          errorEl.classList.remove("hidden");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit Feedback";
-          return;
-        }
-
-        // Success
-        fields.classList.add("hidden");
-        success.classList.remove("hidden");
-        submitBtn.classList.add("hidden");
-
-        // Auto-close after 3s
-        setTimeout(() => {
-          closeModal();
-          resetForm();
-        }, 3000);
-      } catch (err) {
-        errorEl.textContent = "Network error. Please try again.";
-        errorEl.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Feedback";
-      }
-    });
-  }
+    }
+  })();
 </script>
