@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-[Opening prayer — to be added]
+Lord, as You gathered the disciples in the upper room and sent down the Holy Spirit, gather us now in one heart and one mind. Open our hearts to receive what You desire to teach us through this study, and soften whatever in us resists Your love. Let Your Spirit bring communion where there is division, understanding where there is confusion, and obedience where there is distraction. Amen.
 
 ## Scripture Reading
 
@@ -44,4 +44,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-[Closing prayer — to be added]
+Holy Spirit, remain with us and seal in our hearts what we have heard and shared today. Teach us to love Christ by keeping His commandments, and to love one another with patience, humility, and joy. Send us out from this gathering in unity, so that our homes and parish may reflect Your peace. Amen.

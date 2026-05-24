@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-[Opening prayer — to be added]
+Lord Jesus Christ, You stood among Your disciples and said, "Peace be with you," and You breathed the Holy Spirit upon them. Give us that peace today, especially in the places where forgiveness is difficult. Prepare our hearts to receive Your mercy and to extend mercy to others, without fear, pride, or resentment. Amen.
 
 ## Scripture Reading
 
@@ -44,4 +44,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-[Closing prayer — to be added]
+Lord, heal us through the gift of forgiveness, both the forgiveness we receive and the forgiveness we offer. Give us the courage to approach Confession not with fear, but with humble repentance and trust in You, the true Physician of our souls. Teach us the humility of Your self-emptying love, and help us release bitterness so that we may live in freedom. Amen.

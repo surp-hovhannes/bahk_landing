@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-[Opening prayer — to be added]
+Lord, You have given us the gift of the Holy Spirit through Baptism and Chrismation, marking us as Your own. Give us honesty and clarity today to see where we have placed lesser things before You. Awaken in us the grace we have received, and help us not to drown Your voice through habit, indifference, or fear. Amen.
 
 ## Scripture Reading
 
@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-[Closing prayer — to be added]
+Lord, turn our hearts away from every idol, visible or hidden, that competes with Your place in our lives. Give us strength to choose You again with our thoughts, our time, our desires, and our actions. Stir up in us the grace of the Holy Spirit given in our anointing, that we may worship and serve You alone. Amen.

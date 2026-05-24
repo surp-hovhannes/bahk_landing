@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-[Opening prayer — to be added]
+Lord God, who strengthened the Prophet Elijah with zeal for Your holy name, give us undivided hearts as we begin this final session. Burn away our divided loyalties, and teach us to listen for Your still, small voice. May the fire of Your Spirit dwell not only on the altar, but in our hearts. Amen.
 
 ## Scripture Reading
 
@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-[Closing prayer — to be added]
+Lord, we thank You for this five-day journey of fasting, prayer, Scripture, and fellowship. Send us out with the zeal of Elijah, the love of Christ, and watchfulness strengthened by the Holy Spirit. Help us serve one Master, carry these lessons into daily life, and become living temples of Your presence. Bless this group, our parish, and all who seek You with sincere hearts. Amen.

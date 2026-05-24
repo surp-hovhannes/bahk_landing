@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-[Opening prayer — to be added]
+Heavenly Father, we thank You that through Christ You have made us not slaves, but beloved children. Send the Spirit of Your Son into our hearts, that we may cry out to You with trust: Abba, Father. Help us remember who we are, and teach us to live today as sons and daughters growing into the image of Christ. Amen.
 
 ## Scripture Reading
 
@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-[Closing prayer — to be added]
+Father, we thank You that in Christ we are heirs through God and members of Your household. Do not let us settle for a shallow faith, but lead us upward day by day in repentance, prayer, and love. Shape us into the likeness of Your Son, until our lives reflect the grace we have received. Amen.
