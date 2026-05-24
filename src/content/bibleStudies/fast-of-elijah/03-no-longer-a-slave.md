@@ -5,6 +5,8 @@ studySlug: "fast-of-elijah"
 session:
   day: 3
   title: "No Longer a Slave, but a Son"
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250728_155122_6ab43116_day-3-elijah.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-10_at_10.52.08PM.png"
 ---
 
 ## Opening Prayer

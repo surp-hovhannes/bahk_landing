@@ -5,6 +5,8 @@ studySlug: "fast-of-elijah"
 session:
   day: 1
   title: "The Spirit of Communion and Love"
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250728_155048_4ab332ef_day-1-elijah.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-04_at_8.09.26PM.png"
 ---
 
 ## Opening Prayer

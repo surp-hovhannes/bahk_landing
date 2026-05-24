@@ -5,6 +5,8 @@ studySlug: "fast-of-elijah"
 session:
   day: 5
   title: "The Prayer That Moved Heaven"
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250728_155153_af8af448_day-5-elijah.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-11_at_11.52.28AM.png"
 ---
 
 ## Opening Prayer

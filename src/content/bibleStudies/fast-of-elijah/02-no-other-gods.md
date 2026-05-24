@@ -5,6 +5,8 @@ studySlug: "fast-of-elijah"
 session:
   day: 2
   title: "You Shall Have No Other Gods Before Me"
+  videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250728_155108_c6db4a58_day-2-elijah.mp4"
+  posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-04_at_8.09.54PM.png"
 ---
 
 ## Opening Prayer
