@@ -5,6 +5,7 @@ studySlug: "fast-of-elijah"
 session:
   day: 4
   title: "If You Forgive the Sins of Any, They Are Forgiven Them"
+  devotionalId: 384
   videoUrl: "https://bahk-production.s3.amazonaws.com/videos/20250728_155138_264db808_day-4-elijah.mp4"
   posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-11_at_11.03.48AM.png"
 ---
