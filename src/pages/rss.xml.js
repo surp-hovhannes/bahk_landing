@@ -11,11 +11,10 @@ export async function GET(context) {
     site: context.site?.href || '',
     items: posts.map((post) => ({
       title: post.data.title,
-      description: post.data.description,
+      description: post.data.description ?? '',
       pubDate: post.data.pubDate,
       link: `/blog/${post.slug}/`,
     })),
   });
 }
-
 
