@@ -1,70 +1,79 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import { rmSync, writeFileSync } from 'node:fs';
-import path from 'node:path';
-import { execFileSync } from 'node:child_process';
-import { pathToFileURL } from 'node:url';
+import { beforeEach, expect, test, vi } from 'vitest';
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { GET } from '../src/pages/rss.xml.js';
 
-const repoRoot = process.cwd();
-const blogDir = path.join(repoRoot, 'src', 'content', 'blog');
+vi.mock('astro:content', () => ({
+  getCollection: vi.fn(),
+}));
 
-function run(command, args) {
-  execFileSync(command, args, {
-    cwd: repoRoot,
-    stdio: 'inherit',
-    env: { ...process.env, PUBLIC_SITE: 'https://example.com' },
-  });
-}
+vi.mock('@astrojs/rss', () => ({
+  default: vi.fn(({ items }) => {
+    const xml = items
+      .map(
+        (item) =>
+          `<item><title>${item.title}</title><link>${item.link}</link><description>${item.description}</description></item>`
+      )
+      .join('');
+
+    return new Response(xml, {
+      headers: { 'content-type': 'application/rss+xml' },
+    });
+  }),
+}));
+
+const posts = [
+  {
+    slug: 'older-post',
+    data: {
+      title: 'Older Post',
+      description: 'Older description.',
+      pubDate: new Date('2029-01-15'),
+      draft: false,
+    },
+  },
+  {
+    slug: 'draft-post',
+    data: {
+      title: 'Draft Post',
+      description: 'Draft description.',
+      pubDate: new Date('2031-01-15'),
+      draft: true,
+    },
+  },
+  {
+    slug: 'latest-post',
+    data: {
+      title: 'Latest Post',
+      description: 'Latest description.',
+      pubDate: new Date('2030-01-15'),
+      draft: false,
+    },
+  },
+];
+
+beforeEach(() => {
+  vi.mocked(getCollection).mockImplementation(async (_collection, filter) =>
+    posts.filter((post) => !filter || filter(post))
+  );
+});
 
 test('RSS feed excludes drafts and emits newest published entries with absolute fields', async () => {
-  const publishedFixture = path.join(blogDir, 'rss-test-latest.md');
-  const draftFixture = path.join(blogDir, 'rss-test-draft.md');
+  const response = await GET({ site: new URL('https://example.com') });
+  const xml = await response.text();
 
-  writeFileSync(
-    publishedFixture,
-    `---
-title: "RSS Test Latest Post"
-description: "Published fixture description."
-pubDate: 2030-01-15
-tags: ["test"]
-draft: false
----
+  const itemTitles = [...xml.matchAll(/<item><title>([^<]+)<\/title>/g)].map((match) => match[1]);
 
-Published fixture body.
-`
+  expect(getCollection).toHaveBeenCalledWith('blog', expect.any(Function));
+  expect(itemTitles).toEqual(['Latest Post', 'Older Post']);
+  expect(xml).not.toContain('Draft Post');
+  expect(xml).toContain('<link>https://example.com/blog/latest-post/</link>');
+  expect(xml).toContain('<description>Latest description.</description>');
+  expect(rss).toHaveBeenCalledWith(expect.objectContaining({ site: 'https://example.com/' }));
+});
+
+test('RSS feed requires an absolute configured site URL', async () => {
+  await expect(GET({ site: undefined })).rejects.toThrow(
+    'RSS feed requires `site` to be configured with an absolute URL.'
   );
-
-  writeFileSync(
-    draftFixture,
-    `---
-title: "RSS Test Draft Post"
-description: "Draft fixture description."
-pubDate: 2031-01-15
-tags: ["test"]
-draft: true
----
-
-Draft fixture body.
-`
-  );
-
-  try {
-    run(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', 'build']);
-
-    const rssModulePath = pathToFileURL(
-      path.join(repoRoot, '.netlify', 'build', 'pages', 'rss.xml.astro.mjs')
-    ).href;
-    const rssModule = await import(`${rssModulePath}?t=${Date.now()}`);
-    const response = await rssModule.page().GET({ site: new URL('https://example.com') });
-    const xml = await response.text();
-
-    const itemTitles = [...xml.matchAll(/<item><title>([^<]+)<\/title>/g)].map((match) => match[1]);
-    assert.equal(itemTitles[0], 'RSS Test Latest Post');
-    assert.ok(!xml.includes('RSS Test Draft Post'));
-    assert.ok(xml.includes('<link>https://example.com/blog/rss-test-latest/</link>'));
-    assert.ok(xml.includes('<description>Published fixture description.</description>'));
-  } finally {
-    rmSync(publishedFixture, { force: true });
-    rmSync(draftFixture, { force: true });
-  }
 });
