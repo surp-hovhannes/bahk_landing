@@ -690,18 +690,25 @@ const followUpMappings = sections.flatMap((section) =>
   function validateCurrentSection(): boolean {
     if (!sectionFieldsets.length) return true;
     const currentSection = sectionFieldsets[currentSectionIndex];
-    if (!currentSection || currentSection.reportValidity()) {
-      const q19Options = currentSection?.querySelectorAll(`input[name="q19"]`) as
-        | NodeListOf<HTMLInputElement>
-        | undefined;
-      if (q19Options && q19Options.length > 0 && !Array.from(q19Options).some((option) => option.checked)) {
-        setStatus("Please select at least one option for practices before continuing.", "error");
-        q19Options[0].focus();
+    if (!currentSection) return true;
+
+    const requiredControls = Array.from(
+      currentSection.querySelectorAll("input[required], textarea[required], select[required]")
+    ) as Array<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+
+    for (const control of requiredControls) {
+      if (!control.reportValidity()) {
         return false;
       }
-      return true;
     }
-    return false;
+
+    const q19Options = currentSection.querySelectorAll(`input[name="q19"]`) as NodeListOf<HTMLInputElement>;
+    if (q19Options.length > 0 && !Array.from(q19Options).some((option) => option.checked)) {
+      setStatus("Please select at least one option for practices before continuing.", "error");
+      q19Options[0].focus();
+      return false;
+    }
+    return true;
   }
 
   function goToSection(nextIndex: number) {
