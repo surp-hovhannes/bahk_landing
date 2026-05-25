@@ -1,48 +1,55 @@
-# Astro Starter Kit: Basics
+# bahk_landing
+
+`bahk_landing` is the Astro-based Fast & Pray landing site. It powers the public marketing pages, blog, RSS feed, and icon library for the Fast & Pray app.
+
+## Stack
+
+- Astro 5 with SSR output
+- Netlify adapter for deployment
+- Tailwind CSS
+- Astro content collections for blog posts and Bible studies
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+The dev server runs at `http://localhost:4321`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Scripts
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local Astro dev server |
+| `npm run build` | Build the production site into `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run astro -- --help` | Show Astro CLI help |
 
-## 🚀 Project Structure
+## Environment variables
 
-Inside of your Astro project, you'll see the following folders and files:
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `PUBLIC_SITE` | `http://localhost:4321` | Canonical site URL used by Astro SSR and RSS generation |
+| `PUBLIC_API_URL` | `https://api.fastandpray.app` | Backend API base URL for the icon library and related client-side fetches |
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Content model
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Content collections are defined in `src/content/config.ts`.
 
-## 🧞 Commands
+- `blog`: Markdown posts with `title`, `pubDate`, optional `description`, `updatedDate`, `tags`, `author`, `heroImage`, and `draft`
+- `bibleStudies`: Study landing pages and sessions with metadata such as `studySlug`, optional cover image, and optional per-session video/poster fields
 
-All commands are run from the root of the project, from a terminal:
+Draft blog posts are excluded from the blog index and `src/pages/rss.xml.js`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Project structure
 
-## 👀 Want to learn more?
+- `src/pages/`: Astro routes for the landing pages, blog, icon library, Bible studies, and static content pages
+- `src/content/`: Markdown content for blog posts and Bible studies
+- `src/components/`: Shared UI components such as the navbar, footer, and hero graphics
+- `public/`: Static assets, screenshots, badges, and exported media
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Deployment
+
+This site is configured for Netlify SSR through `@astrojs/netlify`. Production builds use `npm run build`, and the generated server output is intended to be deployed by Netlify using the repository's `netlify.toml` and `astro.config.mjs` settings.
