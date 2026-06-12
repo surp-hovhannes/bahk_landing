@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord Jesus Christ, who works salvation through what the world counts foolish, grant us grace to trust Your surprising hand. As You raised Gregory from the pit to heal the king who cast him there, teach us that no wound, no rivalry, and no pride is beyond Your reach. Soften our hearts toward those we have dismissed, and open our eyes to see the vessels of grace You have placed in our path. Amen.
+Lord Jesus Christ, who works salvation through what the world counts foolish, grant us grace to wonder at Your surprising hand. As You raised St. Gregory from the pit to heal the king who cast him there, teach us that no wound, no rivalry, and no pride is beyond Your reach. Soften our hearts toward those we have dismissed, and open our eyes to see the vessels of grace You have placed in our path. Amen.
 
 ## Scripture Reading
 
@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Father, You overturn the proud and raise up the humble. We thank You for the dream that began the healing of a nation, and for the servant You sent to carry it out. Teach us to see others not as enemies or obstacles, but as messengers of Your mercy. Where we have been quick to judge, make us slow; where we have been hard, soften us. Through Christ our Lord. Amen.
+Heavenly Father, You overturn the proud and raise up the humble. We thank You for the dream that began the healing of a nation, and for the servant You sent to carry it out. Teach us to see others not as enemies or obstacles, but as messengers of Your mercy. Where we have been quick to judge, make us slow; where we have been hard, soften us. Through Christ our Lord. Amen.

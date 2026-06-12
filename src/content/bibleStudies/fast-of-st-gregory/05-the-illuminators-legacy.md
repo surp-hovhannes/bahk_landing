@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord God, who calls Your servants to watchfulness, grant us that grace in this hour. As Your servant Gregory, whose name means watchful, began in the pit and ended in the hermit's cell, teach us that holiness is not always loud. Keep us faithful in prayer, repentance, and love. Open our ears to Your still, small voice, and our hearts to the hidden path You have set before us. Amen.
+Lord God, who calls Your servants to watchfulness, grant us that grace in this hour. As Your servant St. Gregory, whose name means watchful, began in the pit and ended in the hermit's cell, teach us that holiness is often a quiet inner journey. Keep us faithful in prayer, repentance, and love. Open our ears to Your still, small voice, and our hearts to the hidden path You have set before us. Amen.
 
 ## Scripture Reading
 
@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Lord, we thank You for this five-day journey through the life of Your servant Gregory, from the pit to the cathedral to the wilderness of prayer. Send us out with the watchfulness of the Illuminator, the love of Christ, and the hidden fire of the Holy Spirit. Help us choose one small act of hidden holiness, and bless this group, our parish, and the Armenian faithful in every place. Amen.
+Lord, we thank You for this five-day journey through the life of Your servant St. Gregory, from the pit to the cathedral to the wilderness of prayer. Send us out with the watchfulness of the Illuminator, the love of Christ, and the hidden fire of the Holy Spirit. Help us choose one small act of hidden holiness, and bless this group, our parish, and the Armenian faithful in every place. Amen.

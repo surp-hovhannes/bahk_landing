@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Holy Spirit, who formed Gregory in darkness before he shone in the light, form us in the hidden places of this fast. Where the world cannot see, keep us from discouragement; where we cannot see, give us patience. Let the songs we learn in the pit become the witness we carry into the day. Seal in our hearts what we have heard and shared. Amen.
+Holy Spirit, who formed Gregory in darkness before he shone in the light, form us in the hidden places of this fast. Where others cannot see, keep us from loneliness; where we cannot see, give us patience. Let the songs we learn in the pit become the witness we carry into the day. Seal in our hearts what we have heard and shared. Amen.

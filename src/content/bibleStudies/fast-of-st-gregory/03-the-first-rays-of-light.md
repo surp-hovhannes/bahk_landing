@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord Jesus Christ, who said, "Love your enemies and pray for those who persecute you," write this word upon our hearts. As Gregory forgave the king who imprisoned him and baptized him in the name of the Father, the Son, and the Holy Spirit, give us the courage to forgive those who have wounded us. Let our forgiveness be the first ray of light in someone else's darkness. Amen.
+Lord Jesus Christ, who said, "Love your enemies and pray for those who persecute you," write this word upon our hearts. As St. Gregory forgave the king who imprisoned him and baptized him in the name of the Father, the Son, and the Holy Spirit, give us the courage to forgive those who have wounded us. Let our forgiveness be the first ray of light in someone else's darkness. Amen.
 
 ## Scripture Reading
 

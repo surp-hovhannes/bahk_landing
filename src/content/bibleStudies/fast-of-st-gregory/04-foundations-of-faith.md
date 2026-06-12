@@ -42,4 +42,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Father, we thank You for the gift of the Church, for the saints who went before us, and for the faith handed down through generations. As Gregory built what lasted, grant us grace to build what lasts: lives of prayer, mercy, and faithfulness. Let those entrusted to us, our parish, and our community stand on the foundation we are laying, stone by stone, in the love of Christ. Amen.
+Father, we thank You for the gift of the Church, for the saints who went before us, and for the faith handed down through generations. As St. Gregory built what lasted, grant us grace to build what lasts: lives of prayer, mercy, and faithfulness. Let those entrusted to us, our families, our parish, and our community stand on the foundation we are laying, stone by stone, in the love of Christ. Amen.
