@@ -10,6 +10,10 @@ session:
   posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-06-30_at_4.52.47PM.png"
 ---
 
+## Opening Prayer
+
+Lord Jesus Christ, who works salvation through what the world counts foolish, grant us grace to trust Your surprising hand. As You raised Gregory from the pit to heal the king who cast him there, teach us that no wound, no rivalry, and no pride is beyond Your reach. Soften our hearts toward those we have dismissed, and open our eyes to see the vessels of grace You have placed in our path. Amen.
+
 ## Scripture Reading
 
 **Proverbs 16:18** — *"Pride goes before destruction, and a haughty spirit before a fall."*
@@ -35,3 +39,7 @@ Take some quiet time with these:
 1. Pray the prayer from the devotional: *"Lord, help me to see others not as enemies or obstacles, but as vessels of your grace. Soften my heart to receive healing, even when it comes from unlikely places. Amen."* Who comes to mind as you pray it?
 
 2. Is there a relationship in your life that feels adversarial right now? What would it look like to approach that person as someone God may be using — even unknowingly — in your life?
+
+## Closing Prayer
+
+Father, You overturn the proud and raise up the humble. We thank You for the dream that began the healing of a nation, and for the servant You sent to carry it out. Teach us to see others not as enemies or obstacles, but as messengers of Your mercy. Where we have been quick to judge, make us slow; where we have been hard, soften us. Through Christ our Lord. Amen.

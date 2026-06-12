@@ -10,6 +10,10 @@ session:
   posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-07-01_at_10.32.18AM.png"
 ---
 
+## Opening Prayer
+
+Lord Jesus Christ, who said, "Love your enemies and pray for those who persecute you," write this word upon our hearts. As Gregory forgave the king who imprisoned him and baptized him in the name of the Father, the Son, and the Holy Spirit, give us the courage to forgive those who have wounded us. Let our forgiveness be the first ray of light in someone else's darkness. Amen.
+
 ## Scripture Reading
 
 **Matthew 5:44** — *"But I say to you, Love your enemies and pray for those who persecute you."*
@@ -35,3 +39,7 @@ Take some quiet time with these:
 1. Is there a person or situation you need to forgive — something you have been carrying that needs to be released? What would a first step toward that look like?
 
 2. Pray this prayer from the devotional: *"Lord, teach me to forgive as you forgave. Let my wounds be wells of healing. Shine your light through the cracks in my soul. Amen."* What crack in your soul most needs light right now?
+
+## Closing Prayer
+
+Holy Spirit, Fountain of light, deepen within us the forgiveness we have received. Where we still hold on to bitterness, loosen our grip. Where we have been wounded, make our wounds wells of healing. Send us out from this hour as bearers of Your light, that the world may see in us the first rays of the same dawn that rose over the baptized nation of Armenia. Amen.

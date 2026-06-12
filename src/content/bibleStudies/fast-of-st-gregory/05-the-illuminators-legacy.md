@@ -10,6 +10,10 @@ session:
   posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-07-01_at_10.51.46AM.png"
 ---
 
+## Opening Prayer
+
+Lord God, who calls Your servants to watchfulness, grant us that grace in this hour. As Your servant Gregory, whose name means watchful, began in the pit and ended in the hermit's cell, teach us that holiness is not always loud. Keep us faithful in prayer, repentance, and love. Open our ears to Your still, small voice, and our hearts to the hidden path You have set before us. Amen.
+
 ## Scripture Reading
 
 **Matthew 6:24** — *"No one can serve two masters; for a slave will either hate the one and love the other, or be devoted to the one and despise the other. You cannot serve God and wealth."*
@@ -35,3 +39,7 @@ Take some quiet time with these:
 1. The devotional asks: "What kind of legacy are you leaving behind — not just in achievements, but in prayer, in love, in humility?" Take a few quiet minutes to write down one answer to that question honestly.
 
 2. Today's challenge from the devotional: choose one small act of hidden holiness — write a note, light a candle, say a prayer for someone who will never know it was you. Do it before the day ends, and let your legacy begin in secret.
+
+## Closing Prayer
+
+Lord, we thank You for this five-day journey through the life of Your servant Gregory, from the pit to the cathedral to the wilderness of prayer. Send us out with the watchfulness of the Illuminator, the love of Christ, and the hidden fire of the Holy Spirit. Help us choose one small act of hidden holiness, and bless this group, our parish, and the Armenian faithful in every place. Amen.

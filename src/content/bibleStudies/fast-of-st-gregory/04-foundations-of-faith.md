@@ -10,6 +10,10 @@ session:
   posterUrl: "https://bahk-production.s3.amazonaws.com/videos/thumbnails/Screenshot_2025-07-01_at_10.53.29AM.png"
 ---
 
+## Opening Prayer
+
+Lord Jesus Christ, cornerstone chosen and precious, build us into the spiritual house of Your Church. As St. Gregory laid the foundations of Etchmiadzin, the place where the Only Begotten descended in the vision given to him, lay Your foundation in us this day. Make us living stones, joined to one another in faith, fit for the holy temple You are raising, and teach us to offer our lives to God through You. Amen.
+
 ## Scripture Reading
 
 **1 Peter 2:4–5** — *"Come to him, a living stone, though rejected by mortals yet chosen and precious in God's sight, and like living stones, let yourselves be built into a spiritual house, to be a holy priesthood, to offer spiritual sacrifices acceptable to God through Jesus Christ."*
@@ -35,3 +39,7 @@ Take some quiet time with these:
 1. Think of the people who laid a foundation of faith for you — a parent, a grandparent, a priest, a teacher. What is one gift from their legacy that you are still carrying? And who are you building that foundation for now?
 
 2. Pray the prayer from the devotional: *"Lord, help me to build what lasts. Let my life be a cathedral of your grace. May my children, my church, and my community stand on the foundation I leave behind. Amen."* What is one concrete thing you could do this week to build something that lasts?
+
+## Closing Prayer
+
+Father, we thank You for the gift of the Church, for the saints who went before us, and for the faith handed down through generations. As Gregory built what lasted, grant us grace to build what lasts: lives of prayer, mercy, and faithfulness. Let those entrusted to us, our parish, and our community stand on the foundation we are laying, stone by stone, in the love of Christ. Amen.
