@@ -31,3 +31,6 @@ test-results/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# MA's tooling
+.clawpatch
