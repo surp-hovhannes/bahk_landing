@@ -28,3 +28,9 @@ test-results/
 
 # Local Netlify folder
 .netlify
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# MA's tooling
+.clawpatch
