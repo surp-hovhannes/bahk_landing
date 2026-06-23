@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import PageHeader from "../../../components/PageHeader.astro";
 import { getCollection } from "astro:content";
 
 const { slug } = Astro.params;
@@ -29,9 +30,9 @@ const { Content } = await study.render();
     <meta name="description" content={study.data.description} />
   </Fragment>
 
-  <article class="max-w-3xl mx-auto">
+  <article class="max-w-prose mx-auto">
     <!-- Back link -->
-    <a href="/bible-studies" class="text-[#B5244A] hover:underline text-sm mb-4 inline-block">
+    <a href="/bible-studies" class="text-accent-alt hover:underline text-sm mb-4 inline-block">
       &larr; All Bible Studies
     </a>
 
@@ -46,10 +47,10 @@ const { Content } = await study.render();
       </div>
     )}
 
-    <h1 class="text-3xl font-bold text-[#3B0714] mb-2">{study.data.title}</h1>
+    <PageHeader title={study.data.title} mb={2} />
 
     <!-- Description -->
-    <p class="text-gray-600 mb-6">{study.data.description}</p>
+    <p class="text-muted mb-6">{study.data.description}</p>
 
     <!-- Intro body -->
     <div class="prose prose-slate max-w-none mb-8">
@@ -57,11 +58,11 @@ const { Content } = await study.render();
     </div>
 
     <!-- Download prompt -->
-    <div class="bg-[#B5244A]/5 border border-[#B5244A]/20 rounded-lg p-4 mb-8">
-      <p class="text-sm text-gray-700">
+    <div class="bg-accent-alt/5 border border-accent-alt/20 rounded-lg p-4 mb-8">
+      <p class="text-sm text-fg">
         <a
           href="https://fastandpray.app"
-          class="text-[#B5244A] font-semibold hover:underline"
+          class="text-accent-alt font-semibold hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -72,20 +73,20 @@ const { Content } = await study.render();
     </div>
 
     <!-- Session list -->
-    <h2 class="text-2xl font-semibold text-[#3B0714] mb-4">Sessions</h2>
+    <h2 class="text-2xl font-semibold text-fg mb-4">Sessions</h2>
     <div class="space-y-3">
       {sessions.map((session) => (
         <a
           href={`/bible-studies/${slug}/${session.data.session?.day}/`}
-          class="block border border-gray-200 rounded-lg p-4 hover:border-[#B5244A] hover:shadow-sm transition-all"
+          class="block border border-border rounded-lg p-4 hover:border-accent-alt hover:shadow-sm transition-all"
         >
           <div class="flex items-center gap-3">
-            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#B5244A] text-white flex items-center justify-center text-sm font-bold">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-alt text-white flex items-center justify-center text-sm font-bold">
               {session.data.session?.day}
             </span>
             <div>
-              <h3 class="font-semibold text-[#3B0714]">{session.data.session?.title}</h3>
-              <p class="text-sm text-gray-500">Day {session.data.session?.day}</p>
+              <h3 class="font-semibold text-fg">{session.data.session?.title}</h3>
+              <p class="text-sm text-muted">Day {session.data.session?.day}</p>
             </div>
           </div>
         </a>

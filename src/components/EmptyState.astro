@@ -1,0 +1,10 @@
+---
+interface Props {
+  message: string;
+  class?: string;
+}
+
+const { message, class: extraClass = "" } = Astro.props;
+const classes = ["text-fg", extraClass].filter(Boolean).join(" ");
+---
+<p class={classes}>{message}</p>

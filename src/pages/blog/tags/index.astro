@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import PageHeader from "../../../components/PageHeader.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -13,14 +14,14 @@ const tags = Array.from(tagToCount.entries()).sort((a, b) => a[0].localeCompare(
 ---
 
 <Layout pageTitle="Tags • Fast & Pray">
-  <h1 class="text-3xl font-bold mb-6 text-[#3B0714]">Tags</h1>
+  <PageHeader title="Tags" />
   {tags.length === 0 ? (
-    <p class="text-gray-700">No tags found.</p>
+    <p class="text-fg">No tags found.</p>
   ) : (
     <ul class="flex flex-wrap gap-3">
       {tags.map(([tag, count]) => (
         <li>
-          <a href={`/blog/tags/${encodeURIComponent(tag)}/`} class="px-3 py-1 rounded-full border border-gray-300 hover:bg-gray-100">
+          <a href={`/blog/tags/${encodeURIComponent(tag)}/`} class="px-3 py-1 rounded-full border border-border hover:bg-surface">
             {tag} ({count})
           </a>
         </li>

@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import EmptyState from "../../components/EmptyState.astro";
 import { getCollection } from "astro:content";
 
 const allEntries = await getCollection("bibleStudies");
@@ -17,19 +19,19 @@ const studyMap = studies.map((study) => {
 
 <Layout pageTitle="Guided Bible Studies • Fast & Pray">
   <div>
-    <h1 class="text-3xl font-bold mb-2 text-[#3B0714]">Guided Bible Studies</h1>
-    <p class="text-gray-600 mb-8">
+    <PageHeader title="Guided Bible Studies" mb={2} />
+    <p class="text-muted mb-8">
       Journey through Scripture with guided reflections, prayer, and group discussion questions.
     </p>
 
     {studyMap.length === 0 ? (
-      <p class="text-gray-700">No Bible studies available yet. Please check back soon.</p>
+      <EmptyState message="No Bible studies available yet. Please check back soon." />
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {studyMap.map(({ study, sessionCount }) => (
           <a
             href={`/bible-studies/${study.data.studySlug}/`}
-            class="block group rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+            class="block group rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
           >
             {study.data.coverImage ? (
               <div class="aspect-square overflow-hidden">
@@ -40,18 +42,18 @@ const studyMap = studies.map((study) => {
                 />
               </div>
             ) : (
-              <div class="aspect-square bg-gradient-to-br from-[#B5244A]/10 to-[#3B0714]/10 flex items-center justify-center">
+              <div class="aspect-square bg-gradient-to-br from-accent-alt/10 to-fg/10 flex items-center justify-center">
                 <span class="text-4xl">📖</span>
               </div>
             )}
             <div class="p-4">
-              <h2 class="text-lg font-semibold text-[#3B0714] group-hover:text-[#B5244A] transition-colors">
+              <h2 class="text-lg font-semibold text-fg group-hover:text-accent-alt transition-colors">
                 {study.data.title}
               </h2>
-              <p class="text-sm text-gray-600 mt-1 line-clamp-2">
+              <p class="text-sm text-muted mt-1 line-clamp-2">
                 {study.data.description}
               </p>
-              <p class="text-xs text-[#B5244A] mt-2 font-medium">
+              <p class="text-xs text-accent-alt mt-2 font-medium">
                 {sessionCount} {sessionCount === 1 ? "session" : "sessions"}
               </p>
             </div>

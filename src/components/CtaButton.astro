@@ -1,0 +1,51 @@
+---
+interface Props {
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  id?: string;
+  text: string;
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  class?: string;
+  role?: string;
+  tabindex?: string;
+  onclick?: string;
+}
+
+const {
+  href,
+  type = "button",
+  id,
+  text,
+  size = "md",
+  fullWidth = false,
+  class: extraClass = "",
+  role,
+  tabindex,
+  onclick,
+} = Astro.props;
+
+const tag = href ? "a" : "button";
+
+const sizeClasses: Record<string, string> = {
+  sm: "text-base py-2 px-6",
+  md: "text-lg py-3 px-8",
+  lg: "text-xl py-4 px-8",
+};
+
+const base =
+  "bg-cta-gradient text-white rounded-full hover:bg-cta-gradient-hover";
+const widthClass = fullWidth ? "w-full sm:w-auto" : "";
+const classes = [base, sizeClasses[size], widthClass, extraClass]
+  .filter(Boolean)
+  .join(" ");
+---
+{tag === "a" ? (
+  <a href={href} class={classes} role={role} tabindex={tabindex}>
+    <slot>{text}</slot>
+  </a>
+) : (
+  <button type={type} id={id} class={classes} onclick={onclick}>
+    <slot>{text}</slot>
+  </button>
+)}

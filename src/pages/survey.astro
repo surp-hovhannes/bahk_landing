@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CtaButton from "../components/CtaButton.astro";
+import PageHeader from "../components/PageHeader.astro";
 
 type SingleChoiceQuestion = {
   kind: "single";
@@ -328,8 +330,8 @@ const followUpMappings = sections.flatMap((section) =>
 ---
 
 <Layout pageTitle="Fast & Pray Research Survey">
-  <section class="text-[#3B0714]">
-    <h1 class="text-3xl font-bold">Fast & Pray Research Survey</h1>
+  <section class="text-fg">
+    <PageHeader title="Fast & Pray Research Survey" mb={0} />
     <p class="mt-2 text-sm md:text-base">
       Please complete the survey. Responses are submitted securely for research analysis.
     </p>
@@ -355,13 +357,13 @@ const followUpMappings = sections.flatMap((section) =>
                   <p class="font-semibold" id={`${question.id}-label`}>
                     {question.number}. {question.text}
                     {"optional" in question && question.optional && (
-                      <span class="ml-2 rounded-full border border-accent px-2 py-0.5 text-xs font-medium text-[#5B2030]">
+                      <span class="ml-2 rounded-full border border-accent px-2 py-0.5 text-xs font-medium text-fg-muted">
                         Optional
                       </span>
                     )}
                   </p>
 
-                  {question.helpText && <p class="text-sm text-[#5B2030]">{question.helpText}</p>}
+                  {question.helpText && <p class="text-sm text-fg-muted">{question.helpText}</p>}
 
                   {question.kind === "single" ? (
                     <div class="space-y-2">
@@ -385,7 +387,7 @@ const followUpMappings = sections.flatMap((section) =>
                           data-followup-input-id={question.followUp.id}
                           data-followup-show-for={JSON.stringify(question.followUp.showForOptions ?? [])}
                         >
-                          <label class="text-sm font-medium text-[#5B2030]" for={question.followUp.id}>
+                          <label class="text-sm font-medium text-fg-muted" for={question.followUp.id}>
                             {question.followUp.prompt}
                             <span class="ml-2 rounded-full border border-accent px-2 py-0.5 text-xs font-medium">
                               Optional
@@ -393,7 +395,7 @@ const followUpMappings = sections.flatMap((section) =>
                           </label>
                           {question.followUp.inputType === "text" ? (
                             <input
-                              class="w-full rounded-md border border-accent p-3 focus:outline-none focus:ring-2 focus:ring-[#B5244A]"
+                              class="w-full rounded-md border border-accent p-3 focus-ring"
                               id={question.followUp.id}
                               name={question.followUp.id}
                               type="text"
@@ -403,7 +405,7 @@ const followUpMappings = sections.flatMap((section) =>
                             />
                           ) : (
                             <textarea
-                              class="w-full rounded-md border border-accent p-3 focus:outline-none focus:ring-2 focus:ring-[#B5244A]"
+                              class="w-full rounded-md border border-accent p-3 focus-ring"
                               id={question.followUp.id}
                               name={question.followUp.id}
                               rows={4}
@@ -414,7 +416,7 @@ const followUpMappings = sections.flatMap((section) =>
                           )}
                           {question.followUp.maxLength && (
                             <p
-                              class="text-right text-xs text-[#5B2030]"
+                              class="text-right text-xs text-fg-muted"
                               data-followup-counter={question.followUp.id}
                             >{`0/${question.followUp.maxLength}`}</p>
                           )}
@@ -428,7 +430,7 @@ const followUpMappings = sections.flatMap((section) =>
                           {question.text}
                         </label>
                         <input
-                          class="w-full accent-[#B5244A]"
+                          class="w-full accent-accent-alt"
                           type="range"
                           id={question.id}
                           name={question.id}
@@ -445,11 +447,11 @@ const followUpMappings = sections.flatMap((section) =>
                           {question.defaultValue ?? Math.round((question.min + question.max) / 2)}
                         </output>
                       </div>
-                      <div class="flex justify-between text-xs text-[#5B2030]">
+                      <div class="flex justify-between text-xs text-fg-muted">
                         <span>{question.leftLabel}</span>
                         <span>{question.rightLabel}</span>
                       </div>
-                      <div class="flex justify-between text-xs text-[#5B2030]">
+                      <div class="flex justify-between text-xs text-fg-muted">
                         {Array.from({ length: question.max - question.min + 1 }, (_, i) => question.min + i).map(
                           (value) => (
                             <span>{value}</span>
@@ -478,7 +480,7 @@ const followUpMappings = sections.flatMap((section) =>
                         {question.text}
                       </label>
                       <textarea
-                        class="w-full rounded-md border border-accent p-3 focus:outline-none focus:ring-2 focus:ring-[#B5244A]"
+                        class="w-full rounded-md border border-accent p-3 focus-ring"
                         id={question.id}
                         name={question.id}
                         rows={5}
@@ -491,7 +493,7 @@ const followUpMappings = sections.flatMap((section) =>
                         {question.text}
                       </label>
                       <input
-                        class="w-full rounded-md border border-accent p-3 focus:outline-none focus:ring-2 focus:ring-[#B5244A]"
+                        class="w-full rounded-md border border-accent p-3 focus-ring"
                         id={question.id}
                         name={question.id}
                         type={question.inputType ?? "text"}
@@ -507,30 +509,29 @@ const followUpMappings = sections.flatMap((section) =>
       }
 
       <div class="space-y-3">
-        <p id="section-progress" class="text-sm font-medium text-[#5B2030]" aria-live="polite"></p>
+        <p id="section-progress" class="text-sm font-medium text-fg-muted" aria-live="polite"></p>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
           <button
             id="back-button"
             type="button"
-            class="w-full sm:w-auto rounded-full border border-accent px-6 py-3 text-base font-medium text-[#3B0714] disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full sm:w-auto rounded-full border border-accent px-6 py-3 text-base font-medium text-fg disabled:opacity-50 disabled:cursor-not-allowed"
             disabled
           >
             Back
           </button>
-          <button
+          <CtaButton
             id="next-button"
             type="button"
-            class="w-full sm:w-auto bg-gradient-to-t from-[#B5244A] to-[#E54670] text-white text-lg py-3 px-8 rounded-full hover:bg-gradient-to-b hover:from-[#B5244A] hover:to-[#E54670]"
-          >
-            Next Section
-          </button>
-          <button
+            text="Next Section"
+            fullWidth
+          />
+          <CtaButton
             id="submit-button"
             type="submit"
-            class="hidden w-full sm:w-auto bg-gradient-to-t from-[#B5244A] to-[#E54670] text-white text-lg py-3 px-8 rounded-full hover:bg-gradient-to-b hover:from-[#B5244A] hover:to-[#E54670]"
-          >
-            Submit Survey
-          </button>
+            text="Submit Survey"
+            fullWidth
+            class="hidden"
+          />
         </div>
         <p id="survey-status" class="min-h-6 text-sm" aria-live="polite"></p>
       </div>
@@ -647,19 +648,19 @@ const followUpMappings = sections.flatMap((section) =>
   function setStatus(message: string, tone: "success" | "error" | "info") {
     if (!status) return;
     status.textContent = message;
-    status.classList.remove("text-green-700", "text-red-700", "text-[#3B0714]");
+    status.classList.remove("text-success", "text-danger", "text-fg");
 
     if (tone === "success") {
-      status.classList.add("text-green-700");
+      status.classList.add("text-success");
       return;
     }
 
     if (tone === "error") {
-      status.classList.add("text-red-700");
+      status.classList.add("text-danger");
       return;
     }
 
-    status.classList.add("text-[#3B0714]");
+    status.classList.add("text-fg");
   }
 
   function updateWizardUI() {

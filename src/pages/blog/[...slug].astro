@@ -52,7 +52,7 @@ const { Content } = await entry.render();
       />
     )}
     <h1>{entry.data.title}</h1>
-    <p class="text-sm text-gray-500">{entry.data.pubDate.toLocaleDateString()}</p>
+    <p class="text-sm text-muted">{entry.data.pubDate.toLocaleDateString()}</p>
     <Content />
   </article>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import IconFeedbackModal from "../../components/IconFeedbackModal.astro";
+import PageHeader from "../../components/PageHeader.astro";
 
 const { id } = Astro.params;
 const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
@@ -29,18 +30,18 @@ const createdDate = icon?.created_at
 ---
 
 <Layout pageTitle={icon ? `${icon.title} • Icon Library` : "Icon • Fast & Pray"}>
-  <div class="text-[#3B0714]">
+  <div class="text-fg">
     <a href="/icons" class="inline-flex items-center gap-1 text-sm text-accent hover:underline mb-6">
       ← Back to Icon Library
     </a>
 
     {error ? (
-      <p class="text-red-400 py-16 text-center">Failed to load icon. Please try again.</p>
+      <p class="text-danger py-16 text-center">Failed to load icon. Please try again.</p>
     ) : icon ? (
       <div class="flex flex-col md:flex-row gap-8">
         <!-- Image -->
         <div class="md:w-1/2 flex-shrink-0">
-          <div class="bg-gray-50 rounded-xl border border-gray-200 aspect-square flex items-center justify-center overflow-hidden">
+          <div class="bg-surface rounded-lg border border-border aspect-square flex items-center justify-center overflow-hidden">
             {icon.image ? (
               <img
                 src={icon.image}
@@ -48,27 +49,27 @@ const createdDate = icon?.created_at
                 class="w-full h-full object-contain"
               />
             ) : (
-              <span class="text-6xl font-bold text-gray-200">{icon.title.charAt(0)}</span>
+              <span class="text-6xl font-bold text-muted">{icon.title.charAt(0)}</span>
             )}
           </div>
         </div>
 
         <!-- Details -->
         <div class="flex-1">
-          <h1 class="text-3xl font-bold mb-2">{icon.title}</h1>
+          <PageHeader title={icon.title} mb={2} />
 
           {icon.church_name && (
-            <p class="text-gray-500 text-sm mb-4">{icon.church_name}</p>
+            <p class="text-muted text-sm mb-4">{icon.church_name}</p>
           )}
 
           {icon.tag_list?.length > 0 && (
             <div class="mb-6">
-              <h2 class="text-xs uppercase tracking-widest text-gray-400 mb-2">Tags</h2>
+              <h2 class="text-xs uppercase tracking-widest text-muted mb-2">Tags</h2>
               <div class="flex flex-wrap gap-2">
                 {icon.tag_list.map((tag: string) => (
                   <a
                     href={`/icons?tags=${encodeURIComponent(tag)}`}
-                    class="bg-[#B5244A]/10 text-[#B5244A] text-sm px-3 py-1 rounded-full hover:bg-[#B5244A]/20 transition"
+                    class="bg-accent-alt/10 text-accent-alt text-sm px-3 py-1 rounded-full hover:bg-accent-alt/20 transition"
                   >
                     {tag}
                   </a>
@@ -77,7 +78,7 @@ const createdDate = icon?.created_at
             </div>
           )}
 
-          <div class="border-t border-gray-100 pt-4 space-y-2 text-sm text-gray-400">
+          <div class="border-t border-border pt-4 space-y-2 text-sm text-muted">
             {createdDate && (
               <p>Added {createdDate}</p>
             )}
