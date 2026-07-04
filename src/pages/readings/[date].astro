@@ -118,6 +118,7 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
 ---
 
 <Layout pageTitle={pageTitle}>
+  <meta name="robots" content="noindex, nofollow" slot="meta" />
   <section class="space-y-6">
     <header class="space-y-3">
       <h1 class="text-3xl font-bold">Daily Readings</h1>
@@ -127,10 +128,10 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
       </p>
       {hasValidDate && (
         <div class="flex gap-4 text-sm">
-          <a href={`/readings/${previousDate}`} class="text-accent hover:underline">
+          <a href={`/readings/${previousDate}`} rel="nofollow" class="text-accent hover:underline">
             Previous day
           </a>
-          <a href={`/readings/${nextDate}`} class="text-accent hover:underline">
+          <a href={`/readings/${nextDate}`} rel="nofollow" class="text-accent hover:underline">
             Next day
           </a>
         </div>
