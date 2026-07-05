@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import PageHeader from "../../../components/PageHeader.astro";
 import { getCollection } from "astro:content";
 
 const { slug, day } = Astro.params;
@@ -47,14 +48,14 @@ const { Content } = await session.render();
   </Fragment>
 
   <!-- Breadcrumb -->
-  <div class="text-sm text-gray-500 mb-4">
-    <a href="/bible-studies" class="text-[#B5244A] hover:underline"
+  <div class="text-sm text-muted mb-4">
+    <a href="/bible-studies" class="text-accent-alt hover:underline"
       >Bible Studies</a
     >
     <span class="mx-1">/</span>
     <a
       href={`/bible-studies/${slug}/`}
-      class="text-[#B5244A] hover:underline"
+      class="text-accent-alt hover:underline"
       >{study.data.title}</a
     >
     <span class="mx-1">/</span>
@@ -62,13 +63,11 @@ const { Content } = await session.render();
   </div>
 
   <!-- Session header -->
-  <div class="mb-6">
-    <p class="text-sm font-medium text-[#B5244A] uppercase tracking-wider">
+  <div>
+    <p class="text-sm font-medium text-accent-alt uppercase tracking-wider">
       {study.data.title} &middot; Day {dayNum} of {sessions.length}
     </p>
-    <h1 class="text-3xl font-bold text-[#3B0714] mt-1">
-      {session.data.session?.title}
-    </h1>
+    <PageHeader title={session.data.session?.title} mb={6} class="mt-1" />
   </div>
 
   <!-- Video + Content side-by-side on desktop -->
@@ -77,7 +76,7 @@ const { Content } = await session.render();
     {devotionalVideo && (
       <div class="md:sticky md:top-4 self-start">
         <div
-          class="aspect-[9/16] max-w-xs mx-auto md:mx-0 rounded-lg overflow-hidden bg-gray-900 shadow-lg"
+          class="aspect-[9/16] max-w-xs mx-auto md:mx-0 rounded-lg overflow-hidden bg-fg shadow-lg"
         >
           <video
             src={devotionalVideo}
@@ -101,13 +100,13 @@ const { Content } = await session.render();
 
   <!-- Navigation between sessions -->
   <div
-    class="flex justify-between items-center mt-12 pt-6 border-t border-gray-200"
+    class="flex justify-between items-center mt-12 pt-6 border-t border-border"
   >
     <div>
       {prevSession && (
         <a
           href={`/bible-studies/${slug}/${prevSession.data.session?.day}/`}
-          class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+          class="inline-flex items-center gap-1 text-accent-alt hover:underline"
         >
           <span>&larr;</span>
           <span
@@ -121,7 +120,7 @@ const { Content } = await session.render();
       {nextSession && (
         <a
           href={`/bible-studies/${slug}/${nextSession.data.session?.day}/`}
-          class="inline-flex items-center gap-1 text-[#B5244A] hover:underline"
+          class="inline-flex items-center gap-1 text-accent-alt hover:underline"
         >
           <span
             >Day {nextSession.data.session?.day}:
@@ -137,7 +136,7 @@ const { Content } = await session.render();
   <div class="mt-6 text-center">
     <a
       href={`/bible-studies/${slug}/`}
-      class="text-sm text-[#B5244A] hover:underline"
+      class="text-sm text-accent-alt hover:underline"
     >
       &larr; Back to "{study.data.title}" overview
     </a>

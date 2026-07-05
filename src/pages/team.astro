@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
 ---
 
 <Layout>
-  <h1 class="text-3xl font-bold mb-4">Our Team</h1>
+  <PageHeader title="Our Team" mb={4} />
   <p>
     We are a team of dedicated individuals who are passionate about helping
     people connect with God through prayer and fasting.
@@ -11,14 +12,14 @@ import Layout from "../layouts/Layout.astro";
   <!-- Team Members cards with circle avatars name and role and short description -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6">
     <!-- Fr. Mesrop Ash -->
-    <div class="bg-white p-4 rounded-lg shadow-md">
+    <div class="bg-surface p-4 rounded-lg shadow-md">
       <img
         src="/fr-mesrop-ash.png"
         alt="Fr. Mesrop Ash Avatar"
         class="w-24 h-24 rounded-full mx-auto mb-4"
       />
       <h2 class="text-xl font-bold mb-2">Fr. Mesrop Ash</h2>
-      <p class="text-gray-600">Spiritual Advisor & Project Leader</p>
+      <p class="text-muted">Spiritual Advisor & Project Leader</p>
       <p class="mt-2">
         Fr. Mesrop serves as the parish priest of St. John Armenian Church in
         San Francisco and is the project leader of Fast & Pray. With a
@@ -27,14 +28,14 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </div>
     <!-- Dn. Andrew Ylitalo -->
-    <div class="bg-white p-4 rounded-lg shadow-md">
+    <div class="bg-surface p-4 rounded-lg shadow-md">
       <img
         src="/dn-andrew-ylitalo.jpg"
         alt="Dn. Andrew Ylitalo Avatar"
         class="w-24 h-24 rounded-full mx-auto mb-4"
       />
       <h2 class="text-xl font-bold mb-2">Dn. Andrew Ylitalo</h2>
-      <p class="text-gray-600">Software Engineer</p>
+      <p class="text-muted">Software Engineer</p>
       <p class="mt-2">
         Dn. Andrew also serves at St. John and has a passion for discovering and
         sharing how the practices of the Armenian Church can bring us closer to
@@ -44,14 +45,14 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </div>
     <!-- Anahid -->
-    <div class="bg-white p-4 rounded-lg shadow-md">
+    <div class="bg-surface p-4 rounded-lg shadow-md">
       <img
         src="/anahid-ylitalo.jpg"
         alt="Anahid Ylitalo Avatar"
         class="w-24 h-24 rounded-full mx-auto mb-4"
       />
       <h2 class="text-xl font-bold mb-2">Anahid Ylitalo</h2>
-      <p class="text-gray-600">Product Designer</p>
+      <p class="text-muted">Product Designer</p>
       <p class="mt-2">
         Anahid is Dn. Andrew's wife and the designer of the Fast & Pray app.
         With her background in user experience design, she works to make the app
@@ -60,7 +61,7 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </div>
   </div>
-  <h1 class="text-2xl font-bold mb-4">Acknowledgments</h1>
+  <PageHeader title="Acknowledgments" size="xl" mb={4} />
   <p class="mb-4">We thank everyone who has supported Fast & Pray.</p>
   <!-- A list of individuals & organizations and a description of what they have contributed -->
   <dl>

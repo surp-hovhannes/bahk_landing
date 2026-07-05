@@ -2,31 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Fast & Pray — brand tokens
+   Single source of truth. Mirror of brand-spec.md; the Tailwind
+   config (tailwind.config.mjs) reads these via var() references.
+   OKLch values are the canonical form; hex is kept as a comment
+   for traceability to the original source values.
+   ============================================================ */
+:root {
+  /* Neutrals */
+  --bg-oklch:            100% 0 0;       /* #FFFFFF */
+  --surface-oklch:       100% 0 0;       /* #FFFFFF */
+  --fg-oklch:            22% 0.06 25;    /* #3B0714 */
+  --fg-muted-oklch:      33.7% 0.088 6;  /* #5B2030 — muted maroon for survey labels/helpers */
+  --muted-oklch:         55% 0.01 250;   /* Tailwind gray-500/600 */
+  --muted-on-dark-oklch: 75% 0.008 250;  /* Tailwind gray-300/400 — muted text on --primary */
+  --border-oklch:        90% 0.005 250;  /* Tailwind gray-200/300 */
+
+  --bg:            oklch(var(--bg-oklch));
+  --surface:       oklch(var(--surface-oklch));
+  --fg:            oklch(var(--fg-oklch));
+  --fg-muted:      oklch(var(--fg-muted-oklch));
+  --muted:         oklch(var(--muted-oklch));
+  --muted-on-dark: oklch(var(--muted-on-dark-oklch));
+  --border:        oklch(var(--border-oklch));
+
+  /* Brand */
+  --primary-oklch:       22% 0.07 25;    /* #390714 — navbar/footer, dark fills */
+  --primary-hover-oklch: 30% 0.06 25;    /* hover state for primary surfaces (mobile menu) */
+  --accent-oklch:        44% 0.11 12;    /* #80273E — links, focus, primary accent */
+  --accent-hover-oklch:  35.3% 0.105 8;  /* #661d30 — hover state for accent fills */
+  --accent-alt-oklch:    52% 0.15 12;    /* #B5244A — chips, secondary CTA fills */
+  --accent-bright-oklch: 64% 0.18 12;    /* #E54670 — CTA gradient top */
+
+  --primary:       oklch(var(--primary-oklch));
+  --primary-hover: oklch(var(--primary-hover-oklch));
+  --accent:        oklch(var(--accent-oklch));
+  --accent-hover:  oklch(var(--accent-hover-oklch));
+  --accent-alt:    oklch(var(--accent-alt-oklch));
+  --accent-bright: oklch(var(--accent-bright-oklch));
+
+  /* Semantic */
+  --success-oklch: 52% 0.14 145;         /* Tailwind green-700 */
+  --warn-oklch:    68% 0.13 85;          /* Tailwind yellow-800 */
+  --danger-oklch:  64% 0.19 25;          /* Tailwind red-400 */
+
+  --success: oklch(var(--success-oklch));
+  --warn:    oklch(var(--warn-oklch));
+  --danger:  oklch(var(--danger-oklch));
+
+  /* Typography */
+  --font-display: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii */
+  --radius-sm: 0.25rem;   /* 4px  — code badges, range thumbs */
+  --radius:    0.375rem;  /* 6px  — inputs, small buttons (Tailwind rounded-md) */
+  --radius-md: 0.5rem;    /* 8px  — cards, primary buttons, images (Tailwind rounded-lg) */
+  --radius-lg: 1rem;      /* 16px — modals, large surfaces (Tailwind rounded-2xl) */
+
+  /* Focus ring */
+  --focus-ring-width: 2px;
+  --focus-ring-color: var(--accent);
+
+  /* Containers */
+  --container-content: 56rem;  /* max-w-4xl — Layout default */
+  --container-prose:   48rem;  /* max-w-3xl — article body */
+  --container-chrome:  80rem;  /* max-w-7xl — navbar/footer */
+
+  /* CTA gradient — the single decisive flourish */
+  --cta-gradient: linear-gradient(to top, #B5244A, #E54670);
+  --cta-gradient-hover: linear-gradient(to bottom, #B5244A, #E54670);
+}
+
+/* ---- Custom utility classes (resolve to tokens) -----------------
+   `.border-accent` now maps to the true accent token (--accent /
+   #80273E), matching brand-spec.md. The previous maroon mapping is
+   preserved as `.border-primary` for any code that wants the dark
+   maroon border explicitly. ---------------------------------------- */
 .bg-color-primary {
-  background-color: #390714;
+  background-color: var(--primary);
+}
+
+.border-primary {
+  border-color: var(--primary);
 }
 
 .border-accent {
-  border-color: #390714;
+  border-color: var(--accent);
 }
 
 .text-accent {
-  color: #80273e;
+  color: var(--accent);
 }
 
 .bg-accent {
-  background-color: #80273e;
+  background-color: var(--accent);
 }
 
 /* Alternative accent — brighter red-pink, use sparingly */
 .text-accent-alt {
-  color: #B5244A;
+  color: var(--accent-alt);
 }
 
 .bg-accent-alt {
-  background-color: #B5244A;
+  background-color: var(--accent-alt);
 }
 
 .border-accent-alt {
-  border-color: #B5244A;
+  border-color: var(--accent-alt);
+}
+
+/* ---- Focus ring utility -------------------------------------------
+   Replaces the repeated `focus:outline-none focus:ring-2 focus:ring-accent`
+   string across inputs/buttons. Use as `class="focus-ring"` on any
+   interactive control that should show the brand accent ring. ------ */
+.focus-ring:focus,
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 }
