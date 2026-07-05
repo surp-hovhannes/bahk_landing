@@ -30,6 +30,7 @@ const nextDay = shiftDate(today, +1);
 ---
 
 <Layout pageTitle="Daily Readings • Fast & Pray">
+  <meta name="robots" content="noindex, nofollow" slot="meta" />
   <div class="max-w-prose mx-auto text-center">
     <!-- Hero -->
     <PageHeader title="Daily Bible Readings" size="responsive" mb={4} />
@@ -97,6 +98,7 @@ const nextDay = shiftDate(today, +1);
     <div class="flex justify-center gap-8 text-sm">
       <a
         href={`/readings/${prevDay}`}
+        rel="nofollow"
         class="text-accent hover:underline"
         aria-label="Previous day: {prevDay}"
       >
@@ -104,6 +106,7 @@ const nextDay = shiftDate(today, +1);
       </a>
       <a
         href={`/readings/${nextDay}`}
+        rel="nofollow"
         class="text-accent hover:underline"
         aria-label="Next day: {nextDay}"
       >
