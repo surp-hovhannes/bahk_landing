@@ -20,14 +20,14 @@ INSERT PRAYER HERE
 
 ## Reflection
 
-The Gospels give almost no detail about how Peter, James, and John came to leave everything and climb the mountain with Jesus — only that he called them, and they went. The devotional contrasts this with how we normally prepare for a journey: researching the destination, planning the route, provisioning against every possible failure. The disciples had none of that. They didn't know where they were going, how long it would take, or what it would cost — only the voice of the one calling them. Their journey becomes a picture of what it means to trust God without first demanding a map, trading the illusion of control for simple, immediate obedience to Christ's call.
+The Gospel gives almost no detail about how Peter, James, and John went with Jesus up the mountain — only that he took them with him, and they went. The devotional contrasts this with how we normally prepare for a journey: researching the destination, planning the route, provisioning against every possible failure. Matthew gives us no itinerary or explanation, only their willingness to go with Christ. Their journey becomes a picture of what it means to trust God without first demanding a map, trading the illusion of control for simple, immediate obedience to Christ's call.
 
 ## Group Discussion Questions
 
 Gather with your group and discuss:
 
-1. The devotional contrasts how we usually prepare for a trip — research, planning, backup supplies — with how the disciples left everything on a single word from Jesus. How much does needing a "plan" affect your own willingness to follow God into something new?
-2. Peter, James, and John never once asked Jesus where they were going or how long it would take. What is a time you were asked to trust God without knowing the destination — and how did you respond?
+1. The devotional contrasts how we usually prepare for a trip — research, planning, backup supplies — with how the disciples went with Jesus without Matthew recording an itinerary or explanation. How much does needing a "plan" affect your own willingness to follow God into something new?
+2. Matthew does not record Peter, James, or John asking Jesus where they were going or what would happen there. What is a time you were asked to trust God without knowing the destination — and how did you respond?
 3. What tends to be the "unnecessary worry" that gets in the way of you trusting God's call more simply?
 
 ## Personal Reflection Questions
