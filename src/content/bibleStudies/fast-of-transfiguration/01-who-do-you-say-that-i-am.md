@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-INSERT PRAYER HERE
+Lord Jesus Christ, Son of the living God, meet us today with the question You asked Your disciples: "Who do you say that I am?" Quiet the borrowed answers in us, and lead us into the confession that can only come from faith. Open our hearts to receive what the Father reveals, and give us courage to know You not merely as an idea to understand, but as our Lord and Savior. Amen.
 
 ## Scripture Reading
 
@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-INSERT PRAYER HERE
+Heavenly Father, we thank You for revealing Your Son to Peter and to the Church. Let the truth we have heard today become living faith within us. Where we have made You small, enlarge our trust; where we have hidden behind familiar words, draw from us an honest confession. Build us, stone by stone, into the Church against which the gates of Hades cannot prevail. Amen.

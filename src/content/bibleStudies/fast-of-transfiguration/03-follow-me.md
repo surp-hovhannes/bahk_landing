@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-INSERT PRAYER HERE
+Lord Jesus Christ, You took Peter, James, and John with You up the mountain. Take us with You now. We come with questions, plans, and worries, but You ask first for our trust. Teach us to walk with You when the way is not fully explained, and make our obedience simple, attentive, and free from fear. Amen.
 
 ## Scripture Reading
 
@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-INSERT PRAYER HERE
+Good Shepherd, thank You for calling us to follow You one step at a time. Release us from the need to see the whole road before we begin. When worry crowds Your voice, quiet our hearts; when uncertainty makes us hesitate, steady our steps. Lead us onward in faith, trusting that wherever You take us, You are already there with grace. Amen.

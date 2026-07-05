@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-INSERT PRAYER HERE
+Lord Jesus Christ, You call us to deny ourselves, take up our cross, and follow You. Lift our hearts above the noise that keeps us restless and divided. As we consider the climb toward Your glory, show us what we must leave behind: every false comfort, every anxious attachment, every burden that keeps us from hearing You clearly. Amen.
 
 ## Scripture Reading
 
@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-INSERT PRAYER HERE
+God of peace, thank You for meeting us in the quiet places where trust can grow. Help us set down what is false and carry what is holy. When the climb feels steep, lead us by Your presence; when silence feels unfamiliar, fill it with prayer. Draw us higher in faith, with Christ leading us toward the glory revealed at the summit. Amen.
