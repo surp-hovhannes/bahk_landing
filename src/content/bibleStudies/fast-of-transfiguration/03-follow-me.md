@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord Jesus Christ, You took Peter, James, and John with You up the mountain. Take us with You now. We come with questions, plans, and worries, but You ask first for our trust. Teach us to walk with You when the way is not fully explained, and make our obedience simple, attentive, and free from fear. Amen.
+Lord Jesus Christ, You took Saints Peter, James, and John with You up the mountain. Take us with You now. We come with questions, plans, and worries, but You ask first for our trust. Teach us to walk with You when the way is not fully explained, and make our obedience simple, attentive, and free from fear. Amen.
 
 ## Scripture Reading
 

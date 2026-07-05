@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord Jesus Christ, radiant in glory upon the mountain, open our eyes to behold You with reverence and joy. Let the light of Tabor shine into the places within us that have grown dim. As the Father's voice commands, teach us to listen to You above every other voice, and prepare our hearts to receive both wonder and holy fear. Amen.
+Lord Jesus Christ, radiant in glory upon the mountain, open our eyes to behold You with reverence and joy. Let the light of Mt. Tabor shine into the places within us that have grown dim. As the Father's voice commands, teach us to listen to You above every other voice, and prepare our hearts to receive both wonder and holy fear. Amen.
 
 ## Scripture Reading
 
@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Lord, it is good for us to be here. We thank You for this journey from confession to surrender, from trust to glory. Do not let us leave the mountain unchanged. Send us back into ordinary life carrying the light of Christ in our words, choices, and love. Keep our eyes fixed on Jesus alone, until the promise we have glimpsed becomes our everlasting joy. Amen.
+Almighty Lord, it is good for us to be here in this moment. We thank You for this journey from confession to surrender, from trust to glory. Do not let us leave the mountain unchanged. Send us back into ordinary life carrying the light of Christ in our words, choices, and love. Keep our eyes fixed on Jesus alone, until the promise we have glimpsed becomes our everlasting joy. Amen.

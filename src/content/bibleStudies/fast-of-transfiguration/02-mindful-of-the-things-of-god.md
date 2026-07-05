@@ -12,7 +12,7 @@ session:
 
 ## Opening Prayer
 
-Lord Jesus Christ, You turned Peter from human fear toward the things of God. Turn us also. As we enter this study, show us where our love has become possessive, where our plans resist Your will, and where our fear avoids the cross. Give us the humility to hear Your correction as mercy, and the strength to follow where You lead. Amen.
+Lord Jesus Christ, You turned St. Peter from human fear toward the things of God. Turn us also. As we enter this study, show us where our love has become possessive, where our plans resist Your will, and where our fear avoids the cross. Give us the humility to hear Your correction as mercy, and the strength to follow where You lead. Amen.
 
 ## Scripture Reading
 
@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Merciful Lord, teach us to lose the life we try to control so that we may receive the life You give. Set our minds on divine things, not on the anxieties and ambitions that pull us away from You. Help us take up the cross before us with trust, and let every surrender make more room for Your will to live in us. Amen.
+Merciful Lord, teach us to lose the life we try to control so that we may receive the life You give. Set our minds on divine things, not on the anxieties and ambitions that pull us away from You. Help us take up the Cross before us with trust, and let every surrender make more room for Your will to live in us. Amen.

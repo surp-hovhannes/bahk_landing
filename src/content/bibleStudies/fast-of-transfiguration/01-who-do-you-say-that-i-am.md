@@ -39,4 +39,4 @@ Take some quiet time with these:
 
 ## Closing Prayer
 
-Heavenly Father, we thank You for revealing Your Son to Peter and to the Church. Let the truth we have heard today become living faith within us. Where we have made You small, enlarge our trust; where we have hidden behind familiar words, draw from us an honest confession. Build us, stone by stone, into the Church against which the gates of Hades cannot prevail. Amen.
+Heavenly Father, we thank You for revealing Your Son to the Church. Let the truth we have heard today become living faith within us. Where we have made You small, enlarge our trust; where we have hidden behind familiar words, draw from us an honest confession. Build us, stone by stone, into the Church against which the gates of Hades cannot prevail. Amen.
