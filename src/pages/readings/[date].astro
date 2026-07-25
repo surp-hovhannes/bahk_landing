@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getTodayInPacific, isValidDateSlug, shiftDate } from "../../utils/date";
 
 const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
 
@@ -25,15 +26,6 @@ type ReadingsResponse = {
 };
 
 const rawDate = Astro.params.date;
-
-function isValidDateSlug(value: string): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-    return false;
-  }
-
-  const parsed = new Date(`${value}T00:00:00Z`);
-  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
-}
 
 function formatReference(reading: Reading): string {
   const book = reading.book ?? "Reading";
@@ -62,14 +54,49 @@ function formatReference(reading: Reading): string {
   return `${book} ${startChapter}:${startVerse}-${endChapter}:${endVerse}`;
 }
 
-function shiftDate(value: string, days: number): string {
-  const parsed = new Date(`${value}T00:00:00Z`);
-  parsed.setUTCDate(parsed.getUTCDate() + days);
-  return parsed.toISOString().slice(0, 10);
-}
-
 const requestedDate = typeof rawDate === "string" ? rawDate : "";
 const hasValidDate = isValidDateSlug(requestedDate);
+
+const today = getTodayInPacific();
+const isPastDate = hasValidDate && requestedDate < today;
+
+/**
+ * Cache at the edge so repeat hits never reach the Django origin.
+ *
+ * `Netlify-CDN-Cache-Control` governs the CDN; plain `Cache-Control` governs browsers.
+ * This matters beyond ordinary performance: an origin hit for a date with no stored text
+ * costs a paid API.Bible call, so serving crawlers and repeat visitors from cache is
+ * directly a spend control.
+ */
+function setCacheHeaders(kind: "past" | "current" | "invalid" | "error") {
+  if (kind === "error") {
+    // Never cache a backend outage — it would outlive the outage.
+    Astro.response.headers.set("Cache-Control", "no-store");
+    return;
+  }
+  if (kind === "invalid") {
+    // Deterministic and never touches the origin; cache it hard.
+    Astro.response.headers.set("Cache-Control", "public, max-age=3600");
+    Astro.response.headers.set("Netlify-CDN-Cache-Control", "public, s-maxage=86400");
+    return;
+  }
+  if (kind === "past") {
+    // A past day's readings no longer change.
+    Astro.response.headers.set("Cache-Control", "public, max-age=300");
+    Astro.response.headers.set(
+      "Netlify-CDN-Cache-Control",
+      "public, s-maxage=86400, stale-while-revalidate=604800",
+    );
+    return;
+  }
+  // Today and future: AI-generated context is produced asynchronously, so the first
+  // response for a date is incomplete. Keep the window short enough to pick it up.
+  Astro.response.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  Astro.response.headers.set(
+    "Netlify-CDN-Cache-Control",
+    "public, s-maxage=900, stale-while-revalidate=3600",
+  );
+}
 
 let payload: ReadingsResponse | null = null;
 let errorMessage: string | null = null;
@@ -77,6 +104,7 @@ let errorMessage: string | null = null;
 if (!hasValidDate) {
   Astro.response.status = 400;
   errorMessage = "Invalid date. Use /readings/YYYY-MM-DD.";
+  setCacheHeaders("invalid");
 } else {
   const endpoint = new URL(apiBase + "/api/readings/");
   endpoint.searchParams.set("date", requestedDate);
@@ -89,6 +117,7 @@ if (!hasValidDate) {
     if (!response.ok) {
       Astro.response.status = response.status;
       errorMessage = `Could not load readings for ${requestedDate} (HTTP ${response.status}).`;
+      setCacheHeaders("error");
     } else {
       const data: unknown = await response.json();
       if (
@@ -100,13 +129,16 @@ if (!hasValidDate) {
       ) {
         Astro.response.status = 502;
         errorMessage = "Readings service returned an unexpected format.";
+        setCacheHeaders("error");
       } else {
         payload = data as ReadingsResponse;
+        setCacheHeaders(isPastDate ? "past" : "current");
       }
     }
   } catch {
     Astro.response.status = 502;
     errorMessage = "Could not reach the readings service.";
+    setCacheHeaders("error");
   }
 }
 
