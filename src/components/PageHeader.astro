@@ -22,10 +22,19 @@ const sizeClasses: Record<string, string> = {
   responsive: "text-3xl md:text-4xl",
 };
 
+const mbClasses: Record<0 | 1 | 2 | 4 | 6 | 8, string> = {
+  0: "mb-0",
+  1: "mb-1",
+  2: "mb-2",
+  4: "mb-4",
+  6: "mb-6",
+  8: "mb-8",
+};
+
 const classes = [
   sizeClasses[size],
   "font-bold",
-  `mb-${mb}`,
+  mbClasses[mb],
   "text-fg",
   extraClass,
 ]

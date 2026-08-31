@@ -78,10 +78,10 @@ const { Content } = await render(study);
       {sessions.map((session) => (
         <a
           href={`/bible-studies/${slug}/${session.data.session?.day}/`}
-          class="block border border-border rounded-lg p-4 hover:border-accent-alt hover:shadow-sm transition-all"
+          class="block border border-border rounded-lg p-4 hover:border-accent-alt hover:shadow-xs transition-all"
         >
           <div class="flex items-center gap-3">
-            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-alt text-white flex items-center justify-center text-sm font-bold">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-accent-alt text-white flex items-center justify-center text-sm font-bold">
               {session.data.session?.day}
             </span>
             <div>

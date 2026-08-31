@@ -1,11 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
 
 /* ============================================================
    Fast & Pray — brand tokens
-   Single source of truth. Mirror of brand-spec.md; the Tailwind
-   config (tailwind.config.mjs) reads these via var() references.
+   Single source of truth. Mirror of brand-spec.md; Tailwind v4
+   reads these via the @theme inline block below so the design
+   system remains the single source of truth.
    OKLch values are the canonical form; hex is kept as a comment
    for traceability to the original source values.
    ============================================================ */
@@ -76,8 +77,51 @@
   --cta-gradient-hover: linear-gradient(to bottom, #B5244A, #E54670);
 }
 
+/* ============================================================
+   @theme inline — maps CSS custom properties to Tailwind v4
+   utility names so generated utilities (bg-primary, text-fg,
+   max-w-content, bg-cta-gradient, etc.) resolve to the tokens
+   declared above. `inline` preserves the var() references so
+   alpha modifiers like bg-primary/40 keep working at runtime.
+   ============================================================ */
+@theme inline {
+  --font-sans:    'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
+  --font-mono:    var(--font-mono);
+
+  --color-primary:        var(--primary);
+  --color-primary-hover:  var(--primary-hover);
+  --color-accent:         var(--accent);
+  --color-accent-hover:   var(--accent-hover);
+  --color-accent-alt:     var(--accent-alt);
+  --color-accent-bright:  var(--accent-bright);
+
+  --color-bg:        var(--bg);
+  --color-surface:   var(--surface);
+  --color-fg:        var(--fg);
+  --color-fg-muted:  var(--fg-muted);
+  --color-muted:     var(--muted);
+  --color-muted-on-dark: var(--muted-on-dark);
+  --color-border:    var(--border);
+
+  --color-success: var(--success);
+  --color-warn:    var(--warn);
+  --color-danger:  var(--danger);
+
+  --background-image-cta-gradient:       var(--cta-gradient);
+  --background-image-cta-gradient-hover: var(--cta-gradient-hover);
+
+  --container-content: var(--container-content);
+  --container-prose:   var(--container-prose);
+  /* Tailwind v4 reserves `prose` for its 65ch default; preserve the
+     existing 48rem semantic token for this site's max-w-prose usage. */
+  --max-width-prose: 48rem;
+  --container-chrome:  var(--container-chrome);
+}
+
 /* ---- Custom utility classes (resolve to tokens) -----------------
-   `.border-accent` now maps to the true accent token (--accent /
+   `.border-accent` maps to the true accent token (--accent /
    #80273E), matching brand-spec.md. The previous maroon mapping is
    preserved as `.border-primary` for any code that wants the dark
    maroon border explicitly. ---------------------------------------- */
@@ -115,7 +159,7 @@
 }
 
 /* ---- Focus ring utility -------------------------------------------
-   Replaces the repeated `focus:outline-none focus:ring-2 focus:ring-accent`
+   Replaces the repeated `focus:outline-hidden focus:ring-2 focus:ring-accent`
    string across inputs/buttons. Use as `class="focus-ring"` on any
    interactive control that should show the brand accent ring. ------ */
 .focus-ring:focus,
