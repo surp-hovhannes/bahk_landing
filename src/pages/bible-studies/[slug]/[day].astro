@@ -106,6 +106,7 @@ const { Content } = await render(session);
       {prevSession && (
         <a
           href={`/bible-studies/${slug}/${prevSession.data.session?.day}/`}
+          aria-label={`Day ${prevSession.data.session?.day}: ${prevSession.data.session?.title}`}
           class="inline-flex items-center gap-1 text-accent-alt hover:underline"
         >
           <span>&larr;</span>
@@ -120,6 +121,7 @@ const { Content } = await render(session);
       {nextSession && (
         <a
           href={`/bible-studies/${slug}/${nextSession.data.session?.day}/`}
+          aria-label={`Day ${nextSession.data.session?.day}: ${nextSession.data.session?.title}`}
           class="inline-flex items-center gap-1 text-accent-alt hover:underline"
         >
           <span

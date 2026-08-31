@@ -145,7 +145,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
     if (!confidence) return "";
     const dot = confidence === "high" ? "●" : confidence === "medium" ? "◐" : "○";
     const bgClass = confidence === "high" ? "bg-success/10 text-success" : confidence === "medium" ? "bg-warn/10 text-warn" : "bg-muted/10 text-muted";
-    return `<span class="${bgClass} text-xs px-2 py-0.5 rounded-full">${dot} ${escape(confidence)}</span>`;
+    return `<span class="${bgClass} text-xs px-2 py-0.5 rounded-full" aria-label="Confidence: ${escape(confidence)}" data-testid="confidence-badge">${dot} ${escape(confidence)}</span>`;
   }
 
   function iconCardHtml(icon, confidence = null) {

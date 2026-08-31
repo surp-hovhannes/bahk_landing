@@ -82,5 +82,5 @@ test('AI match posts the prompt and renders confidence badges', async ({ page })
     max_results: 9,
   });
   await expect(page.getByText('AI found 1 match for "baby Jesus icon"')).toBeVisible();
-  await expect(page.getByText('high')).toBeVisible();
+  await expect(page.getByTestId('confidence-badge')).toHaveText('● high');
 });

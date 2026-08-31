@@ -78,6 +78,7 @@ const { Content } = await render(study);
       {sessions.map((session) => (
         <a
           href={`/bible-studies/${slug}/${session.data.session?.day}/`}
+          aria-label={`Day ${session.data.session?.day}: ${session.data.session?.title}`}
           class="block border border-border rounded-lg p-4 hover:border-accent-alt hover:shadow-xs transition-all"
         >
           <div class="flex items-center gap-3">
