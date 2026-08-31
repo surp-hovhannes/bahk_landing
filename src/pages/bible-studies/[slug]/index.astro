@@ -1,7 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import PageHeader from "../../../components/PageHeader.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 const { slug } = Astro.params;
 const allEntries = await getCollection("bibleStudies");
@@ -22,7 +22,7 @@ const sessions = slugEntries
   .filter((e) => e.data.session)
   .sort((a, b) => (a.data.session?.day ?? 0) - (b.data.session?.day ?? 0));
 
-const { Content } = await study.render();
+const { Content } = await render(study);
 ---
 
 <Layout pageTitle={`${study.data.title} • Fast & Pray`}>

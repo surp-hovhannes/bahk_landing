@@ -24,7 +24,7 @@ vi.mock('@astrojs/rss', () => ({
 
 const posts = [
   {
-    slug: 'older-post',
+    id: 'older-post',
     data: {
       title: 'Older Post',
       description: 'Older description.',
@@ -33,7 +33,7 @@ const posts = [
     },
   },
   {
-    slug: 'draft-post',
+    id: 'draft-post',
     data: {
       title: 'Draft Post',
       description: 'Draft description.',
@@ -42,7 +42,7 @@ const posts = [
     },
   },
   {
-    slug: 'latest-post',
+    id: 'latest-post',
     data: {
       title: 'Latest Post',
       description: 'Latest description.',
