@@ -124,6 +124,10 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
       .replace(/"/g, "&quot;");
   }
 
+  function iconPath(id) {
+    return `/icons/${encodeURIComponent(String(id ?? ""))}`;
+  }
+
   function setLoading(msg = "Loading icons…") {
     loadingMsg.textContent = msg;
     loading.classList.remove("hidden");
@@ -149,6 +153,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
   }
 
   function iconCardHtml(icon, confidence = null) {
+    const path = iconPath(icon.id);
     const tags = (icon.tag_list ?? []).slice(0, 3);
     const tagChips = tags
       .map(
@@ -163,7 +168,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
       : `<div class="flex items-center justify-center w-full h-full text-2xl text-muted font-bold select-none">${escape(icon.title.charAt(0).toUpperCase())}</div>`;
 
     return `
-      <a href="/icons/${icon.id}" class="block bg-surface rounded-lg shadow-xs overflow-hidden border border-border hover:shadow-md transition">
+      <a href="${path}" class="block bg-surface rounded-lg shadow-xs overflow-hidden border border-border hover:shadow-md transition">
         <div class="aspect-square bg-surface overflow-hidden">${imgHtml}</div>
         <div class="p-3">
           <h3 class="font-semibold text-fg text-sm leading-tight mb-1 line-clamp-2">${escape(icon.title)}</h3>

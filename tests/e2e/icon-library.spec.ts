@@ -50,6 +50,34 @@ test('icon library loads, searches, and renders API results', async ({ page }) =
   await expect(page.getByRole('link', { name: /St. Gregory the Illuminator/ })).toBeVisible();
 });
 
+test('icon library percent-encodes identifier path segments', async ({ page }) => {
+  await page.route('https://api.fastandpray.app/api/icons/?**', async (route) => {
+    await route.fulfill({
+      json: {
+        count: 1,
+        next: null,
+        previous: null,
+        results: [
+          {
+            id: 'icon "quoted"',
+            title: 'Quoted Icon',
+            church_name: '',
+            tag_list: [],
+            thumbnail_url: '',
+            image: '',
+          },
+        ],
+      },
+    });
+  });
+
+  await page.goto('/icons');
+
+  const card = page.getByRole('link', { name: /Quoted Icon/ });
+  await expect(card).toHaveCount(1);
+  await expect(card).toHaveAttribute('href', '/icons/icon%20%22quoted%22');
+});
+
 test('AI match posts the prompt and renders confidence badges', async ({ page }) => {
   let requestBody: unknown;
 
