@@ -29,7 +29,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft && (data.ta
     <ul class="space-y-8">
       {posts.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}/`} class="block group">
+          <a href={`/blog/${post.id}/`} class="block group">
             <h2 class="text-2xl font-semibold group-hover:underline text-fg">{post.data.title}</h2>
             {post.data.description && (
               <p class="text-fg mt-1">{post.data.description}</p>

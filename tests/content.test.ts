@@ -2,19 +2,19 @@ import { describe, expect, test } from 'vitest';
 import { getCollection } from 'astro:content';
 
 describe('content collections', () => {
-  test('blog entries have unique slugs and publishable metadata', async () => {
+  test('blog entries have unique ids and publishable metadata', async () => {
     const posts = await getCollection('blog');
-    const slugs = posts.map((post) => post.slug);
+    const ids = posts.map((post) => post.id);
 
-    expect(new Set(slugs).size).toBe(slugs.length);
+    expect(new Set(ids).size).toBe(ids.length);
 
     for (const post of posts) {
-      expect(post.data.title.trim(), post.slug).not.toBe('');
-      expect(post.data.pubDate, post.slug).toBeInstanceOf(Date);
+      expect(post.data.title.trim(), post.id).not.toBe('');
+      expect(post.data.pubDate, post.id).toBeInstanceOf(Date);
 
       if (!post.data.draft) {
-        expect(post.data.description?.trim(), post.slug).toBeTruthy();
-        expect(post.data.tags.length, post.slug).toBeGreaterThan(0);
+        expect(post.data.description?.trim(), post.id).toBeTruthy();
+        expect(post.data.tags.length, post.id).toBeGreaterThan(0);
       }
     }
   });
@@ -45,11 +45,11 @@ describe('content collections', () => {
       expect(days, studySlug).toEqual(Array.from({ length: days.length }, (_, index) => index + 1));
 
       for (const entry of studyEntries) {
-        expect(entry.data.title.trim(), entry.slug).not.toBe('');
-        expect(entry.data.description.trim(), entry.slug).not.toBe('');
+        expect(entry.data.title.trim(), entry.id).not.toBe('');
+        expect(entry.data.description.trim(), entry.id).not.toBe('');
 
         if (entry.data.session) {
-          expect(entry.data.session.title.trim(), entry.slug).not.toBe('');
+          expect(entry.data.session.title.trim(), entry.id).not.toBe('');
         }
       }
     }

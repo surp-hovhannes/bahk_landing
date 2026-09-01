@@ -27,7 +27,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
       </button>
       <button
         id="ai-btn"
-        class="bg-gradient-to-r from-accent-alt to-accent-bright text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition whitespace-nowrap"
+        class="bg-linear-to-r from-accent-alt to-accent-bright text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition whitespace-nowrap"
         title="AI-powered semantic search — describe what you're looking for in natural language"
       >
         ✦ AI Match
@@ -145,7 +145,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
     if (!confidence) return "";
     const dot = confidence === "high" ? "●" : confidence === "medium" ? "◐" : "○";
     const bgClass = confidence === "high" ? "bg-success/10 text-success" : confidence === "medium" ? "bg-warn/10 text-warn" : "bg-muted/10 text-muted";
-    return `<span class="${bgClass} text-xs px-2 py-0.5 rounded-full">${dot} ${escape(confidence)}</span>`;
+    return `<span class="${bgClass} text-xs px-2 py-0.5 rounded-full" aria-label="Confidence: ${escape(confidence)}" data-testid="confidence-badge">${dot} ${escape(confidence)}</span>`;
   }
 
   function iconCardHtml(icon, confidence = null) {
@@ -163,7 +163,7 @@ const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
       : `<div class="flex items-center justify-center w-full h-full text-2xl text-muted font-bold select-none">${escape(icon.title.charAt(0).toUpperCase())}</div>`;
 
     return `
-      <a href="/icons/${icon.id}" class="block bg-surface rounded-lg shadow-sm overflow-hidden border border-border hover:shadow-md transition">
+      <a href="/icons/${icon.id}" class="block bg-surface rounded-lg shadow-xs overflow-hidden border border-border hover:shadow-md transition">
         <div class="aspect-square bg-surface overflow-hidden">${imgHtml}</div>
         <div class="p-3">
           <h3 class="font-semibold text-fg text-sm leading-tight mb-1 line-clamp-2">${escape(icon.title)}</h3>
