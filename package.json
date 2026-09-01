@@ -28,9 +28,11 @@
     "@playwright/test": "^1.60.0",
     "@vitest/coverage-v8": "^4.1.7",
     "typescript": "^5.9.3",
+    "vite": "^8.2.2",
     "vitest": "^4.1.7"
   },
   "overrides": {
-    "fast-xml-parser": "5.7.0"
+    "fast-xml-parser": "5.7.0",
+    "svgo": "4.1.0"
   }
 }
