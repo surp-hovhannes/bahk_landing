@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 
 const apiBase = import.meta.env.PUBLIC_API_URL ?? "https://api.fastandpray.app";
+const lectionaryApiBase =
+  import.meta.env.PUBLIC_LECTIONARY_API_URL ?? "https://lectionary.andylitalo.com";
 
 export const prerender = false;
 
@@ -17,12 +19,68 @@ type Reading = {
   textVersion?: string;
   textCopyright?: string;
   context?: string;
+  citation?: string;
+};
+
+type ReadingGroup = {
+  category: string;
+  readings: Reading[];
 };
 
 type ReadingsResponse = {
   date: string;
   readings: Reading[];
 };
+
+type LectionaryReference = {
+  book?: string;
+  start_chapter?: number;
+  start_verse?: number;
+  end_chapter?: number;
+  end_verse?: number;
+  citation: string;
+};
+
+type LectionaryResponse = {
+  Readings: Record<string, string[]>;
+  ReadingsList: string[];
+  ReadingsRefs: LectionaryReference[];
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isReadingsResponse(value: unknown): value is ReadingsResponse {
+  return (
+    isRecord(value) &&
+    typeof value.date === "string" &&
+    Array.isArray(value.readings) &&
+    value.readings.every(isRecord)
+  );
+}
+
+function isLectionaryResponse(value: unknown): value is LectionaryResponse {
+  if (
+    !isRecord(value) ||
+    !Array.isArray(value.ReadingsList) ||
+    !value.ReadingsList.every((reference) => typeof reference === "string") ||
+    !Array.isArray(value.ReadingsRefs) ||
+    !isRecord(value.Readings)
+  ) {
+    return false;
+  }
+
+  return (
+    value.ReadingsRefs.every(
+      (reference) => isRecord(reference) && typeof reference.citation === "string",
+    ) &&
+    Object.values(value.Readings).every(
+      (references) =>
+        Array.isArray(references) && references.every((reference) => typeof reference === "string"),
+    )
+  );
+}
 
 const rawDate = Astro.params.date;
 
@@ -48,7 +106,7 @@ function formatReference(reading: Reading): string {
     typeof endChapter !== "number" ||
     typeof endVerse !== "number"
   ) {
-    return book;
+    return reading.citation ?? book;
   }
 
   if (startChapter === endChapter && startVerse === endVerse) {
@@ -62,6 +120,130 @@ function formatReference(reading: Reading): string {
   return `${book} ${startChapter}:${startVerse}-${endChapter}:${endVerse}`;
 }
 
+function normalizeCitation(value: string): string {
+  return value.trim().replace(/\s+/g, " ").toLocaleLowerCase("en-US");
+}
+
+function normalizeBook(value: string | undefined): string {
+  return (value ?? "")
+    .toLocaleLowerCase("en-US")
+    .replace(/^st\.?\s*paul(?:'s)?\s+(?:(?:first|second|1st|2nd)\s+)?epistle\s+to\s+the\s+/, "")
+    .replace(/^the\s+/, "")
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function findTextReading(
+  reference: LectionaryReference,
+  readings: Reading[],
+): Reading | undefined {
+  if (
+    typeof reference.start_chapter !== "number" ||
+    typeof reference.start_verse !== "number" ||
+    typeof reference.end_chapter !== "number" ||
+    typeof reference.end_verse !== "number"
+  ) {
+    return undefined;
+  }
+
+  const samePassage = readings.filter(
+    (reading) =>
+      reading.startChapter === reference.start_chapter &&
+      reading.startVerse === reference.start_verse &&
+      reading.endChapter === reference.end_chapter &&
+      reading.endVerse === reference.end_verse,
+  );
+
+  return (
+    samePassage.find((reading) => normalizeBook(reading.book) === normalizeBook(reference.book)) ??
+    (samePassage.length === 1 ? samePassage[0] : undefined)
+  );
+}
+
+function normalizeCategory(value: string): string {
+  const normalized = value.toLocaleLowerCase("en-US").replace(/[^a-z]/g, "");
+
+  if (normalized === "ot" || normalized.includes("oldtestament")) {
+    return "Old Testament";
+  }
+  if (normalized.includes("epistle")) {
+    return "Epistle";
+  }
+  if (normalized.includes("gospel")) {
+    return "Gospel";
+  }
+
+  return value;
+}
+
+function buildDisplayGroups(
+  lectionary: LectionaryResponse,
+  textReadings: Reading[],
+): ReadingGroup[] {
+  const referenceByCitation = new Map<string, LectionaryReference>();
+  for (const reference of lectionary.ReadingsRefs) {
+    referenceByCitation.set(normalizeCitation(reference.citation), reference);
+  }
+
+  for (const citation of lectionary.ReadingsList) {
+    const key = normalizeCitation(citation);
+    if (!referenceByCitation.has(key)) {
+      referenceByCitation.set(key, { citation });
+    }
+  }
+
+  const categories = new Map<string, string[]>();
+  for (const [category, citations] of Object.entries(lectionary.Readings)) {
+    const label = normalizeCategory(category);
+    categories.set(label, [...(categories.get(label) ?? []), ...citations]);
+  }
+
+  const preferredOrder = ["Old Testament", "Epistle", "Gospel"];
+  const orderedCategories = [
+    ...preferredOrder.filter((category) => categories.has(category)),
+    ...Array.from(categories.keys()).filter((category) => !preferredOrder.includes(category)),
+  ];
+  const categorizedCitations = new Set<string>();
+
+  function buildReading(citation: string): Reading {
+    const key = normalizeCitation(citation);
+    categorizedCitations.add(key);
+    const reference = referenceByCitation.get(key) ?? { citation };
+    const textReading = findTextReading(reference, textReadings);
+    return {
+      ...textReading,
+      book: reference.book ?? textReading?.book ?? "Reading",
+      startChapter: reference.start_chapter ?? textReading?.startChapter,
+      startVerse: reference.start_verse ?? textReading?.startVerse,
+      endChapter: reference.end_chapter ?? textReading?.endChapter,
+      endVerse: reference.end_verse ?? textReading?.endVerse,
+      citation: reference.citation,
+      text: textReading?.text,
+      textVersion: textReading?.textVersion,
+      textCopyright: textReading?.textCopyright,
+      context: textReading?.context,
+      url: textReading?.url,
+    };
+  }
+
+  const groups = orderedCategories.map((category) => ({
+    category,
+    readings: (categories.get(category) ?? []).map(buildReading),
+  }));
+
+  const uncategorizedReadings = Array.from(referenceByCitation.entries())
+    .filter(([citation]) => !categorizedCitations.has(citation))
+    .map(([, reference]) => buildReading(reference.citation));
+
+  if (uncategorizedReadings.length > 0) {
+    groups.push({
+      category: orderedCategories.length > 0 ? "Other readings" : "Readings",
+      readings: uncategorizedReadings,
+    });
+  }
+
+  return groups.filter((group) => group.readings.length > 0);
+}
+
 function shiftDate(value: string, days: number): string {
   const parsed = new Date(`${value}T00:00:00Z`);
   parsed.setUTCDate(parsed.getUTCDate() + days);
@@ -71,44 +253,70 @@ function shiftDate(value: string, days: number): string {
 const requestedDate = typeof rawDate === "string" ? rawDate : "";
 const hasValidDate = isValidDateSlug(requestedDate);
 
-let payload: ReadingsResponse | null = null;
+let legacyPayload: ReadingsResponse | null = null;
+let lectionaryPayload: LectionaryResponse | null = null;
 let errorMessage: string | null = null;
+let noticeMessage: string | null = null;
 
 if (!hasValidDate) {
   Astro.response.status = 400;
   errorMessage = "Invalid date. Use /readings/YYYY-MM-DD.";
 } else {
-  const endpoint = new URL(apiBase + "/api/readings/");
-  endpoint.searchParams.set("date", requestedDate);
+  const lectionaryEndpoint = new URL("/readings", lectionaryApiBase);
+  lectionaryEndpoint.searchParams.set("date", requestedDate);
+  lectionaryEndpoint.searchParams.set("language", "en");
+
+  const textEndpoint = new URL(apiBase + "/api/readings/");
+  textEndpoint.searchParams.set("date", requestedDate);
+  textEndpoint.searchParams.set("lang", "en");
 
   try {
-    const response = await fetch(endpoint.toString(), {
-      headers: { accept: "application/json" },
-    });
+    const [lectionaryResult, textResult] = await Promise.allSettled([
+      fetch(lectionaryEndpoint.toString(), {
+        headers: { accept: "application/json" },
+      }).then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Lectionary service request failed.");
+        }
+        return response.json() as Promise<unknown>;
+      }),
+      fetch(textEndpoint.toString(), {
+        headers: { accept: "application/json" },
+      }).then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Scripture text service request failed.");
+        }
+        return response.json() as Promise<unknown>;
+      }),
+    ]);
 
-    if (!response.ok) {
-      Astro.response.status = response.status;
-      errorMessage = `Could not load readings for ${requestedDate} (HTTP ${response.status}).`;
-    } else {
-      const data: unknown = await response.json();
-      if (
-        !data ||
-        typeof data !== "object" ||
-        !("date" in data) ||
-        !("readings" in data) ||
-        !Array.isArray((data as { readings: unknown }).readings)
-      ) {
-        Astro.response.status = 502;
-        errorMessage = "Readings service returned an unexpected format.";
-      } else {
-        payload = data as ReadingsResponse;
-      }
+    if (lectionaryResult.status === "fulfilled" && isLectionaryResponse(lectionaryResult.value)) {
+      lectionaryPayload = lectionaryResult.value;
+    }
+
+    if (textResult.status === "fulfilled" && isReadingsResponse(textResult.value)) {
+      legacyPayload = textResult.value;
+    }
+
+    if (!lectionaryPayload && !legacyPayload) {
+      Astro.response.status = 502;
+      errorMessage = "Could not load readings from either readings service.";
+    } else if (!lectionaryPayload) {
+      noticeMessage = "Reading categories could not be loaded; showing available readings.";
+    } else if (!legacyPayload) {
+      noticeMessage = "Reading references loaded, but scripture text and context are unavailable right now.";
     }
   } catch {
     Astro.response.status = 502;
-    errorMessage = "Could not reach the readings service.";
+    errorMessage = "Could not load readings.";
   }
 }
+
+const displayedGroups = lectionaryPayload
+  ? buildDisplayGroups(lectionaryPayload, legacyPayload?.readings ?? [])
+  : legacyPayload?.readings.length
+    ? [{ category: "Readings", readings: legacyPayload.readings }]
+    : [];
 
 const pageTitle = hasValidDate
   ? `Readings for ${requestedDate} • Fast & Pray`
@@ -138,44 +346,71 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
       )}
     </header>
 
+    {noticeMessage && (
+      <p role="status" class="rounded-md border border-border bg-surface p-4 text-sm text-fg">
+        {noticeMessage}
+      </p>
+    )}
+
     {errorMessage ? (
        <p class="rounded-md border border-danger/40 bg-danger/10 p-4 text-danger">{errorMessage}</p>
-    ) : payload && payload.readings.length > 0 ? (
-      <div class="space-y-6">
-        {payload.readings.map((reading) => (
-          <article class="border border-border rounded-lg p-4 md:p-6 space-y-4">
-            <header class="space-y-2">
-              <h2 class="text-xl font-semibold">{formatReference(reading)}</h2>
-              {reading.url && (
-                <a
-                  href={reading.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="text-accent hover:underline text-sm"
-                >
-                  Open source text
-                </a>
-              )}
-            </header>
+    ) : displayedGroups.length > 0 ? (
+      <div class="space-y-8">
+        {displayedGroups.map((group) => (
+          <section class="space-y-3" aria-label={group.category}>
+            <h2 class="text-2xl font-semibold">{group.category}</h2>
+            <div class="space-y-4">
+              {group.readings.map((reading) => (
+                <details class="reading-card border border-border rounded-lg p-4 md:p-6">
+                  <summary class="reading-summary flex items-center justify-between gap-4 rounded-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                    <h3 class="text-xl font-semibold">{formatReference(reading)}</h3>
+                    <svg
+                      class="reading-chevron h-5 w-5 shrink-0 text-muted transition-transform duration-200"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </summary>
 
-            {reading.context && (
-              <div class="rounded-md bg-surface border border-border p-3">
-                <h3 class="font-semibold text-sm mb-1">Context</h3>
-                <p class="text-sm text-fg">{reading.context}</p>
-              </div>
-            )}
+                  <div class="mt-4 space-y-4">
+                    {reading.url && (
+                      <a
+                        href={reading.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="text-accent hover:underline text-sm"
+                      >
+                        Open source text
+                      </a>
+                    )}
 
-            <p class="whitespace-pre-wrap leading-relaxed text-fg">
-              {reading.text?.trim() || "No reading text available."}
-            </p>
+                    {reading.context && (
+                      <div class="rounded-md bg-surface border border-border p-3">
+                        <h4 class="font-semibold text-sm mb-1">Context</h4>
+                        <p class="text-sm text-fg">{reading.context}</p>
+                      </div>
+                    )}
 
-            {(reading.textVersion || reading.textCopyright) && (
-              <footer class="pt-2 border-t border-border text-xs text-muted space-y-1">
-                {reading.textVersion && <p>Version: {reading.textVersion}</p>}
-                {reading.textCopyright && <p>{reading.textCopyright}</p>}
-              </footer>
-            )}
-          </article>
+                    <p class="whitespace-pre-wrap leading-relaxed text-fg">
+                      {reading.text?.trim() || "Full scripture text is not available for this reading."}
+                    </p>
+
+                    {(reading.textVersion || reading.textCopyright) && (
+                      <footer class="pt-2 border-t border-border text-xs text-muted space-y-1">
+                        {reading.textVersion && <p>Version: {reading.textVersion}</p>}
+                        {reading.textCopyright && <p>{reading.textCopyright}</p>}
+                      </footer>
+                    )}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     ) : (
@@ -185,3 +420,27 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
     )}
   </section>
 </Layout>
+
+<style>
+  .reading-summary {
+    list-style: none;
+  }
+
+  .reading-summary::marker {
+    content: "";
+  }
+
+  .reading-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .reading-card[open] .reading-chevron {
+    transform: rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reading-chevron {
+      transition: none;
+    }
+  }
+</style>
