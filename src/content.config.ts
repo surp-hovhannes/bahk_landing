@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { prayerCreditReferenceSchema } from './data/prayerAttributions';
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -23,6 +24,7 @@ const bibleStudies = defineCollection({
       title: z.string(),
       description: z.string(),
       studySlug: z.string(),
+      prayerCredits: z.array(prayerCreditReferenceSchema).default([]),
       coverImage: image().optional(),
       devotionalSetId: z.number().int().optional(),
       fastId: z.number().int().optional(),

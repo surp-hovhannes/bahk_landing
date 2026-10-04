@@ -1,0 +1,8 @@
+---
+import PrayerCredit from './PrayerCredit.astro';
+import { resolvePrayerCredits, type PrayerCreditReference, type DisplayLanguage } from '../data/prayerAttributions';
+interface Props { references?: PrayerCreditReference[]; displayLanguage?: DisplayLanguage }
+const { references = [], displayLanguage = 'en' } = Astro.props;
+const credits = resolvePrayerCredits(references);
+---
+{credits.map((credit) => <PrayerCredit credit={credit} displayLanguage={displayLanguage} />)}

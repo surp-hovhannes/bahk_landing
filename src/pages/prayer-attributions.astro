@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PrayerCredit from '../components/PrayerCredit.astro';
+import { prayerAttributions } from '../data/prayerAttributions';
+---
+<Layout pageTitle="Prayer Sources & Acknowledgments • Fast & Pray">
+  <article class="max-w-prose mx-auto text-fg leading-relaxed">
+    <PageHeader title="Prayer Sources & Acknowledgments" />
+    <p>We thank the authors, translators, and editors whose work helps us pray. These credits identify the particular language and edition of each source.</p>
+    {prayerAttributions.map((credit) => <section id={credit.id} aria-labelledby={`${credit.id}-heading`} class="mt-8 scroll-mt-6">
+      <h2 id={`${credit.id}-heading`} class="text-2xl font-semibold">{credit.author && `${credit.author} — `}{credit.sourceTitle ?? credit.covers}</h2>
+      <PrayerCredit credit={credit} full />
+      {credit.id === "narek-samuelian-2021" && <Fragment><p>This permission concerns the English translation identified above. It does not establish permission for an Armenian source, other editions, unrelated materials, or a thematic index.</p>
+      <p class="mt-3">This source entry prepares the acknowledgment for that edition. It does not indicate that prayer import or attribution rollout is complete; each text’s source and edition must be verified before publication.</p></Fragment>}
+    </section>)}
+  </article>
+</Layout>
