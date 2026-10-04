@@ -37,3 +37,5 @@ Validated in the cloud container on 2026-10-04, from main commit `c04b1c334e1812
 - Public colophon and introduction links were read successfully and confirmed translator/editor and revised-edition metadata. No private correspondence or prayer text was added.
 
 The container’s `gh` token reports invalid; public git clone and the connected GitHub issue reader succeeded without credential changes. Playwright’s managed browser download returned HTTP 403 `Domain forbidden`; the existing `/usr/bin/chromium` passed browser tests instead. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to use an existing browser, or leave it unset for standard Playwright-managed Chromium. Container commands used `ASTRO_TELEMETRY_DISABLED=1`, `XDG_CONFIG_HOME=/tmp/issue52-config`, and `XDG_CACHE_HOME=/tmp/issue52-cache` to keep runtime files in writable paths. No repository-scope blocker remained. No push, PR, merge, or deployment was performed.
+
+The footer link was removed at the user’s request after initial publication. The existing Team acknowledgment remains the discovery link; this intentionally supersedes issue #52’s footer-link criterion.

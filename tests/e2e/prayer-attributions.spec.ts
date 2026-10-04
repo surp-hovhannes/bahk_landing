@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('footer and existing team entry lead to canonical Narek source', async ({ page }) => {
+test('existing team entry leads to canonical Narek source', async ({ page }) => {
   await page.goto('/team');
   await expect(page.getByText('Tom Samuelian', { exact: true })).toHaveCount(1);
   await page.getByRole('link', { name: 'Narek source and acknowledgment' }).click();
   await expect(page).toHaveURL(/prayer-attributions\/#narek-samuelian-2021$/);
   await expect(page.locator('#narek-samuelian-2021')).toBeVisible();
-  await expect(page.locator('footer').getByRole('link', { name: 'Prayer Sources & Acknowledgments' })).toHaveAttribute('href', '/prayer-attributions/');
+  await expect(page.locator('footer').getByRole('link', { name: 'Prayer Sources & Acknowledgments' })).toHaveCount(0);
 });
 
 test('credits are readable without JavaScript on mobile and by keyboard', async ({ browser }) => {
