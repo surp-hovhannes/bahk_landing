@@ -1,5 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { attributionSchema, localize, narekAttribution, prayerCreditReferenceSchema, resolvePrayerCredits, safeSourceUrl, type PrayerCreditReference } from '../src/data/prayerAttributions';
+import { attributionSchema, narekAttribution, prayerCreditReferenceSchema, resolvePrayerCredits, type PrayerCreditReference } from '../src/data/prayerAttributions';
+
+import { localize, safeSourceUrl } from '../src/data/sourceCredits';
 
 const reference: PrayerCreditReference = {
   attributionId: narekAttribution.id, covers: 'Prayer 1', scope: 'prayer',

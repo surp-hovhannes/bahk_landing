@@ -1,29 +1,14 @@
 import { z } from 'astro:content';
 import type { infer as Infer } from 'astro/zod';
 
-const text = z.string().trim().min(1);
-const localizedText = z.object({ en: text, hy: text.optional() });
-const person = z.object({ name: text, role: text.optional() });
-const link = z.object({ label: text, url: text });
-const creditFields = z.object({
-  acknowledgment: localizedText,
-  author: text.optional(),
-  translators: z.array(person).optional(),
-  editors: z.array(person).optional(),
-  sourceTitle: text.optional(),
-  sourceLinks: z.array(link).optional(),
-});
+import { creditFields, sourceCreditSchema } from './sourceCredits';
 
-export const attributionSchema = creditFields.extend({
+const text = z.string().trim().min(1);
+
+export const attributionSchema = sourceCreditSchema.extend({
   id: text.regex(/^[a-z0-9-]+$/),
   workId: text,
   editionId: text,
-  covers: text,
-  contentLanguage: text,
-  edition: text.optional(),
-  year: z.number().int().optional(),
-  // Required shared notices cannot be replaced by prayer-specific overrides.
-  notices: z.array(localizedText).default([]),
 });
 export const prayerCreditReferenceSchema = z.object({
   attributionId: text,
@@ -36,7 +21,6 @@ export const prayerCreditReferenceSchema = z.object({
 });
 export type Attribution = Infer<typeof attributionSchema>;
 export type PrayerCreditReference = Infer<typeof prayerCreditReferenceSchema>;
-export type DisplayLanguage = 'en' | 'hy';
 
 export const narekAttribution = attributionSchema.parse({
   id: 'narek-samuelian-2021',
@@ -58,22 +42,6 @@ export const narekAttribution = attributionSchema.parse({
   notices: [{ en: 'English translation used by permission. This acknowledgment applies to text sourced from the 2021 revised edition.' }],
 });
 export const prayerAttributions: readonly Attribution[] = [narekAttribution];
-
-export function localize(value: { en: string; hy?: string }, language: DisplayLanguage) {
-  return { text: value[language] || value.en, language: value[language] ? language : 'en' };
-}
-
-/** Public web sources only: no credentials, local URLs, or executable schemes. */
-export function safeSourceUrl(value: string): string | undefined {
-  try {
-    const url = new URL(value);
-    if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return;
-    const host = url.hostname.toLowerCase().replace(/\.$/, '');
-    if (!host.includes('.') || host.endsWith('.local') || host.endsWith('.localhost') || host.endsWith('.internal') || host.endsWith('.test') || host.endsWith('.invalid') ||
-        host.includes(':') || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
-    return url.href;
-  } catch { return; }
-}
 
 /** Resolve explicit edition references, never collection membership. */
 export function resolvePrayerCredits(

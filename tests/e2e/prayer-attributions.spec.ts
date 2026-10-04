@@ -13,7 +13,7 @@ test('credits are readable without JavaScript on mobile and by keyboard', async 
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 375, height: 812 } });
   const page = await context.newPage();
   await page.goto('/prayer-attributions/');
-  const credit = page.locator('.prayer-credit');
+  const credit = page.locator('.source-credit');
   for (const text of ['Thomas J. Samuelian', 'Diana Der Hovanessian', '2021 revised edition', 'English translation used by permission']) await expect(credit).toContainText(text);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Prayer Sources & Acknowledgments');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -28,14 +28,14 @@ test('credits are readable without JavaScript on mobile and by keyboard', async 
 
 test('unattributed studies have no empty credit blocks', async ({ page }) => {
   await page.goto('/bible-studies/fast-of-elijah/1/');
-  await expect(page.locator('.prayer-credit')).toHaveCount(0);
+  await expect(page.locator('.source-credit')).toHaveCount(0);
   await page.goto('/bible-studies/fast-of-elijah/');
-  await expect(page.locator('.prayer-credit')).toHaveCount(0);
+  await expect(page.locator('.source-credit')).toHaveCount(0);
 });
 
 test('credit typography meets readable size and contrast', async ({ page }) => {
   await page.goto('/prayer-attributions/');
-  const metrics = await page.locator('.prayer-credit').evaluate((el) => {
+  const metrics = await page.locator('.source-credit').evaluate((el) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
     function luminance(color: string) {

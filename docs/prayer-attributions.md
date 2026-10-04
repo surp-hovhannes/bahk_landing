@@ -2,7 +2,7 @@
 
 Canonical source: `/prayer-attributions/#narek-samuelian-2021`.
 
-The registry holds reviewed work/edition information once. `PrayerCredits` accepts explicit references on Bible-study frontmatter; session references render alongside session content and collection references render once on the overview. Never copy overview credits to sessions based on study membership. A standalone reference identifies its own edition. No current Markdown identifies Narek or a verified Narek excerpt; no existing text has been relabeled.
+The registry holds reviewed work/edition information once. Bible-study pages resolve explicit frontmatter references and render the general `SourceCredit` component; session references render alongside session content and collection references render once on the overview. Never copy overview credits to sessions based on study membership. A standalone reference identifies its own edition. No current Markdown identifies Narek or a verified Narek excerpt; no existing text has been relabeled.
 
 Example (only after verifying the actual text):
 
@@ -39,3 +39,5 @@ Validated in the cloud container on 2026-10-04, from main commit `c04b1c334e1812
 The container’s `gh` token reports invalid; public git clone and the connected GitHub issue reader succeeded without credential changes. Playwright’s managed browser download returned HTTP 403 `Domain forbidden`; the existing `/usr/bin/chromium` passed browser tests instead. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to use an existing browser, or leave it unset for standard Playwright-managed Chromium. Container commands used `ASTRO_TELEMETRY_DISABLED=1`, `XDG_CONFIG_HOME=/tmp/issue52-config`, and `XDG_CACHE_HOME=/tmp/issue52-cache` to keep runtime files in writable paths. No repository-scope blocker remained. No push, PR, merge, or deployment was performed.
 
 The footer link was removed at the user’s request after initial publication. The existing Team acknowledgment remains the discovery link; this intentionally supersedes issue #52’s footer-link criterion.
+
+The display component is general: `SourceCredit` takes source credit data and an optional details URL. Prayer language/edition matching remains in the prayer registry resolver. There is no prayer-specific display wrapper.

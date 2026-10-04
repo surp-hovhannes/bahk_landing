@@ -1,7 +1,8 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import PageHeader from "../../../components/PageHeader.astro";
-import PrayerCredits from "../../../components/PrayerCredits.astro";
+import SourceCredit from "../../../components/SourceCredit.astro";
+import { resolvePrayerCredits } from "../../../data/prayerAttributions";
 import { getCollection, render } from "astro:content";
 
 const { slug } = Astro.params;
@@ -56,7 +57,7 @@ const { Content } = await render(study);
     <!-- Intro body -->
     <div class="prose prose-slate max-w-none mb-8">
       <Content />
-      <PrayerCredits references={study.data.prayerCredits.filter((credit) => credit.scope === "collection")} />
+      {resolvePrayerCredits(study.data.prayerCredits.filter((credit) => credit.scope === "collection")).map((credit) => <SourceCredit credit={credit} detailsHref={`/prayer-attributions/#${credit.id}`} />)}
     </div>
 
     <!-- Download prompt -->

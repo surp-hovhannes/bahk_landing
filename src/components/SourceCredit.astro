@@ -1,7 +1,11 @@
 ---
-import { localize, safeSourceUrl, type Attribution, type DisplayLanguage } from '../data/prayerAttributions';
-interface Props { credit: Attribution; displayLanguage?: DisplayLanguage; full?: boolean }
-const { credit, displayLanguage = 'en', full = false } = Astro.props;
+import { localize, safeSourceUrl, type SourceCreditData, type DisplayLanguage } from '../data/sourceCredits';
+interface Props { credit: SourceCreditData; detailsHref?: string; displayLanguage?: DisplayLanguage; full?: boolean }
+const { credit, displayLanguage = 'en', full = false, detailsHref } = Astro.props;
+const detailsUrl = detailsHref && !/[\u0000-\u0020\u007f]/.test(detailsHref) && (
+  detailsHref.startsWith('/') && !detailsHref.startsWith('//') && !detailsHref.includes('\\')
+    ? detailsHref : safeSourceUrl(detailsHref)
+);
 const acknowledgment = localize(credit.acknowledgment, displayLanguage);
 const notices = credit.notices.map((notice) => localize(notice, displayLanguage));
 const links = (credit.sourceLinks ?? []).flatMap((source) => {
@@ -17,15 +21,15 @@ const fields = [
   ['Text language', credit.contentLanguage === 'en' ? 'English' : credit.contentLanguage === 'hy' ? 'Armenian' : credit.contentLanguage],
 ].filter(([, value]) => value);
 ---
-<aside class="prayer-credit my-6 rounded-lg border border-border p-4 text-fg" aria-label={`Prayer source: ${credit.covers}`}>
+<aside class="source-credit my-6 rounded-lg border border-border p-4 text-fg" aria-label={`Source: ${credit.covers}`}>
   <p class="font-semibold mb-2">{credit.covers}</p>
   <p lang={acknowledgment.language}>{acknowledgment.text}</p>
   {full && <dl class="mt-4">{fields.map(([label, value]) => <div class="mb-2"><dt class="font-semibold">{label}</dt><dd>{value}</dd></div>)}</dl>}
   {notices.map((notice) => <p class="mt-3" lang={notice.language}>{notice.text}</p>)}
-  {full ? links.map((source) => <p class="mt-3"><a href={source.url}>{source.label}</a></p>) : <p class="mt-3"><a href={`/prayer-attributions/#${credit.id}`}>Full prayer source and acknowledgment</a></p>}
+  {full ? links.map((source) => <p class="mt-3"><a href={source.url}>{source.label}</a></p>) : detailsUrl && <p class="mt-3"><a href={detailsUrl}>Full source and acknowledgment</a></p>}
 </aside>
 <style>
-  .prayer-credit { font-size: 1rem; line-height: 1.6; overflow-wrap: anywhere; }
+  .source-credit { font-size: 1rem; line-height: 1.6; overflow-wrap: anywhere; }
   a { color: var(--accent); text-decoration: underline; text-underline-offset: .2em; }
   a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 </style>
