@@ -1,6 +1,8 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import PageHeader from "../../../components/PageHeader.astro";
+import SourceCredit from "../../../components/SourceCredit.astro";
+import { resolvePrayerCredits } from "../../../data/prayerAttributions";
 import { getCollection, render } from "astro:content";
 
 const { slug, day } = Astro.params;
@@ -95,6 +97,7 @@ const { Content } = await render(session);
     <!-- Right: Session content -->
     <div class="prose prose-slate max-w-none">
       <Content />
+      {resolvePrayerCredits(session.data.prayerCredits.filter((credit) => credit.scope === "prayer")).map((credit) => <SourceCredit credit={credit} detailsHref={`/prayer-attributions/#${credit.id}`} />)}
     </div>
   </div>
 
