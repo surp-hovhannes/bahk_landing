@@ -16,8 +16,9 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@astrojs/netlify": "^8.2.5",
+    "@astrojs/netlify": "^8.2.8",
     "@astrojs/rss": "4.0.19",
+    "@netlify/blobs": "^10.7.13",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
@@ -26,10 +27,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "@vitest/coverage-v8": "^4.1.7",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^4.1.11",
     "typescript": "^5.9.3",
     "vite": "^8.2.2",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "fast-xml-parser": "5.7.0",
