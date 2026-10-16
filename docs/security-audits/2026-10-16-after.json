@@ -1,0 +1,292 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@astrojs/netlify": {
+      "name": "@astrojs/netlify",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@netlify/vite-plugin"
+      ],
+      "effects": [],
+      "range": ">=6.5.0",
+      "nodes": [
+        "node_modules/@astrojs/netlify"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/dev": {
+      "name": "@netlify/dev",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@netlify/functions-dev",
+        "@netlify/images"
+      ],
+      "effects": [
+        "@netlify/vite-plugin"
+      ],
+      "range": ">=4.2.0",
+      "nodes": [
+        "node_modules/@netlify/dev"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/functions-dev": {
+      "name": "@netlify/functions-dev",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "effects": [
+        "@netlify/dev"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@netlify/functions-dev"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/images": {
+      "name": "@netlify/images",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "ipx"
+      ],
+      "effects": [
+        "@netlify/dev"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@netlify/images"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/vite-plugin": {
+      "name": "@netlify/vite-plugin",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@netlify/dev"
+      ],
+      "effects": [
+        "@astrojs/netlify"
+      ],
+      "range": ">=2.2.0",
+      "nodes": [
+        "node_modules/@netlify/vite-plugin"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/zip-it-and-ship-it": {
+      "name": "@netlify/zip-it-and-ship-it",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "fast-glob"
+      ],
+      "effects": [
+        "@netlify/functions-dev"
+      ],
+      "range": ">=9.28.1",
+      "nodes": [
+        "node_modules/@netlify/zip-it-and-ship-it"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "braces": {
+      "name": "braces",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1240992,
+          "name": "braces",
+          "dependency": "braces",
+          "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.0.3"
+        }
+      ],
+      "effects": [
+        "micromatch"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/braces"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "fast-glob": {
+      "name": "fast-glob",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "micromatch"
+      ],
+      "effects": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/fast-glob"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "ipx": {
+      "name": "ipx",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "listhen"
+      ],
+      "effects": [
+        "@netlify/images"
+      ],
+      "range": "1.0.0-0 - 3.1.2",
+      "nodes": [
+        "node_modules/ipx"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "listhen": {
+      "name": "listhen",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "node-forge"
+      ],
+      "effects": [
+        "ipx"
+      ],
+      "range": ">=0.3.0",
+      "nodes": [
+        "node_modules/listhen"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "micromatch": {
+      "name": "micromatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "braces"
+      ],
+      "effects": [
+        "fast-glob"
+      ],
+      "range": ">=0.2.0",
+      "nodes": [
+        "node_modules/micromatch"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    },
+    "node-forge": {
+      "name": "node-forge",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1240912,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+          "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+          "severity": "high",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        }
+      ],
+      "effects": [
+        "listhen"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/node-forge"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.4.1",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 12,
+      "critical": 0,
+      "total": 12
+    },
+    "dependencies": {
+      "prod": 759,
+      "dev": 35,
+      "optional": 155,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 947
+    }
+  }
+}
