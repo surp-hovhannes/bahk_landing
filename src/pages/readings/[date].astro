@@ -361,7 +361,10 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
             <h2 class="text-2xl font-semibold">{group.category}</h2>
             <div class="space-y-4">
               {group.readings.map((reading) => (
-                <details class="reading-card border border-border rounded-lg p-4 md:p-6">
+                <details
+                  id={typeof reading.id === "number" ? `reading-${reading.id}` : undefined}
+                  class="reading-card border border-border rounded-lg p-4 md:p-6"
+                >
                   <summary class="reading-summary flex items-center justify-between gap-4 rounded-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
                     <h3 class="text-xl font-semibold">{formatReference(reading)}</h3>
                     <svg
@@ -421,7 +424,33 @@ const nextDate = hasValidDate ? shiftDate(requestedDate, 1) : "";
   </section>
 </Layout>
 
+<script>
+  // Links like /readings/2026-10-20#reading-3184 (used by the embeddable
+  // readings widget) target a collapsed card: open it, then bring it into view.
+  function openLinkedReading() {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id.startsWith("reading-")) return;
+    const card = document.getElementById(id);
+    if (!(card instanceof HTMLDetailsElement)) return;
+    card.open = true;
+    card.scrollIntoView({ block: "start" });
+    card.querySelector("summary")?.focus({ preventScroll: true });
+  }
+
+  openLinkedReading();
+  window.addEventListener("hashchange", openLinkedReading);
+</script>
+
 <style>
+  .reading-card {
+    scroll-margin-top: 1.5rem;
+  }
+
+  .reading-card:target {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
   .reading-summary {
     list-style: none;
   }
