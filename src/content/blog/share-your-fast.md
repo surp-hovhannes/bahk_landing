@@ -7,7 +7,7 @@ author: "Fast & Pray Team"
 heroImage: "./share-your-fast/hero.png"
 draft: true
 ---
-Fasting is personal, but it was never meant to be lonely. Fast & Pray can now turn a fast or a feast into an image you can share.
+Fasting is personal, but it was never meant to be lonely. When we keep a fast, it is a gift to have family and friends beside us. Fast & Pray can now turn a fast or a feast into an image you can share with them.
 
 ## What's new
 - Open a fast or a feast and tap the share button. For a fast, choose **Create a shareable image**, then **Share image**. **Share link** is still there too.
@@ -16,7 +16,7 @@ Fasting is personal, but it was never meant to be lonely. Fast & Pray can now tu
 - On the web version of the app, sharing stays a link.
 
 ## Why it matters
-When one person shares, family and friends see an invitation. Encourage someone to fast alongside you this season.
+When one person shares, family and friends see an invitation. It may be the first time they hear that the Church is fasting, or a reminder to someone who has stepped away. You might invite someone to fast alongside you this season.
 
 ![Fast detail with the share button](./share-your-fast/still-1.png)
 
@@ -24,4 +24,4 @@ When one person shares, family and friends see an invitation. Encourage someone 
 
 <video src="/blog/share-your-fast/clip.mp4" controls muted playsinline loop style="max-width:100%"></video>
 
-Join us at fastandpray.app.
+We would be glad to have you with us at fastandpray.app.
