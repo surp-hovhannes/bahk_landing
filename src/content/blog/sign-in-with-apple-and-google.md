@@ -14,7 +14,7 @@ Fasting is better kept together. We want the step from "I'd like to fast with my
 - Apple or Google confirms who you are, and our server checks that confirmation before your account is created or opened.
 - If you cancel, nothing changes. You stay on the same screen.
 - If you were about to join a fast, you pick up where you left off and join once.
-- If you already have an account with the same email, we ask you to sign in to it first, then connect Apple or Google, so no one else can take over your account.
+- Already have an account? We encourage you to connect Apple or Google to it. If the email matches, sign in as usual first, then connect, and you can use whichever way is easiest.
 - Under Me, then Settings, then Sign-in methods, you can connect or remove Apple or Google. You cannot remove your only way to sign in.
 
 ## Why it matters
