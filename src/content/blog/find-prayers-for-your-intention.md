@@ -7,7 +7,7 @@ author: "Fast & Pray Team"
 heroImage: "./find-prayers-for-your-intention/hero.png"
 draft: true
 ---
-Once you have named what you are fasting for, the app can help you find prayers for it.
+We fast and pray for something: a loved one, a burden, a thanksgiving. Once you have named what you are fasting for, Fast & Pray can help you find prayers to carry it to God.
 
 ## What's new
 - When you have set an intention for a fast you have joined, Fast & Pray suggests prayers under the heading **Prayers for your intention**.
@@ -19,7 +19,7 @@ Once you have named what you are fasting for, the app can help you find prayers 
 - On the Morning Prayers and Evening Prayers checklist pages, under a short reminder of your intention (up to three prayers).
 - Not on the Home screen. You need to be signed in and to have joined the fast.
 
-They are suggestions only: you choose.
+They are suggestions only, and you choose which to pray.
 
 ![A suggested prayer, opened](./find-prayers-for-your-intention/still-1.png)
 
@@ -28,4 +28,4 @@ They are suggestions only: you choose.
 <video src="/blog/find-prayers-for-your-intention/clip.mp4" controls muted playsinline loop style="max-width:100%"></video>
 
 
-See why an intention matters: *Fast with a focus*. fastandpray.app
+To read more about why an intention matters, see *Fast with a focus*. You are welcome to join us at fastandpray.app.
