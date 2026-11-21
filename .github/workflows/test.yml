@@ -50,7 +50,8 @@ jobs:
         path: coverage/
 
   e2e:
-    runs-on: ubuntu-latest
+    # Pinned: the browser-test framework does not support Ubuntu 26.04 (current ubuntu-latest) deps.
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
