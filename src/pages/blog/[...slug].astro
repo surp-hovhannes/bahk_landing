@@ -48,7 +48,7 @@ const { Content } = await render(entry);
       <img 
         src={entry.data.heroImage.src || entry.data.heroImage} 
         alt={entry.data.title}
-        class="w-full h-64 object-cover rounded-lg mb-6"
+        class="w-full h-auto aspect-[53/16] object-cover rounded-lg mb-6"
       />
     )}
     <h1>{entry.data.title}</h1>

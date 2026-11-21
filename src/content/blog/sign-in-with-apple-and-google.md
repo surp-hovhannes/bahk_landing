@@ -20,7 +20,6 @@ Fasting is better kept together. We want the step from "I'd like to fast with my
 ## Why it matters
 Joining a fast together is the heart of the app. A shorter path in means more time for what the fast is for: prayer, and keeping the Church's fasts and feasts alongside your parish and the wider community.
 
-<video src="/blog/sign-in-with-apple-and-google/clip.mp4" controls muted playsinline loop style="max-width:100%"></video>
 
 
 If you would like to join us, update to the latest version of Fast & Pray. It is free at fastandpray.app.
