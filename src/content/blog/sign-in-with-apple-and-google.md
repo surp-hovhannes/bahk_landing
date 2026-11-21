@@ -5,7 +5,7 @@ pubDate: 2026-11-21
 tags: ["features", "sign-in"]
 author: "Fast & Pray Team"
 heroImage: "./sign-in-with-apple-and-google/hero.png"
-draft: true
+draft: false
 ---
 Fasting is better kept together. We want the step from "I'd like to fast with my parish" to "I'm in" to be as small as we can make it. So Fast & Pray now lets you continue with Apple or Google, with no new password to invent.
 
