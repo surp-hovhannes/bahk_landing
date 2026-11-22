@@ -5,7 +5,7 @@ pubDate: 2026-11-21
 tags: ["intentions", "fasting", "reflection"]
 author: "Fast & Pray Team"
 heroImage: "./fast-with-a-focus/hero.png"
-draft: true
+draft: false
 ---
 A fast changes us most when it has a focus. Not eating certain foods is a discipline; a fast with an intention becomes a penance.
 
