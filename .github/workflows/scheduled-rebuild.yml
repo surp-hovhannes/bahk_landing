@@ -1,0 +1,33 @@
+name: Scheduled rebuild
+
+# Blog posts with a future pubDate are hidden until a build runs after that time.
+# This job triggers a Netlify build daily so scheduled posts go live without a manual deploy.
+
+on:
+  schedule:
+    - cron: '30 15 * * *' # 15:30 UTC (07:30 PST / 08:30 PDT)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trigger-netlify-build:
+    # Pinned to match the e2e job in test.yml.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Netlify build hook
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK_URL" ]; then
+            echo "::error title=Missing secret::NETLIFY_BUILD_HOOK_URL is not set. Scheduled blog posts will not publish automatically. Create a Netlify build hook (Site configuration > Build & deploy > Build hooks) and run: gh secret set NETLIFY_BUILD_HOOK_URL -R surp-hovhannes/bahk_landing"
+            exit 1
+          fi
+          status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
+            --request POST --max-time 30 --retry 2 "$NETLIFY_BUILD_HOOK_URL")
+          echo "Netlify build hook responded with HTTP $status"
+          case "$status" in
+            2??) echo "Build triggered." ;;
+            *) echo "::error::Netlify build hook request failed (HTTP $status)"; exit 1 ;;
+          esac
