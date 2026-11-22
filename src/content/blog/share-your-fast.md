@@ -18,9 +18,9 @@ Fasting is personal, but it was never meant to be lonely. When we keep a fast, i
 ## Why it matters
 When one person shares, family and friends see an invitation. It may be the first time they hear that the Church is fasting, or a reminder to someone who has stepped away. You might invite someone to fast alongside you this season.
 
-![Fast detail with the share button](./share-your-fast/still-1.png)
+![The Share sheet for the Fast of Hisnak, with the Story, Post and Square previews](./share-your-fast/still-1.png)
 
-![Feast detail](./share-your-fast/still-2.png)
+![The Share sheet for the Presentation of the Holy Mother of God to the Temple](./share-your-fast/still-2.png)
 
 <video src="/blog/share-your-fast/clip.mp4" controls muted playsinline loop style="max-width:100%"></video>
 
