@@ -14,7 +14,7 @@ export default defineConfig({
       edgeFunctions: false,
     },
   }),
-  site: process.env.PUBLIC_SITE || 'http://localhost:4321',
+  site: process.env.PUBLIC_SITE || 'https://fastandpray.app',
   vite: {
     plugins: [tailwindcss()],
   },

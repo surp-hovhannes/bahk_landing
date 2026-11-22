@@ -31,8 +31,10 @@ The dev server runs at `http://localhost:4321`.
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `PUBLIC_SITE` | `http://localhost:4321` | Canonical site URL used by Astro SSR and RSS generation |
+| `PUBLIC_SITE` | `https://fastandpray.app` | Canonical site URL used by Astro SSR and RSS generation |
 | `PUBLIC_API_URL` | `https://api.fastandpray.app` | Backend API base URL for the icon library and related client-side fetches |
+
+The dev server still runs at `http://localhost:4321`. Set `PUBLIC_SITE=http://localhost:4321` explicitly if you need local absolute URLs in the feed, or use another origin for a preview build.
 
 ## Content model
 
