@@ -5,7 +5,7 @@ pubDate: 2026-11-21
 tags: ["features", "prayer", "intentions"]
 author: "Fast & Pray Team"
 heroImage: "./find-prayers-for-your-intention/hero.png"
-draft: true
+draft: false
 ---
 We fast and pray for something: a loved one, a burden, a thanksgiving. Once you have named what you are fasting for, Fast & Pray can help you find prayers to carry it to God.
 
