@@ -5,7 +5,7 @@ pubDate: 2026-11-21
 tags: ["features", "sharing"]
 author: "Fast & Pray Team"
 heroImage: "./share-your-fast/hero.png"
-draft: true
+draft: false
 ---
 Fasting is personal, but it was never meant to be lonely. When we keep a fast, it is a gift to have family and friends beside us. Fast & Pray can now turn a fast or a feast into an image you can share with them.
 
