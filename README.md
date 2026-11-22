@@ -45,6 +45,15 @@ Content collections are defined in `src/content/config.ts`.
 
 Draft blog posts are excluded from the blog index and `src/pages/rss.xml.js`.
 
+### Scheduled publishing
+
+A blog post is public only if `draft` is not `true` **and** `pubDate` is at or before the build time. Posts with a future `pubDate` are left out of the blog index, tag pages, post pages and RSS (all go through `src/lib/blog.ts`). `draft: true` hides a post regardless of its date.
+
+- Use a full timestamp with an offset, e.g. `pubDate: 2026-11-24T08:00:00-08:00`. A date-only value (`2026-11-24`) is parsed as UTC midnight.
+- The post appears at the first build after that time. `.github/workflows/scheduled-rebuild.yml` triggers a Netlify build daily at 15:30 UTC (about 07:30 PT), so a post can go live up to ~24 hours late unless you trigger a build sooner (re-run the workflow with *Run workflow*, or trigger a deploy in Netlify).
+- The workflow needs the repository secret `NETLIFY_BUILD_HOOK_URL` (a Netlify build hook for `main`). Without it the run fails with an explanatory message and nothing is published automatically.
+- A mistyped future date hides a post, so check the date when adding one.
+
 ## Project structure
 
 - `src/pages/`: Astro routes for the landing pages, blog, icon library, Bible studies, and static content pages
