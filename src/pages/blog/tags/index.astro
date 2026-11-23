@@ -1,9 +1,9 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import PageHeader from "../../../components/PageHeader.astro";
-import { getCollection } from "astro:content";
+import { getPublishedPosts } from "../../../lib/blog";
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = await getPublishedPosts();
 const tagToCount = new Map<string, number>();
 for (const p of posts) {
   for (const t of p.data.tags || []) {

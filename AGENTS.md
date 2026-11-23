@@ -55,7 +55,7 @@ src/
 
 ### Key Configuration
 - **Server Output**: Configured for Netlify serverless deployment
-- **Site URL**: Uses PUBLIC_SITE environment variable or localhost fallback
+- **Site URL**: Uses PUBLIC_SITE environment variable or canonical https://fastandpray.app fallback
 - **Tailwind**: Configured with typography and forms plugins
 - **TypeScript**: Uses Astro's strict TypeScript configuration
 
