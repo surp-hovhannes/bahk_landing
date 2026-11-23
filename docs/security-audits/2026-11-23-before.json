@@ -1,0 +1,1160 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@astrojs/netlify": {
+      "name": "@astrojs/netlify",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@netlify/vite-plugin"
+      ],
+      "effects": [],
+      "range": ">=6.6.0",
+      "nodes": [
+        "node_modules/@astrojs/netlify"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/dev": {
+      "name": "@netlify/dev",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@netlify/functions-dev"
+      ],
+      "effects": [
+        "@netlify/vite-plugin"
+      ],
+      "range": ">=4.6.1",
+      "nodes": [
+        "node_modules/@netlify/dev"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/functions-dev": {
+      "name": "@netlify/functions-dev",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "effects": [
+        "@netlify/dev"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@netlify/functions-dev"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/vite-plugin": {
+      "name": "@netlify/vite-plugin",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@netlify/dev"
+      ],
+      "effects": [
+        "@astrojs/netlify"
+      ],
+      "range": ">=2.7.1",
+      "nodes": [
+        "node_modules/@netlify/vite-plugin"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@netlify/zip-it-and-ship-it": {
+      "name": "@netlify/zip-it-and-ship-it",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@vercel/nft",
+        "archiver",
+        "minimatch",
+        "toml"
+      ],
+      "effects": [
+        "@netlify/functions-dev"
+      ],
+      "range": ">=4.15.0",
+      "nodes": [
+        "node_modules/@netlify/zip-it-and-ship-it"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@typescript-eslint/typescript-estree": {
+      "name": "@typescript-eslint/typescript-estree",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [],
+      "range": "6.16.0 - 8.72.2",
+      "nodes": [
+        "node_modules/@typescript-eslint/typescript-estree"
+      ],
+      "fixAvailable": true
+    },
+    "@vercel/nft": {
+      "name": "@vercel/nft",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "glob"
+      ],
+      "effects": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "range": "0.29.2 - 1.11.1",
+      "nodes": [
+        "node_modules/@netlify/zip-it-and-ship-it/node_modules/@vercel/nft",
+        "node_modules/@vercel/nft"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "@vitest/coverage-v8": {
+      "name": "@vitest/coverage-v8",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "vitest"
+      ],
+      "effects": [
+        "vitest"
+      ],
+      "range": "2.1.0-beta.1 - 4.1.11",
+      "nodes": [
+        "node_modules/@vitest/coverage-v8"
+      ],
+      "fixAvailable": true
+    },
+    "@vitest/mocker": {
+      "name": "@vitest/mocker",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1242767,
+          "name": "@vitest/mocker",
+          "dependency": "@vitest/mocker",
+          "title": "Vitest: Code injection via unauthenticated manual mock registration",
+          "url": "https://github.com/advisories/GHSA-qxg6-89mg-rqv8",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-94",
+            "CWE-116",
+            "CWE-306"
+          ],
+          "cvss": {
+            "score": 4.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+          },
+          "range": ">=2.1.0-beta.7 <4.1.12"
+        },
+        {
+          "source": 1242769,
+          "name": "@vitest/mocker",
+          "dependency": "@vitest/mocker",
+          "title": "Vitest: Windows backslash traversal bypasses the @vitest/mocker redirect allowlist fix",
+          "url": "https://github.com/advisories/GHSA-xp26-3454-mjgp",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": ">=4.1.11 <4.1.12"
+        }
+      ],
+      "effects": [
+        "vitest"
+      ],
+      "range": "<=4.1.11",
+      "nodes": [
+        "node_modules/@vitest/mocker"
+      ],
+      "fixAvailable": true
+    },
+    "archiver": {
+      "name": "archiver",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "readdir-glob"
+      ],
+      "effects": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "range": ">=8.0.0",
+      "nodes": [
+        "node_modules/archiver"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "astro": {
+      "name": "astro",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        {
+          "source": 1242877,
+          "name": "astro",
+          "dependency": "astro",
+          "title": "Astro: Reflected/Stored XSS via unescaped <script>/<style> tag content in JSX/MDX rendering",
+          "url": "https://github.com/advisories/GHSA-98hj-9722-w3j8",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-79"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"
+          },
+          "range": "<7.3.2"
+        },
+        {
+          "source": 1242878,
+          "name": "astro",
+          "dependency": "astro",
+          "title": "Astro: Arbitrary CSS injection in Astro View Transitions",
+          "url": "https://github.com/advisories/GHSA-mpr7-6m5w-76rw",
+          "severity": "low",
+          "cwe": [
+            "CWE-79"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=7.1.0 <=7.3.2"
+        },
+        {
+          "source": 1246685,
+          "name": "astro",
+          "dependency": "astro",
+          "title": "Astro: XSS via attribute injection in dynamic tag names",
+          "url": "https://github.com/advisories/GHSA-mh32-jxcr-mh9f",
+          "severity": "low",
+          "cwe": [
+            "CWE-79",
+            "CWE-184"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=7.4.4"
+        },
+        {
+          "source": 1246686,
+          "name": "astro",
+          "dependency": "astro",
+          "title": "Astro: Image endpoint in @astrojs/node can read files from a case-variant sibling of the output directory on case-sensitive filesystems",
+          "url": "https://github.com/advisories/GHSA-r3h5-4585-7x3w",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-22",
+            "CWE-178"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=5.14.3 <=7.4.6"
+        }
+      ],
+      "effects": [],
+      "range": "<=7.4.6",
+      "nodes": [
+        "node_modules/astro"
+      ],
+      "fixAvailable": true
+    },
+    "fast-uri": {
+      "name": "fast-uri",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1243098,
+          "name": "fast-uri",
+          "dependency": "fast-uri",
+          "title": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding",
+          "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-172",
+            "CWE-180"
+          ],
+          "cvss": {
+            "score": 6.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+          },
+          "range": ">=3.0.0 <3.1.9"
+        },
+        {
+          "source": 1243101,
+          "name": "fast-uri",
+          "dependency": "fast-uri",
+          "title": "fast-uri vulnerable to improper path equivalence in relative reference normalization",
+          "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
+          "severity": "low",
+          "cwe": [
+            "CWE-41"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=3.0.0 <3.1.9"
+        },
+        {
+          "source": 1243104,
+          "name": "fast-uri",
+          "dependency": "fast-uri",
+          "title": "fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization",
+          "url": "https://github.com/advisories/GHSA-wjr9-j795-jxcr",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-20",
+            "CWE-436"
+          ],
+          "cvss": {
+            "score": 4.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=3.1.3 <3.1.9"
+        },
+        {
+          "source": 1243107,
+          "name": "fast-uri",
+          "dependency": "fast-uri",
+          "title": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references",
+          "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
+          "severity": "low",
+          "cwe": [
+            "CWE-41",
+            "CWE-116"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=3.0.0 <3.1.9"
+        }
+      ],
+      "effects": [],
+      "range": "3.0.0 - 3.1.8",
+      "nodes": [
+        "node_modules/fast-uri"
+      ],
+      "fixAvailable": true
+    },
+    "fast-xml-parser": {
+      "name": "fast-xml-parser",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1246029,
+          "name": "fast-xml-parser",
+          "dependency": "fast-xml-parser",
+          "title": "fast-xml-parser: Quadratic CPU consumption scanning unterminated stop-node tags",
+          "url": "https://github.com/advisories/GHSA-474x-hrwr-fgx4",
+          "severity": "low",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<=5.11.2"
+        }
+      ],
+      "effects": [],
+      "range": "<=5.11.2",
+      "nodes": [
+        "node_modules/fast-xml-parser"
+      ],
+      "fixAvailable": true
+    },
+    "glob": {
+      "name": "glob",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1244013,
+          "name": "glob",
+          "dependency": "glob",
+          "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+          "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=9.0.0 <=14.0.1"
+        },
+        "minimatch"
+      ],
+      "effects": [
+        "@vercel/nft"
+      ],
+      "range": "9.0.0 - 14.0.1",
+      "nodes": [
+        "node_modules/glob"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "minimatch": {
+      "name": "minimatch",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1244623,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has potential denial of service via globparts amplification",
+          "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-405"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=7.0.0 <11.0.1"
+        }
+      ],
+      "effects": [
+        "@netlify/zip-it-and-ship-it",
+        "@typescript-eslint/typescript-estree",
+        "glob",
+        "readdir-glob"
+      ],
+      "range": "7.0.0 - 11.0.0",
+      "nodes": [
+        "node_modules/minimatch"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "node-forge": {
+      "name": "node-forge",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1240912,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+          "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+          "severity": "high",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244014,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: ASN.1 OID first arc truncation in asn1.oidToDer",
+          "url": "https://github.com/advisories/GHSA-4642-5mcj-2rqw",
+          "severity": "low",
+          "cwe": [
+            "CWE-190"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244015,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie",
+          "url": "https://github.com/advisories/GHSA-6wvx-3r32-xmcg",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 4.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244016,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: TLS client crash when the server sends no certificate",
+          "url": "https://github.com/advisories/GHSA-525v-9gp9-w22h",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-476"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244017,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Regular expression denial of service in PEM decoding (pem.decode)",
+          "url": "https://github.com/advisories/GHSA-7wch-p9px-956x",
+          "severity": "high",
+          "cwe": [
+            "CWE-400",
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244018,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891)",
+          "url": "https://github.com/advisories/GHSA-h6cr-wjv9-3cpp",
+          "severity": "low",
+          "cwe": [
+            "CWE-835"
+          ],
+          "cvss": {
+            "score": 2.9,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244019,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store",
+          "url": "https://github.com/advisories/GHSA-4487-j8r4-4g2f",
+          "severity": "low",
+          "cwe": [
+            "CWE-295",
+            "CWE-471"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244020,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: AES-GCM authentication bypass via unvalidated tagLength option",
+          "url": "https://github.com/advisories/GHSA-5cwg-6vw7-rj6p",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-354",
+            "CWE-1284"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244021,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: PKCS#12 MAC forgery and constant-key PBE via zero iteration count",
+          "url": "https://github.com/advisories/GHSA-jc66-7q78-782g",
+          "severity": "high",
+          "cwe": [
+            "CWE-354",
+            "CWE-1284"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244022,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message",
+          "url": "https://github.com/advisories/GHSA-8hrf-8g6f-7xwp",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-476"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244023,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Denial of service in TLS record processing via call stack exhaustion",
+          "url": "https://github.com/advisories/GHSA-hqq3-7jhf-c5jx",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1244024,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: X.509 basicConstraints bypass in verifyCertificateChain() via deprecated extension OIDs 2.5.29.10 and 2.5.29.13",
+          "url": "https://github.com/advisories/GHSA-5x38-2vff-x55p",
+          "severity": "high",
+          "cwe": [
+            "CWE-295",
+            "CWE-436"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1245925,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Certificate signature verified with the issuer's RSA signature scheme",
+          "url": "https://github.com/advisories/GHSA-9wg5-mj3p-v49q",
+          "severity": "low",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1245926,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Incomplete PKCS#7 padding validation in AES/DES CBC and ECB decryption",
+          "url": "https://github.com/advisories/GHSA-2vgq-wchc-25w7",
+          "severity": "low",
+          "cwe": [
+            "CWE-20",
+            "CWE-354"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1245927,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: X.509 pathLenConstraint not enforced by verifyCertificateChain() for CA certificates without keyUsage",
+          "url": "https://github.com/advisories/GHSA-h46v-rmh6-fq4f",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-295"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1245928,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: ASN.1 resource exhaustion via BIT STRING decoding in asn1.fromDer",
+          "url": "https://github.com/advisories/GHSA-rhr8-3pm8-cq29",
+          "severity": "high",
+          "cwe": [
+            "CWE-400",
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1245929,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: RSA PKCS#1 v1.5 signature forgery via non-canonical DigestInfo encoding",
+          "url": "https://github.com/advisories/GHSA-6qrw-m8cv-hcxf",
+          "severity": "high",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<=1.4.0"
+        },
+        {
+          "source": 1246031,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: Ed25519 signature verification accepts small-order public keys",
+          "url": "https://github.com/advisories/GHSA-6889-vf6x-f3g5",
+          "severity": "low",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<=1.4.2"
+        },
+        {
+          "source": 1246032,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: TLS client crash on an unsupported ServerHello compression method",
+          "url": "https://github.com/advisories/GHSA-w4xr-hqv8-ch44",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-20",
+            "CWE-248"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.2"
+        },
+        {
+          "source": 1246033,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: ReDoS in forge.http response header and cookie trimming",
+          "url": "https://github.com/advisories/GHSA-6cv4-p8m7-4r25",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=0.1.2 <=1.4.2"
+        },
+        {
+          "source": 1246034,
+          "name": "node-forge",
+          "dependency": "node-forge",
+          "title": "Forge: TLS client crash on a handshake record received without a session",
+          "url": "https://github.com/advisories/GHSA-j8rw-jp99-435v",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-476"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.4.2"
+        }
+      ],
+      "effects": [],
+      "range": "<=1.4.2",
+      "nodes": [
+        "node_modules/node-forge"
+      ],
+      "fixAvailable": true
+    },
+    "readdir-glob": {
+      "name": "readdir-glob",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "minimatch"
+      ],
+      "effects": [
+        "archiver"
+      ],
+      "range": "2.0.0 - 3.0.0",
+      "nodes": [
+        "node_modules/readdir-glob"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "toml": {
+      "name": "toml",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1242862,
+          "name": "toml",
+          "dependency": "toml",
+          "title": "toml-node: Quadratic-complexity DoS via many array-of-tables headers in toml.parse()",
+          "url": "https://github.com/advisories/GHSA-4qx8-w7c3-pj3p",
+          "severity": "high",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=5.0.0"
+        },
+        {
+          "source": 1242863,
+          "name": "toml",
+          "dependency": "toml",
+          "title": "toml-node: Quadratic-complexity DoS via long dotted keys or table paths in toml.parse()",
+          "url": "https://github.com/advisories/GHSA-9j65-hcg3-gc64",
+          "severity": "high",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=5.0.0"
+        },
+        {
+          "source": 1242864,
+          "name": "toml",
+          "dependency": "toml",
+          "title": "toml-node: Uncontrolled resource consumption (CPU DoS) via unbounded-length integer literals in toml.parse()",
+          "url": "https://github.com/advisories/GHSA-9qmh-m7c6-f92p",
+          "severity": "high",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=5.0.0"
+        },
+        {
+          "source": 1246095,
+          "name": "toml",
+          "dependency": "toml",
+          "title": "toml-node: Prototype pollution: parsing a TOML document can write to Object.prototype",
+          "url": "https://github.com/advisories/GHSA-h895-cgqg-jf52",
+          "severity": "high",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=5.0.0"
+        }
+      ],
+      "effects": [
+        "@netlify/zip-it-and-ship-it"
+      ],
+      "range": "<=5.0.0",
+      "nodes": [
+        "node_modules/toml"
+      ],
+      "fixAvailable": {
+        "name": "@astrojs/netlify",
+        "version": "6.5.13",
+        "isSemVerMajor": true
+      }
+    },
+    "undici": {
+      "name": "undici",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1243077,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser",
+          "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243080,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens",
+          "url": "https://github.com/advisories/GHSA-f72v-6w45-q472",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-178"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243112,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
+          "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-459"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243472,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects",
+          "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26",
+          "severity": "high",
+          "cwe": [
+            "CWE-346",
+            "CWE-524"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243474,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent",
+          "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx",
+          "severity": "high",
+          "cwe": [
+            "CWE-295"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243477,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation",
+          "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-617"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243480,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering",
+          "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400",
+            "CWE-405",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        },
+        {
+          "source": 1243483,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor",
+          "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-248"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=8.0.0 <8.12.2"
+        }
+      ],
+      "effects": [],
+      "range": "8.0.0 - 8.12.1",
+      "nodes": [
+        "node_modules/undici"
+      ],
+      "fixAvailable": true
+    },
+    "vitest": {
+      "name": "vitest",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@vitest/coverage-v8",
+        "@vitest/mocker"
+      ],
+      "effects": [
+        "@vitest/coverage-v8"
+      ],
+      "range": "2.1.0-beta.1 - 4.1.11",
+      "nodes": [
+        "node_modules/vitest"
+      ],
+      "fixAvailable": true
+    },
+    "zod": {
+      "name": "zod",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1243066,
+          "name": "zod",
+          "dependency": "zod",
+          "title": "Zod can exhaust memory while validating oversized constrained collections",
+          "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+          "severity": "high",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<4.6.6"
+        }
+      ],
+      "effects": [],
+      "range": "<4.6.6",
+      "nodes": [
+        "node_modules/zod"
+      ],
+      "fixAvailable": true
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 15,
+      "high": 5,
+      "critical": 0,
+      "total": 21
+    },
+    "dependencies": {
+      "prod": 759,
+      "dev": 35,
+      "optional": 155,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 947
+    }
+  }
+}

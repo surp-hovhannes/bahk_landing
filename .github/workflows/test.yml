@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22.x'
+        node-version-file: '.nvmrc'
         cache: 'npm'
 
     - name: Install dependencies
@@ -34,7 +34,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22.x'
+        node-version-file: '.nvmrc'
         cache: 'npm'
 
     - name: Install dependencies
@@ -49,6 +49,24 @@ jobs:
         name: coverage-report
         path: coverage/
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build and verify packaged Netlify SSR
+      run: npm run test:ssr
+
   e2e:
     # Pinned: the browser-test framework does not support Ubuntu 26.04 (current ubuntu-latest) deps.
     runs-on: ubuntu-24.04
@@ -59,7 +77,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22.x'
+        node-version-file: '.nvmrc'
         cache: 'npm'
 
     - name: Install dependencies

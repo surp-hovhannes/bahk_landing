@@ -4,15 +4,17 @@
 
 ## Stack
 
-- Astro 5 with SSR output
+- Astro 7 with SSR output
 - Netlify adapter for deployment
-- Tailwind CSS
+- Tailwind CSS 4
 - Astro content collections for blog posts and Bible studies
+- Node 22.23.5 (see `.nvmrc`); CI and Netlify use the same version
 
 ## Local development
 
 ```sh
-npm install
+nvm use
+npm ci
 npm run dev
 ```
 
@@ -26,6 +28,17 @@ The dev server runs at `http://localhost:4321`.
 | `npm run build` | Build the production site into `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run astro -- --help` | Show Astro CLI help |
+| `npm run check` | Check TypeScript and generated content types |
+| `npm test` | Run unit and dependency compatibility tests (requires `unzip`) |
+| `npm run test:e2e` | Run Chromium tests against the development server |
+| `npm run test:ssr` | Build and exercise the packaged Netlify function locally |
+
+`test:ssr` imports the generated function from `.netlify/v1/functions/ssr/`,
+checks rendered routes, assets, RSS, redirects and 404s, and uses local API
+fixtures instead of contacting the live backend. It does not deploy. Hosted
+Netlify routing, Image CDN infrastructure and Blobs credentials still require
+the normal deployment review. The runtime and dependency decisions are recorded
+in [the November maintenance review](docs/dependency-maintenance-2026-11-23.md).
 
 ## Environment variables
 
