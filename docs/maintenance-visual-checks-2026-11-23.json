@@ -1,0 +1,182 @@
+[
+  {
+    "path": "/",
+    "width": 1440,
+    "identicalScreenshot": false,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/blog/welcome/",
+    "width": 1440,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/prayer-attributions/",
+    "width": 1440,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/bible-studies/fast-of-elijah/1/",
+    "width": 1440,
+    "identicalScreenshot": false,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/readings/",
+    "width": 1440,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/icons/101/",
+    "width": 1440,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/",
+    "width": 375,
+    "identicalScreenshot": false,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/blog/welcome/",
+    "width": 375,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/prayer-attributions/",
+    "width": 375,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/bible-studies/fast-of-elijah/1/",
+    "width": 375,
+    "identicalScreenshot": false,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/readings/",
+    "width": 375,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  },
+  {
+    "path": "/icons/101/",
+    "width": 375,
+    "identicalScreenshot": true,
+    "baseline": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    },
+    "proposed": {
+      "status": 200,
+      "overflow": false,
+      "pageErrors": []
+    }
+  }
+]
