@@ -1,7 +1,7 @@
 ---
 title: "Fast with a focus: why intentions matter"
 description: "A fast changes us most when it has a focus. Why naming one intention matters."
-pubDate: 2026-11-21
+pubDate: 2026-12-03T07:00:00-08:00
 tags: ["intentions", "fasting", "reflection"]
 author: "Fast & Pray Team"
 heroImage: "./fast-with-a-focus/hero.png"
