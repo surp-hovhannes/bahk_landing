@@ -1,7 +1,7 @@
 ---
 title: "Share the fast, build community"
 description: "Turn a fast or a feast into a branded image to share with family and friends."
-pubDate: 2026-11-21
+pubDate: 2026-11-30T07:00:00-08:00
 tags: ["features", "sharing"]
 author: "Fast & Pray Team"
 heroImage: "./share-your-fast/hero.png"
