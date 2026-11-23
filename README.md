@@ -31,8 +31,10 @@ The dev server runs at `http://localhost:4321`.
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `PUBLIC_SITE` | `http://localhost:4321` | Canonical site URL used by Astro SSR and RSS generation |
+| `PUBLIC_SITE` | `https://fastandpray.app` | Canonical site URL used by Astro SSR and RSS generation |
 | `PUBLIC_API_URL` | `https://api.fastandpray.app` | Backend API base URL for the icon library and related client-side fetches |
+
+The dev server still runs at `http://localhost:4321`. Set `PUBLIC_SITE=http://localhost:4321` explicitly if you need local absolute URLs in the feed, or use another origin for a preview build.
 
 ## Content model
 
@@ -42,6 +44,15 @@ Content collections are defined in `src/content/config.ts`.
 - `bibleStudies`: Study landing pages and sessions with metadata such as `studySlug`, optional cover image, and optional per-session video/poster fields
 
 Draft blog posts are excluded from the blog index and `src/pages/rss.xml.js`.
+
+### Scheduled publishing
+
+A blog post is public only if `draft` is not `true` **and** `pubDate` is at or before the build time. Posts with a future `pubDate` are left out of the blog index, tag pages, post pages and RSS (all go through `src/lib/blog.ts`). `draft: true` hides a post regardless of its date.
+
+- Use a full timestamp with an offset, e.g. `pubDate: 2026-11-24T08:00:00-08:00`. A date-only value (`2026-11-24`) is parsed as UTC midnight.
+- The post appears at the first build after that time. `.github/workflows/scheduled-rebuild.yml` triggers a Netlify build daily at 15:30 UTC (about 07:30 PT), so a post can go live up to ~24 hours late unless you trigger a build sooner (re-run the workflow with *Run workflow*, or trigger a deploy in Netlify).
+- The workflow needs the repository secret `NETLIFY_BUILD_HOOK_URL` (a Netlify build hook for `main`). Without it the run fails with an explanatory message and nothing is published automatically.
+- A mistyped future date hides a post, so check the date when adding one.
 
 ## Project structure
 

@@ -28,7 +28,7 @@ const posts = [
     data: {
       title: 'Older Post',
       description: 'Older description.',
-      pubDate: new Date('2029-01-15'),
+      pubDate: new Date('2024-01-15'),
       draft: false,
     },
   },
@@ -37,7 +37,7 @@ const posts = [
     data: {
       title: 'Draft Post',
       description: 'Draft description.',
-      pubDate: new Date('2031-01-15'),
+      pubDate: new Date('2026-01-15'),
       draft: true,
     },
   },
@@ -46,7 +46,16 @@ const posts = [
     data: {
       title: 'Latest Post',
       description: 'Latest description.',
-      pubDate: new Date('2030-01-15'),
+      pubDate: new Date('2025-01-15'),
+      draft: false,
+    },
+  },
+  {
+    id: 'scheduled-post',
+    data: {
+      title: 'Scheduled Post',
+      description: 'Scheduled description.',
+      pubDate: new Date('2999-01-01'),
       draft: false,
     },
   },
@@ -67,6 +76,7 @@ test('RSS feed excludes drafts and emits newest published entries with absolute 
   expect(getCollection).toHaveBeenCalledWith('blog', expect.any(Function));
   expect(itemTitles).toEqual(['Latest Post', 'Older Post']);
   expect(xml).not.toContain('Draft Post');
+  expect(xml).not.toContain('Scheduled Post');
   expect(xml).toContain('<link>https://example.com/blog/latest-post/</link>');
   expect(xml).toContain('<description>Latest description.</description>');
   expect(rss).toHaveBeenCalledWith(expect.objectContaining({ site: 'https://example.com/' }));
