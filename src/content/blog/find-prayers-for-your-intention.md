@@ -1,7 +1,7 @@
 ---
 title: "Find prayers for your intention"
 description: "Once you have named what you are fasting for, Fast & Pray suggests prayers for it."
-pubDate: 2026-11-21
+pubDate: 2026-12-07T07:00:00-08:00
 tags: ["features", "prayer", "intentions"]
 author: "Fast & Pray Team"
 heroImage: "./find-prayers-for-your-intention/hero.png"
